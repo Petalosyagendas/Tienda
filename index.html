@@ -29,6 +29,17 @@
             border-bottom: 3px solid var(--lila-pastel);
         }
 
+        /* Estilo para el Logo */
+        .logo-tienda {
+            max-width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background-color: white;
+        }
+
         header h1 {
             margin: 0;
             font-size: 2.8rem;
@@ -128,17 +139,18 @@
             margin-top: 1.5rem;
         }
 
-        .galeria-item {
-            background-color: var(--bg-principal);
-            border: 2px dashed var(--gris-perla);
+        /* Estilo para las fotos de las agendas */
+        .galeria-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
             border-radius: 15px;
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-weight: bold;
-            color: #A0A0A0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.3s;
+        }
+
+        .galeria-img:hover {
+            transform: scale(1.02);
         }
 
         .whatsapp-btn {
@@ -162,6 +174,7 @@
 <body>
 
     <header>
+        <img src="ChatGPT Image 6 jun 2026, 10 20 59.png" alt="Logo Pétalos y Agenda" class="logo-tienda">
         <h1>Pétalos y Agenda</h1>
         <p style="color: #7A7A7A; margin: 0.5rem 0 0 0;">Agendas personalizadas de anillas</p>
     </header>
@@ -216,4 +229,134 @@
                 <div class="form-group">
                     <label>Método de entrega:</label>
                     <div class="radio-group">
-                        <label
+                        <label class="radio-option"><input type="radio" name="entrega" value="Envío a domicilio" checked> Envío a domicilio</label>
+                        <label class="radio-option"><input type="radio" name="entrega" value="Recoger"> Recoger</label>
+                    </div>
+                </div>
+
+                <div class="precio-box">
+                    Precio total estimado: <span id="precioTotal">21,50</span>€
+                </div>
+
+                <button type="button" onclick="enviarPorWhatsApp()">Enviar diseño por WhatsApp 💬</button>
+            </form>
+        </section>
+
+        <section id="portfolio">
+            <h2>Agendas que ya he hecho</h2>
+            <p style="color: #7A7A7A;">Inspírate con algunos de mis trabajos anteriores:</p>
+            <div class="galeria">
+                <img src="WhatsApp Image 2026-06-03 at 16.07.33.jpeg" alt="Mi Agenda Personalizada 1" class="galeria-img">
+                <img src="WhatsApp Image 2026-06-03 at 16.07.33 (1).jpeg" alt="Mi Agenda Personalizada 2" class="galeria-img">
+                <img src="WhatsApp Image 2026-06-03 at 16.10.14.jpeg" alt="Mi Agenda Personalizada 3" class="galeria-img">
+            </div>
+        </section>
+
+    </div>
+
+    <a href="https://wa.me/34672707366?text=%C2%A1Hola%21%20Te%20escribo%20desde%20la%20web%20para%20pasarte%20unas%20fotos%20para%20mi%20agenda." class="whatsapp-btn" target="_blank">
+        💬 Enviar Fotos por WhatsApp
+    </a>
+
+    <script>
+        // ==========================================
+        // 📌 TU LISTA DE ENTREGAS RESERVADAS (AÑO-MES-DÍA)
+        // Pones aquí el día de la entrega y bloqueará ese día y los 4 de antes.
+        // ==========================================
+        var entregasReservadas = [
+            "2026-06-25"
+        ];
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            var hoy = new Date();
+            hoy.setDate(hoy.getDate() + 5);
+            
+            var dd = String(hoy.getDate()).padStart(2, '0');
+            var mm = String(hoy.getMonth() + 1).padStart(2, '0');
+            var yyyy = hoy.getFullYear();
+
+            var fechaMinima = yyyy + '-' + mm + '-' + dd;
+            document.getElementById('fecha').setAttribute('min', fechaMinima);
+        });
+
+        function validarFechaOcupada() {
+            var fechaSeleccionadaStr = document.getElementById('fecha').value;
+            if(!fechaSeleccionadaStr) return;
+
+            var fechaSeleccionada = new Date(fechaSeleccionadaStr);
+            fechaSeleccionada.setHours(0,0,0,0);
+
+            var estaBloqueado = false;
+
+            for (var i = 0; i < entregasReservadas.length; i++) {
+                var fechaEntrega = new Date(entregasReservadas[i]);
+                fechaEntrega.setHours(0,0,0,0);
+
+                var inicioBloqueo = new Date(fechaEntrega);
+                inicioBloqueo.setDate(fechaEntrega.getDate() - 4);
+
+                if (fechaSeleccionada >= inicioBloqueo && fechaSeleccionada <= fechaEntrega) {
+                    estaBloqueado = true;
+                    break;
+                }
+            }
+            
+            if (estaBloqueado) {
+                alert("¡Lo siento! En esas fechas estaré diseñando otra agenda reservada previamente. Por favor, selecciona un día diferente.");
+                document.getElementById('fecha').value = "";
+            }
+        }
+
+        function actualizarPrecio() {
+            var selectPapel = document.getElementById('papel');
+            var precioPapel = parseFloat(selectPapel.options[selectPapel.selectedIndex].getAttribute('data-precio'));
+            
+            var selectAnillas = document.getElementById('anillas');
+            var extraAnillas = parseFloat(selectAnillas.options[selectAnillas.selectedIndex].getAttribute('data-extra'));
+            
+            var total = precioPapel + extraAnillas;
+            
+            document.getElementById('precioTotal').innerText = total.toFixed(2).replace('.', ',');
+        }
+
+        function enviarPorWhatsApp() {
+            // TU TELÉFONO REAL CONFIGURADO
+            var miTelefono = "34672707366"; 
+            
+            var nombre = document.getElementById('nombre').value;
+            var fecha = document.getElementById('fecha').value;
+            
+            var papelSelect = document.getElementById('papel');
+            var papel = papelSelect.value;
+            
+            var anillasSelect = document.getElementById('anillas');
+            var anillas = anillasSelect.value;
+            
+            var precioFinal = document.getElementById('precioTotal').innerText + "€";
+            var detalles = document.getElementById('detalles').value;
+            var pago = document.querySelector('input[name="pago"]:checked').value;
+            var entrega = document.querySelector('input[name="entrega"]:checked').value;
+
+            if(!nombre || !fecha) {
+                alert("Por favor, rellena tu nombre y selecciona el día en el que quieres que empiece tu agenda.");
+                return;
+            }
+
+            var fechaFormateada = fecha.split('-').reverse().join('/');
+
+            var mensaje = "¡Hola! He rellenado el formulario de la web para una agenda personalizada:%0A%0A" +
+                "*Nombre:* " + encodeURIComponent(nombre) + "%0A" +
+                "*Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
+                "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
+                "*Tipo de Anillas:* " + encodeURIComponent(anillas) + "%0A" +
+                "*Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
+                "*Entrega:* " + encodeURIComponent(entrega) + "%0A" +
+                "*Detalles del diseño:* " + encodeURIComponent(detalles) + "%0A%0A" +
+                "*Precio Total Estimado:* " + encodeURIComponent(precioFinal);
+
+            window.open("https://wa.me/" + miTelefono + "?text=" + mensaje, '_blank');
+        }
+    </script>
+
+</body>
+</html>
