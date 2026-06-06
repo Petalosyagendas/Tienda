@@ -3,27 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
     <title>Pétalos y Agenda | Agendas Personalizadas</title>
     <style>
         :root {
-            --bg-principal: #FDFBF7;
-            --rosa-pastel: #F3E1E4;
-            --azul-pastel: #E1ECF4;
-            --lila-pastel: #E8DFF5;
-            --gris-perla: #E2E2E2;
-            --texto: #4A4A4A;
+            --bg-principal: #FDFBF7 !important;
+            --rosa-pastel: #F3E1E4 !important;
+            --azul-pastel: #E1ECF4 !important;
+            --lila-pastel: #E8DFF5 !important;
+            --gris-perla: #E2E2E2 !important;
+            --texto: #4A4A4A !important;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-principal);
-            color: var(--texto);
+        /* Bloqueamos el fondo claro en todo el documento */
+        html, body {
+            background-color: #FDFBF7 !important;
+            color: #4A4A4A !important;
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-text-fill-color: #4A4A4A !important;
         }
 
         header {
-            background-color: var(--rosa-pastel);
+            background-color: var(--rosa-pastel) !important;
             text-align: center;
             padding: 2.5rem;
             border-bottom: 3px solid var(--lila-pastel);
@@ -36,13 +39,13 @@
             border-radius: 50%;
             margin-bottom: 1rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            background-color: white;
+            background-color: white !important;
         }
 
         header h1 {
             margin: 0;
             font-size: 2.8rem;
-            color: #5A5A5A;
+            color: #5A5A5A !important;
             font-weight: 400;
         }
 
@@ -53,7 +56,7 @@
         }
 
         section {
-            background: white;
+            background: white !important;
             padding: 2.5rem;
             border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.03);
@@ -61,7 +64,7 @@
         }
 
         h2 {
-            color: #6A6A6A;
+            color: #6A6A6A !important;
             border-bottom: 2px solid var(--azul-pastel);
             padding-bottom: 0.5rem;
             margin-top: 0;
@@ -76,6 +79,7 @@
             margin-bottom: 0.5rem;
             font-weight: bold;
             font-size: 0.95rem;
+            color: #4A4A4A !important;
         }
 
         input[type="text"], input[type="date"], textarea, select {
@@ -84,7 +88,8 @@
             border: 1px solid var(--gris-perla);
             border-radius: 10px;
             box-sizing: border-box;
-            background-color: #FCFCFC;
+            background-color: #FCFCFC !important;
+            color: #4A4A4A !important;
             font-size: 1rem;
         }
 
@@ -99,23 +104,24 @@
             align-items: center;
             gap: 0.5rem;
             cursor: pointer;
+            color: #4A4A4A !important;
         }
 
         .precio-box {
-            background-color: var(--azul-pastel);
+            background-color: var(--azul-pastel) !important;
             padding: 1.2rem;
             border-radius: 12px;
             text-align: center;
             margin: 1.5rem 0;
             font-size: 1.3rem;
             font-weight: bold;
-            color: #4A4A4A;
+            color: #4A4A4A !important;
             border: 1px solid #B8C6DB;
         }
 
         button {
-            background-color: var(--lila-pastel);
-            color: var(--texto);
+            background-color: var(--lila-pastel) !important;
+            color: #4A4A4A !important;
             border: none;
             padding: 1.1rem;
             font-size: 1.1rem;
@@ -128,7 +134,7 @@
         }
 
         button:hover {
-            background-color: var(--rosa-pastel);
+            background-color: var(--rosa-pastel) !important;
         }
 
         .galeria {
@@ -155,8 +161,8 @@
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background-color: #25D366;
-            color: white;
+            background-color: #25D366 !important;
+            color: white !important;
             padding: 1rem 1.5rem;
             border-radius: 50px;
             text-decoration: none;
@@ -278,4 +284,78 @@
             if(!fechaSeleccionadaStr) return;
 
             var fechaSeleccionada = new Date(fechaSeleccionadaStr);
-            fechaSeleccion
+            fechaSeleccionada.setHours(0,0,0,0);
+
+            var estaBloqueado = false;
+
+            for (var i = 0; i < entregasReservadas.length; i++) {
+                var fechaEntrega = new Date(entregasReservadas[i]);
+                fechaEntrega.setHours(0,0,0,0);
+
+                var inicioBloqueo = new Date(fechaEntrega);
+                inicioBloqueo.setDate(fechaEntrega.getDate() - 4);
+
+                if (fechaSeleccionada >= inicioBloqueo && fechaSeleccionada <= fechaEntrega) {
+                    estaBloqueado = true;
+                    break;
+                }
+            }
+            
+            if (estaBloqueado) {
+                alert("¡Lo siento! En esas fechas estaré diseñando otra agenda reservada previamente. Por favor, selecciona un día diferente.");
+                document.getElementById('fecha').value = "";
+            }
+        }
+
+        function actualizarPrecio() {
+            var selectPapel = document.getElementById('papel');
+            var precioPapel = parseFloat(selectPapel.options[selectPapel.selectedIndex].getAttribute('data-precio'));
+            
+            var selectAnillas = document.getElementById('anillas');
+            var extraAnillas = parseFloat(selectAnillas.options[selectAnillas.selectedIndex].getAttribute('data-extra'));
+            
+            var total = precioPapel + extraAnillas;
+            
+            document.getElementById('precioTotal').innerText = total.toFixed(2).replace('.', ',');
+        }
+
+        function enviarPorWhatsApp() {
+            var miTelefono = "34672707366"; 
+            
+            var nombre = document.getElementById('nombre').value;
+            var fecha = document.getElementById('fecha').value;
+            
+            var papelSelect = document.getElementById('papel');
+            var papel = papelSelect.value;
+            
+            var anillasSelect = document.getElementById('anillas');
+            var anillas = anillasSelect.value;
+            
+            var precioFinal = document.getElementById('precioTotal').innerText + "€";
+            var detalles = document.getElementById('detalles').value;
+            var pago = document.querySelector('input[name="pago"]:checked').value;
+            var entrega = document.querySelector('input[name="entrega"]:checked').value;
+
+            if(!nombre || !fecha) {
+                alert("Por favor, rellena tu nombre y selecciona el día en el que quieres que empiece tu agenda.");
+                return;
+            }
+
+            var fechaFormateada = fecha.split('-').reverse().join('/');
+
+            var mensaje = "¡Hola! He rellenado el formulario de la web para una agenda personalizada:%0A%0A" +
+                "*Nombre:* " + encodeURIComponent(nombre) + "%0A" +
+                "*Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
+                "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
+                "*Tipo de Anillas:* " + encodeURIComponent(anillas) + "%0A" +
+                "*Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
+                "*Entrega:* " + encodeURIComponent(entrega) + "%0A" +
+                "*Detalles del diseño:* " + encodeURIComponent(detalles) + "%0A%0A" +
+                "*Precio Total Estimado:* " + encodeURIComponent(precioFinal);
+
+            window.open("https://wa.me/" + miTelefono + "?text=" + mensaje, '_blank');
+        }
+    </script>
+
+</body>
+</html>
