@@ -68,7 +68,7 @@
             font-size: 0.95rem;
         }
 
-        input[type="text"], input[type="email"], input[type="date"], textarea, select {
+        input[type="text"], textarea, select {
             width: 100%;
             padding: 0.8rem;
             border: 1px solid var(--gris-perla);
@@ -89,6 +89,19 @@
             align-items: center;
             gap: 0.5rem;
             cursor: pointer;
+        }
+
+        /* Caja de Precio Total */
+        .precio-box {
+            background-color: var(--azul-pastel);
+            padding: 1.2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 1.5rem 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4A4A4A;
+            border: 1px solid #B8C6DB;
         }
 
         button {
@@ -151,7 +164,7 @@
 
     <header>
         <h1>Pétalos y Agenda</h1>
-        <p style="color: #7A7A7A; margin: 0.5rem 0 0 0;">Agendas diseñadas especialmente para ti</p>
+        <p style="color: #7A7A7A; margin: 0.5rem 0 0 0;">Agendas personalizadas de anillas</p>
     </header>
 
     <div class="container">
@@ -171,8 +184,26 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="papel">Grosor del papel:</label>
+                    <select id="papel" onchange="actualizarPrecio()">
+                        <option value="80gr" data-precio="21.50">80 gr — 21,50€</option>
+                        <option value="90gr" data-precio="27.00">90 gr — 27,00€</option>
+                        <option value="100gr" data-precio="33.00">100 gr — 33,00€</option>
+                    </select>
+                </div>
+
+                <!-- NUEVO: Selección de Tipo de Anillas -->
+                <div class="form-group">
+                    <label for="anillas">Tipo de anillas:</label>
+                    <select id="anillas" onchange="actualizarPrecio()">
+                        <option value="Plata / Básicas" data-extra="0.00">Anillas estándar (Plata) — Sin coste extra</option>
+                        <option value="De color" data-extra="0.50">Anillas de color (Rosa, azul, lila...) — +0,50€</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label for="detalles">Preguntas de diseño (Colores preferidos, temáticas, frases para la portada...):</label>
-                    <textarea id="detalles" rows="5" placeholder="Cuéntame detalladamente cómo te gustaría el diseño, secciones especiales que quieras añadir, etc."></textarea>
+                    <textarea id="detalles" rows="5" placeholder="Cuéntame detalladamente cómo te gustaría el diseño, si has elegido anillas de color dime qué color te gustaría, etc."></textarea>
                 </div>
 
                 <div class="form-group">
@@ -191,6 +222,10 @@
                     </div>
                 </div>
 
+                <div class="precio-box">
+                    Precio total estimado: <span id="precioTotal">21,50</span>€
+                </div>
+
                 <button type="button" onclick="enviarPorWhatsApp()">Enviar diseño por WhatsApp 💬</button>
             </form>
         </section>
@@ -199,7 +234,6 @@
             <h2>Agendas que ya he hecho</h2>
             <p style="color: #7A7A7A;">Inspírate con algunos de mis trabajos anteriores:</p>
             <div class="galeria">
-                <!-- Aquí meteremos los archivos de tus fotos más adelante -->
                 <div class="galeria-item">Foto Agenda 1</div>
                 <div class="galeria-item">Foto Agenda 2</div>
                 <div class="galeria-item">Foto Agenda 3</div>
@@ -213,12 +247,35 @@
     </a>
 
     <script>
+        function actualizarPrecio() {
+            // Obtener precio del papel
+            var selectPapel = document.getElementById('papel');
+            var precioPapel = parseFloat(selectPapel.options[selectPapel.selectedIndex].getAttribute('data-precio'));
+            
+            // Obtener extra de las anillas
+            var selectAnillas = document.getElementById('anillas');
+            var extraAnillas = parseFloat(selectAnillas.options[selectAnillas.selectedIndex].getAttribute('data-extra'));
+            
+            // Calcular total
+            var total = precioPapel + extraAnillas;
+            
+            document.getElementById('precioTotal').innerText = total.toFixed(2).replace('.', ',');
+        }
+
         function enviarPorWhatsApp() {
-            // REEMPLAZA EL NÚMERO ABAJO (Incluye el prefijo de tu país, ej: 34 para España)
+            // REEMPLAZA ESTE NÚMERO POR EL TUYO (con prefijo de país, ej: 34 para España)
             var miTelefono = "34600000000"; 
             
             var nombre = document.getElementById('nombre').value;
             var fecha = document.getElementById('fecha').value;
+            
+            var papelSelect = document.getElementById('papel');
+            var papel = papelSelect.value;
+            
+            var anillasSelect = document.getElementById('anillas');
+            var anillas = anillasSelect.value;
+            
+            var precioFinal = document.getElementById('precioTotal').innerText + "€";
             var detalles = document.getElementById('detalles').value;
             var pago = document.querySelector('input[name="pago"]:checked').value;
             var entrega = document.querySelector('input[name="entrega"]:checked').value;
@@ -231,9 +288,12 @@
             var mensaje = "¡Hola! He rellenado el formulario de la web para una agenda personalizada:%0A%0A" +
                 "*Nombre:* " + encodeURIComponent(nombre) + "%0A" +
                 "*Fecha de inicio:* " + encodeURIComponent(fecha) + "%0A" +
+                "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
+                "*Tipo de Anillas:* " + encodeURIComponent(anillas) + "%0A" +
                 "*Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
                 "*Entrega:* " + encodeURIComponent(entrega) + "%0A" +
-                "*Detalles del diseño:* " + encodeURIComponent(detalles);
+                "*Detalles del diseño:* " + encodeURIComponent(detalles) + "%0A%0A" +
+                "*Precio Total Estimado:* " + encodeURIComponent(precioFinal);
 
             window.open("https://wa.me/" + miTelefono + "?text=" + mensaje, '_blank');
         }
