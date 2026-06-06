@@ -244,12 +244,38 @@
             <h2>Agendas que ya he hecho</h2>
             <p style="color: #7A7A7A;">Inspírate con algunos de mis trabajos anteriores:</p>
             <div class="galeria">
-                <img src="Agenda%201.jpg" alt="Mi Agenda Personalizada 1" class="galeria-img">
-                <img src="Agenda%202.jpg" alt="Mi Agenda Personalizada 2" class="galeria-img">
-                <img src="Agenda%203.jpg" alt="Mi Agenda Personalizada 3" class="galeria-img">
+                <img src="agenda_1.jpg" alt="Mi Agenda Personalizada 1" class="galeria-img">
+                <img src="agenda_2.jpg" alt="Mi Agenda Personalizada 2" class="galeria-img">
+                <img src="agenda_3.jpg" alt="Mi Agenda Personalizada 3" class="galeria-img">
             </div>
         </section>
 
     </div>
 
-    <a href="
+    <a href="https://wa.me/34672707366?text=%C2%A1Hola%21%20Te%20escribo%20desde%20la%20web%20para%20pasarte%20unas%20fotos%20para%20mi%20agenda." class="whatsapp-btn" target="_blank">
+        💬 Enviar Fotos por WhatsApp
+    </a>
+
+    <script>
+        var entregasReservadas = [
+            "2026-06-25"
+        ];
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            var hoy = new Date();
+            hoy.setDate(hoy.getDate() + 5);
+            
+            var dd = String(hoy.getDate()).padStart(2, '0');
+            var mm = String(hoy.getMonth() + 1).padStart(2, '0');
+            var yyyy = hoy.getFullYear();
+
+            var fechaMinima = yyyy + '-' + mm + '-' + dd;
+            document.getElementById('fecha').setAttribute('min', fechaMinima);
+        });
+
+        function validarFechaOcupada() {
+            var fechaSeleccionadaStr = document.getElementById('fecha').value;
+            if(!fechaSeleccionadaStr) return;
+
+            var fechaSeleccionada = new Date(fechaSeleccionadaStr);
+            fechaSeleccion
