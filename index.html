@@ -68,7 +68,7 @@
             font-size: 0.95rem;
         }
 
-        input[type="text"], textarea, select {
+        input[type="text"], input[type="date"], textarea, select {
             width: 100%;
             padding: 0.8rem;
             border: 1px solid var(--gris-perla);
@@ -91,7 +91,6 @@
             cursor: pointer;
         }
 
-        /* Caja de Precio Total */
         .precio-box {
             background-color: var(--azul-pastel);
             padding: 1.2rem;
@@ -179,8 +178,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="fecha">¿A partir de qué día quieres tener tu agenda?</label>
-                    <input type="text" id="fecha" placeholder="Ej: Septiembre 2026, 1 de Enero..." required>
+                    <label for="fecha">¿A partir de qué día quieres tu agenda?</label>
+                    <input type="date" id="fecha" onchange="validarFechaOcupada()" required>
+                    <small style="color: #8A8A8A; display: block; margin-top: 0.3rem;">* Se requiere un mínimo de 5 días desde hoy para el diseño. Solo se permite una agenda por período de diseño.</small>
                 </div>
 
                 <div class="form-group">
@@ -192,7 +192,6 @@
                     </select>
                 </div>
 
-                <!-- NUEVO: Selección de Tipo de Anillas -->
                 <div class="form-group">
                     <label for="anillas">Tipo de anillas:</label>
                     <select id="anillas" onchange="actualizarPrecio()">
@@ -247,23 +246,73 @@
     </a>
 
     <script>
+        // ==========================================
+        // 📌 TU LISTA DE ENTREGAS RESERVADAS (AÑO-MES-DÍA)
+        // Tú solo pones aquí el día de la entrega. 
+        // El sistema bloqueará ese día y los 4 días de antes automáticamente.
+        // ==========================================
+        var entregasReservadas = [
+            "2026-06-25"
+        ];
+
+        // Bloquear automáticamente los primeros 5 días desde el día actual
+        window.addEventListener('DOMContentLoaded', (event) => {
+            var hoy = new Date();
+            hoy.setDate(hoy.getDate() + 5);
+            
+            var dd = String(hoy.getDate()).padStart(2, '0');
+            var mm = String(hoy.getMonth() + 1).padStart(2, '0');
+            var yyyy = hoy.getFullYear();
+
+            var fechaMinima = yyyy + '-' + mm + '-' + dd;
+            document.getElementById('fecha').setAttribute('min', fechaMinima);
+        });
+
+        // Comprobar si el día elegido coincide con una entrega o sus días de preparación
+        function validarFechaOcupada() {
+            var fechaSeleccionadaStr = document.getElementById('fecha').value;
+            if(!fechaSeleccionadaStr) return;
+
+            var fechaSeleccionada = new Date(fechaSeleccionadaStr);
+            fechaSeleccionada.setHours(0,0,0,0);
+
+            var estaBloqueado = false;
+
+            // Recorrer cada entrega de tu lista
+            for (var i = 0; i < entregasReservadas.length; i++) {
+                var fechaEntrega = new Date(entregasReservadas[i]);
+                fechaEntrega.setHours(0,0,0,0);
+
+                // Calcular el inicio del bloqueo (4 días antes de la entrega)
+                var inicioBloqueo = new Date(fechaEntrega);
+                inicioBloqueo.setDate(fechaEntrega.getDate() - 4);
+
+                // Si la fecha que elige el cliente está entre el inicio del bloqueo y la entrega...
+                if (fechaSeleccionada >= inicioBloqueo && fechaSeleccionada <= fechaEntrega) {
+                    estaBloqueado = true;
+                    break;
+                }
+            }
+            
+            if (estaBloqueado) {
+                alert("¡Lo siento! En esas fechas estaré diseñando otra agenda reservada previamente. Por favor, selecciona un día diferente.");
+                document.getElementById('fecha').value = ""; // Resetea el calendario
+            }
+        }
+
         function actualizarPrecio() {
-            // Obtener precio del papel
             var selectPapel = document.getElementById('papel');
             var precioPapel = parseFloat(selectPapel.options[selectPapel.selectedIndex].getAttribute('data-precio'));
             
-            // Obtener extra de las anillas
             var selectAnillas = document.getElementById('anillas');
             var extraAnillas = parseFloat(selectAnillas.options[selectAnillas.selectedIndex].getAttribute('data-extra'));
             
-            // Calcular total
             var total = precioPapel + extraAnillas;
             
             document.getElementById('precioTotal').innerText = total.toFixed(2).replace('.', ',');
         }
 
         function enviarPorWhatsApp() {
-            // REEMPLAZA ESTE NÚMERO POR EL TUYO (con prefijo de país, ej: 34 para España)
             var miTelefono = "34600000000"; 
             
             var nombre = document.getElementById('nombre').value;
@@ -281,13 +330,15 @@
             var entrega = document.querySelector('input[name="entrega"]:checked').value;
 
             if(!nombre || !fecha) {
-                alert("Por favor, rellena al menos tu nombre y cuándo quieres empezar tu agenda.");
+                alert("Por favor, rellena tu nombre y selecciona el día en el que quieres que empiece tu agenda.");
                 return;
             }
 
+            var fechaFormateada = fecha.split('-').reverse().join('/');
+
             var mensaje = "¡Hola! He rellenado el formulario de la web para una agenda personalizada:%0A%0A" +
                 "*Nombre:* " + encodeURIComponent(nombre) + "%0A" +
-                "*Fecha de inicio:* " + encodeURIComponent(fecha) + "%0A" +
+                "*Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
                 "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
                 "*Tipo de Anillas:* " + encodeURIComponent(anillas) + "%0A" +
                 "*Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
