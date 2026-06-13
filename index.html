@@ -34,6 +34,81 @@
         button:hover { background-color: var(--rosa-pastel) !important; }
         .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
         .galeria-img { width: 100%; height: 240px; object-fit: cover; border-radius: 15px; }
+
+        /* ESTILOS PARA LA SECCIÓN SOBRE MÍ */
+        .sobre-mi-contenido {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        .sobre-mi-foto {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--lila-pastel);
+            flex-shrink: 0;
+        }
+        .sobre-mi-texto p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+        .sobre-mi-texto p:last-child {
+            margin-bottom: 0;
+            font-weight: 500;
+        }
+
+        /* BOTÓN FLOTANTE DE WHATSAPP */
+        .whatsapp-flotante {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white !important;
+            padding: 12px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .whatsapp-flotante:hover {
+            transform: scale(1.05);
+            background-color: #20ba5a;
+        }
+
+        .whatsapp-icon {
+            font-size: 1.3rem;
+        }
+
+        /* Ajustes adaptables para móviles */
+        @media (max-width: 600px) {
+            .sobre-mi-contenido {
+                flex-direction: column;
+                text-align: center;
+            }
+            .sobre-mi-foto {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .whatsapp-flotante {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -44,6 +119,23 @@
     </header>
 
     <div class="container">
+        
+        <!-- NUEVA SECCIÓN: SOBRE MÍ -->
+        <section id="sobre-mi">
+            <h2>Sobre mí</h2>
+            <div class="sobre-mi-contenido">
+                <!-- Puedes cambiar 'creadora.jpg' por el nombre de tu foto o dejar el logo de tu tienda si lo prefieres -->
+                <img src="logo.png" alt="Creadora de Pétalos y Agenda" class="sobre-mi-foto">
+                <div class="sobre-mi-texto">
+                    <p>¡Hola! Soy la persona que está detrás de estas agendas personalizadas, creadas con cariño, creatividad y mucha atención a los detalles.</p>
+                    <p>Me encanta diseñar agendas únicas que reflejen la personalidad, gustos y necesidades de cada persona. No creo en las agendas impersonales: cada una de mis creaciones está pensada para que quien la reciba sienta que ha sido hecha especialmente para ella.</p>
+                    <p>Trabajo cada diseño de forma personalizada, cuidando desde la portada hasta los pequeños detalles interiores. Ya sea una agenda elegante, divertida, gótica, inspirada en personajes favoritos o adaptada a una profesión concreta, mi objetivo es crear algo útil, bonito y especial.</p>
+                    <p>Gracias por confiar en mi trabajo y por apoyar un proyecto hecho con ilusión, dedicación y mucho corazón. 💜</p>
+                    <p>Porque organizar tu día también puede ser algo que te represente. ✨📖</p>
+                </div>
+            </div>
+        </section>
+
         <section id="personalizar">
             <h2>Configura tu Agenda</h2>
             <form action="https://formspree.io/f/meewenda" method="POST">
@@ -93,6 +185,12 @@
             </div>
         </section>
     </div>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <!-- RECUERDA: Cambia el '34600000000' por tu número de teléfono real -->
+    <a href="https://wa.me/34672707366?text=%C2%A1Hola%21%20Te%20escribo%20desde%20la%20web%20para%20enviarte%20las%20fotos%20de%20mi%20agenda%20personalizada%20%F0%9F%93%93" class="whatsapp-flotante" target="_blank">
+        <span class="whatsapp-icon">💬</span> Enviar fotos por WhatsApp
+    </a>
 
 </body>
 </html>
