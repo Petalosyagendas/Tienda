@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
-    <title>Pétalos y Agenda | Agendas Personalizadas</title>
+    <title>Petalos y Agenda | Agendas Personalizadas</title>
     <style>
         :root {
             --bg-principal: #FDFBF7 !important;
@@ -35,7 +35,7 @@
         .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
         .galeria-img { width: 100%; height: 240px; object-fit: cover; border-radius: 15px; }
 
-        /* ESTILOS PARA LA SECCIÓN SOBRE MÍ */
+        /* SECCION SOBRE MI */
         .sobre-mi-contenido {
             display: flex;
             gap: 2rem;
@@ -55,58 +55,37 @@
             margin-bottom: 1rem;
             font-size: 1.05rem;
         }
-        .sobre-mi-texto p:last-child {
-            margin-bottom: 0;
-            font-weight: 500;
-        }
 
-        /* BOTÓN FLOTANTE DE WHATSAPP */
+        /* BOTON FLOTANTE DE WHATSAPP */
         .whatsapp-flotante {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background-color: #25D366;
+            background-color: #25D366 !important;
             color: white !important;
-            padding: 12px 22px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95rem;
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.15);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            padding: 14px 24px !important;
+            border-radius: 50px !important;
+            text-decoration: none !important;
+            font-weight: bold !important;
+            font-size: 1rem !important;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2) !important;
+            z-index: 99999 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
         }
 
-        .whatsapp-flotante:hover {
-            transform: scale(1.05);
-            background-color: #20ba5a;
-        }
-
-        .whatsapp-icon {
-            font-size: 1.3rem;
-        }
-
-        /* Ajustes adaptables para móviles */
+        /* Adaptacion para moviles */
         @media (max-width: 600px) {
             .sobre-mi-contenido {
                 flex-direction: column;
                 text-align: center;
             }
-            .sobre-mi-foto {
-                width: 150px;
-                height: 150px;
-            }
-        }
-
-        @media (max-width: 480px) {
             .whatsapp-flotante {
-                bottom: 15px;
-                right: 15px;
-                padding: 10px 16px;
-                font-size: 0.85rem;
+                bottom: 20px !important;
+                right: 20px !important;
+                padding: 12px 20px !important;
+                font-size: 0.9rem !important;
             }
         }
     </style>
@@ -120,22 +99,22 @@
 
     <div class="container">
         
-        <!-- NUEVA SECCIÓN: SOBRE MÍ -->
+        <!-- SECCION: SOBRE MI -->
         <section id="sobre-mi">
-            <h2>Sobre mí</h2>
+            <h2>Sobre mi</h2>
             <div class="sobre-mi-contenido">
-                <!-- Puedes cambiar 'creadora.jpg' por el nombre de tu foto o dejar el logo de tu tienda si lo prefieres -->
-                <img src="logo.png" alt="Creadora de Pétalos y Agenda" class="sobre-mi-foto">
+                <img src="logo.png" alt="Creadora" class="sobre-mi-foto">
                 <div class="sobre-mi-texto">
-                    <p>¡Hola! Soy la persona que está detrás de estas agendas personalizadas, creadas con cariño, creatividad y mucha atención a los detalles.</p>
-                    <p>Me encanta diseñar agendas únicas que reflejen la personalidad, gustos y necesidades de cada persona. No creo en las agendas impersonales: cada una de mis creaciones está pensada para que quien la reciba sienta que ha sido hecha especialmente para ella.</p>
-                    <p>Trabajo cada diseño de forma personalizada, cuidando desde la portada hasta los pequeños detalles interiores. Ya sea una agenda elegante, divertida, gótica, inspirada en personajes favoritos o adaptada a una profesión concreta, mi objetivo es crear algo útil, bonito y especial.</p>
-                    <p>Gracias por confiar en mi trabajo y por apoyar un proyecto hecho con ilusión, dedicación y mucho corazón. 💜</p>
-                    <p>Porque organizar tu día también puede ser algo que te represente. ✨📖</p>
+                    <p>Hola! Soy la persona que esta detras de estas agendas personalizadas, creadas con carino, creatividad y mucha atencion a los detalles.</p>
+                    <p>Me encanta disenar agendas unicas que reflejen la personalidad, gustos y necesidades de cada persona. No creo en las agendas impersonales: cada una de mis creaciones esta pensada para que quien la reciba sienta que ha sido hecha especialmente para ella.</p>
+                    <p>Trabajo cada diseno de forma personalizada, cuidando desde la portada hasta los pequenos detalles interiores. Ya sea una agenda elegante, divertida, gotica, inspirada en personajes favoritos o adaptada a una profesion concreta, mi objetivo es crear algo util, bonito y especial.</p>
+                    <p>Gracias por confiar en mi trabajo y por apoyar un proyecto hecho con ilusion, dedicacion y mucho corazon.</p>
+                    <p><strong>Porque organizar tu dia tambien puede ser algo que te represente.</strong></p>
                 </div>
             </div>
         </section>
 
+        <!-- CONFIGURADOR -->
         <section id="personalizar">
             <h2>Configura tu Agenda</h2>
             <form action="https://formspree.io/f/meewenda" method="POST">
@@ -172,10 +151,11 @@
                     <textarea name="Detalles" rows="5" placeholder="Cuéntame cómo quieres tu portada, colores, frases..."></textarea>
                 </div>
 
-                <button type="submit">Enviar Pedido por Email 📧</button>
+                <button type="submit">Enviar Pedido por Email</button>
             </form>
         </section>
 
+        <!-- PORTFOLIO -->
         <section id="portfolio">
             <h2>Agendas que ya he hecho</h2>
             <div class="galeria">
@@ -186,10 +166,10 @@
         </section>
     </div>
 
-    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
-    <!-- RECUERDA: Cambia el '34600000000' por tu número de teléfono real -->
-    <a href="https://wa.me/34672707366?text=%C2%A1Hola%21%20Te%20escribo%20desde%20la%20web%20para%20enviarte%20las%20fotos%20de%20mi%20agenda%20personalizada%20%F0%9F%93%93" class="whatsapp-flotante" target="_blank">
-        <span class="whatsapp-icon">💬</span> Enviar fotos por WhatsApp
+    <!-- BOTON FLOTANTE DE WHATSAPP -->
+    <!-- Recuerda cambiar el numero 34600000000 por el tuyo -->
+    <a href="https://wa.me/672707366?text=Hola!%20Te%20escribo%20para%20enviarte%20las%20fotos%20de%20mi%20agenda" class="whatsapp-flotante" target="_blank">
+        Enviar fotos por WhatsApp
     </a>
 
 </body>
