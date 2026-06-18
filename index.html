@@ -304,11 +304,11 @@
                         <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
                     </div>
                     <div class="resena-galeria-fotos">
-                        <img src="resena_klabel1.jpg" alt="Foto Agenda Klabel 1" onerror="this.style.display='none'">
-                        <img src="resena_klabel2.jpg" alt="Foto Agenda Klabel 2" onerror="this.style.display='none'">
-                        <img src="resena_klabel3.jpg" alt="Foto Agenda Klabel 3" onerror="this.style.display='none'">
-                        <img src="resena_klabel4.jpg" alt="Foto Agenda Klabel 4" onerror="this.style.display='none'">
-                        <img src="resena_klabel5.jpg" alt="Foto Agenda Klabel 5" onerror="this.style.display='none'">
+                        <img src="resena_klabel1.jpg" alt="Foto Agenda Klabel 1" onerror="this.src='resena_klabel1.jpeg'; this.onerror=function(){this.style.display='none';}">
+                        <img src="resena_klabel2.jpg" alt="Foto Agenda Klabel 2" onerror="this.src='resena_klabel2.jpeg'; this.onerror=function(){this.style.display='none';}">
+                        <img src="resena_klabel3.jpg" alt="Foto Agenda Klabel 3" onerror="this.src='resena_klabel3.jpeg'; this.onerror=function(){this.style.display='none';}">
+                        <img src="resena_klabel4.jpg" alt="Foto Agenda Klabel 4" onerror="this.src='resena_klabel4.jpeg'; this.onerror=function(){this.style.display='none';}">
+                        <img src="resena_klabel5.jpg" alt="Foto Agenda Klabel 5" onerror="this.src='resena_klabel5.jpeg'; this.onerror=function(){this.style.display='none';}">
                     </div>
                 </div>
 
@@ -319,8 +319,8 @@
                         <p class="resena-texto">"Es preciosa y muy especial"</p>
                     </div>
                     <div class="resena-galeria-fotos">
-                        <img src="resena_toñi1.jpg" alt="Foto Agenda Toñi 1" onerror="this.style.display='none'">
-                        <img src="resena_toñi2.jpg" alt="Foto Agenda Toñi 2" onerror="this.style.display='none'">
+                        <img src="resena_toni1.jpg" alt="Foto Agenda Toñi 1" onerror="this.src='resena_toni1.jpeg'; this.onerror=function(){this.style.display='none';}">
+                        <img src="resena_toni2.jpg" alt="Foto Agenda Toñi 2" onerror="this.src='resena_toni2.jpeg'; this.onerror=function(){this.style.display='none';}">
                     </div>
                 </div>
 
@@ -360,7 +360,7 @@
         const dd = String(fechaMinima.getDate()).padStart(2, '0');
         inputEntrega.min = `${yyyy}-${mm}-${dd}`;
 
-        // CONTROL AL SELECCIONAR FECHAS
+        // CONTROL AL SELECCIONAR FECHAS (CON CORRECCIÓN DE MESES JS)
         const inputsFecha = ['fecha_inicio_agenda', 'fecha_final_agenda', 'fecha_entrega'];
         
         inputsFecha.forEach(id => {
@@ -368,15 +368,16 @@
             el.addEventListener('input', function() {
                 if (!this.value) return;
                 
-                const fechaSeleccionada = new Date(this.value);
-                const año = fechaSeleccionada.getFullYear();
-                const mes = fechaSeleccionada.getMonth(); 
-                const dia = fechaSeleccionada.getDate();
+                // Forzar lectura local correcta de la fecha yyyy-mm-dd elegida en el input
+                const partes = this.value.split('-');
+                const añoElegido = parseInt(partes[0], 10);
+                const mesElegido = parseInt(partes[1], 10); // Mes real de 1 a 12
+                const diaElegido = parseInt(partes[2], 10);
 
                 if (id === 'fecha_entrega') {
                     const hoyMilisegundos = new Date().setHours(0,0,0,0);
-                    const seleccionMilisegundos = fechaSeleccionada.setHours(0,0,0,0);
-                    const diferenciaDias = (seleccionMilisegundos - hoyMilisegundos) / (1000 * 60 * 60 * 24);
+                    const fechaSeleccionada = new Date(añoElegido, mesElegido - 1, diaElegido).setHours(0,0,0,0);
+                    const diferenciaDias = (fechaSeleccionada - hoyMilisegundos) / (1000 * 60 * 60 * 24);
                     
                     if (diferenciaDias < 5) {
                         alert('Necesitamos un mínimo de 5 días para diseñar, empaquetar y enviar tu agenda. Por favor, selecciona una fecha posterior.');
@@ -385,12 +386,16 @@
                     }
                 }
 
-                const esBloqueadoJunio = (año === 2026 && mes === 5 && dia >= 23 && dia <= 27);
-                const esVacacionesJunio = (año === 2026 && mes === 5 && dia >= 28);
-                const esVacacionesJulio = (año === 2026 && mes === 6 && dia <= 9);
+                // Bloqueo estricto año 2026: Producción completa (23 al 27 de Junio) y Vacaciones (28 de Junio al 9 de Julio)
+                const esJunio2026 = (añoElegido === 2026 && mesElegido === 6);
+                const esJulio2026 = (añoElegido === 2026 && mesElegido === 7);
+
+                const esBloqueadoJunio = (esJunio2026 && diaElegido >= 23 && diaElegido <= 27);
+                const esVacacionesJunio = (esJunio2026 && diaElegido >= 28);
+                const esVacacionesJulio = (esJulio2026 && diaElegido <= 9);
 
                 if (esBloqueadoJunio || esVacacionesJunio || esVacacionesJulio) {
-                    alert('La fecha seleccionada coincide con días de producción completa o nuestro periodo de vacaciones. Por favor, selecciona otro día.');
+                    alert('La fecha seleccionada coincide con días de producción completa o nuestro periodo de vacaciones (del 23 de junio al 9 de julio). Por favor, selecciona otro día.');
                     this.value = '';
                 }
             });
