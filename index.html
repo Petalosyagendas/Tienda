@@ -77,14 +77,49 @@
             gap: 1.5rem;
             margin-top: 1.5rem;
         }
-        .sin-resenas {
-            text-align: center;
-            color: #888888;
-            font-style: italic;
-            padding: 2rem;
+        .tarjeta-resena {
+            border-left: 4px solid var(--rosa-pastel);
             background-color: #FDFBF7 !important;
-            border-radius: 15px;
-            border: 1px dashed var(--gris-perla);
+            padding: 1.5rem;
+            border-radius: 0 15px 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .resena-info {
+            width: 100%;
+        }
+        .resena-autor {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 0 0 0.3rem 0;
+            color: #4A4A4A;
+        }
+        .resena-estrellas {
+            color: var(--oro-pastel);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .resena-texto {
+            font-style: italic;
+            margin: 0 0 1rem 0;
+            line-height: 1.4;
+            color: #666;
+        }
+        /* Galería de imágenes dentro de la reseña */
+        .resena-galeria-fotos {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+        .resena-galeria-fotos img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--gris-perla);
+            flex-shrink: 0;
         }
         .btn-dejar-resena {
             display: inline-flex;
@@ -261,9 +296,34 @@
         <section id="valoraciones">
             <h2>Lo que dicen nuestras client@s</h2>
             <div class="muro-resenas">
-                <div class="sin-resenas">
-                    ¡Aún no hay valoraciones! Sé la primera en dejarnos tu opinión 🌸
+                
+                <div class="tarjeta-resena">
+                    <div class="resena-info">
+                        <p class="resena-autor">Klabel</p>
+                        <div class="resena-estrellas">★★★★★</div>
+                        <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
+                    </div>
+                    <div class="resena-galeria-fotos">
+                        <img src="resena_klabel1.jpg" alt="Foto Agenda Klabel 1" onerror="this.style.display='none'">
+                        <img src="resena_klabel2.jpg" alt="Foto Agenda Klabel 2" onerror="this.style.display='none'">
+                        <img src="resena_klabel3.jpg" alt="Foto Agenda Klabel 3" onerror="this.style.display='none'">
+                        <img src="resena_klabel4.jpg" alt="Foto Agenda Klabel 4" onerror="this.style.display='none'">
+                        <img src="resena_klabel5.jpg" alt="Foto Agenda Klabel 5" onerror="this.style.display='none'">
+                    </div>
                 </div>
+
+                <div class="tarjeta-resena">
+                    <div class="resena-info">
+                        <p class="resena-autor">Toñi</p>
+                        <div class="resena-estrellas">★★★★★</div>
+                        <p class="resena-texto">"Es preciosa y muy especial"</p>
+                    </div>
+                    <div class="resena-galeria-fotos">
+                        <img src="resena_toñi1.jpg" alt="Foto Agenda Toñi 1" onerror="this.style.display='none'">
+                        <img src="resena_toñi2.jpg" alt="Foto Agenda Toñi 2" onerror="this.style.display='none'">
+                    </div>
+                </div>
+
             </div>
 
             <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">
