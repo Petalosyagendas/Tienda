@@ -30,8 +30,8 @@
         h2 { color: #6A6A6A !important; border-bottom: 2px solid var(--azul-pastel); padding-bottom: 0.5rem; }
         .form-group { margin-bottom: 1.5rem; }
         input, textarea, select { width: 100%; padding: 0.8rem; border: 1px solid var(--gris-perla); border-radius: 10px; background-color: #FCFCFC !important; color: #4A4A4A !important; font-size: 1rem; }
-        button { background-color: var(--lila-pastel) !important; color: #4A4A4A !important; border: none; padding: 1.1rem; font-size: 1.1rem; font-weight: bold; border-radius: 30px; cursor: pointer; width: 100%; margin-top: 1rem; }
-        button:hover { background-color: var(--rosa-pastel) !important; }
+        button { background-color: #25D366 !important; color: white !important; border: none; padding: 1.1rem; font-size: 1.1rem; font-weight: bold; border-radius: 30px; cursor: pointer; width: 100%; margin-top: 1rem; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); }
+        button:hover { background-color: #20ba59 !important; }
         .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
         .galeria-img { width: 100%; height: 240px; object-fit: cover; border-radius: 15px; }
 
@@ -115,41 +115,51 @@
 
         <section id="personalizar">
             <h2>Configura tu Agenda</h2>
-            <form action="https://formspree.io/f/meewenda" method="POST">
+            <form id="formulario-pedido">
                 
                 <div class="form-group">
                     <label>Nombre Completo:</label>
-                    <input type="text" name="Nombre" placeholder="Tu nombre" required>
+                    <input type="text" id="nombre" placeholder="Tu nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tu Teléfono (WhatsApp):</label>
+                    <input type="tel" id="telefono_cliente" placeholder="Ej: 600000000" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Tu Correo Electrónico:</label>
+                    <input type="email" id="correo_cliente" placeholder="Ej: nombre@email.com" required>
                 </div>
 
                 <div class="form-group">
                     <label>Fecha de inicio:</label>
-                    <input type="date" name="Fecha_inicio" required>
+                    <input type="date" id="fecha_inicio" required>
                 </div>
 
                 <div class="form-group">
                     <label>Grosor del papel:</label>
-                    <select name="Papel">
-                        <option value="80gr">80 gr — 21,50€</option>
-                        <option value="90gr">90 gr — 27,00€</option>
-                        <option value="100gr">100 gr — 33,00€</option>
+                    <select id="papel">
+                        <option value="80 gr — 21,50€">80 gr — 21,50€</option>
+                        <option value="90 gr — 27,00€">90 gr — 27,00€</option>
+                        <option value="100 gr — 33,00€">100 gr — 33,00€</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Tipo de anillas:</label>
-                    <select name="Anillas">
-                        <option value="Transparentes">Anillas estándar (Transparentes)</option>
-                        <option value="De color">Anillas de color (+0,50€)</option>
+                    <select id="anillas">
+                        <option value="Anillas estándar (Transparentes)">Anillas estándar (Transparentes)</option>
+                        <option value="Anillas de color (+0,50€)">Anillas de color (+0,50€)</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Detalles del diseño:</label>
-                    <textarea name="Detalles" rows="5" placeholder="Cuéntame cómo quieres tu portada, colores, frases..."></textarea>
+                    <textarea id="detalles" rows="5" placeholder="Cuéntame cómo quieres tu portada, colores, frases..."></textarea>
                 </div>
 
-                <button type="submit">Enviar Pedido por Email</button>
+                <button type="submit">Enviar Pedido por WhatsApp 📱</button>
             </form>
         </section>
 
@@ -168,6 +178,38 @@
     <a href="https://wa.me/34672707366?text=Hola!%20Te%20escribo%20para%20enviarte%20las%20fotos%20de%20mi%20agenda" class="whatsapp-flotante" target="_blank">
         Enviar fotos por WhatsApp
     </a>
+
+    <script>
+        document.getElementById('formulario-pedido').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Recoger todos los datos del cliente
+            const nombre = document.getElementById('nombre').value;
+            const telCliente = document.getElementById('telefono_cliente').value;
+            const emailCliente = document.getElementById('correo_cliente').value;
+            const fechaInicio = document.getElementById('fecha_inicio').value;
+            const papel = document.getElementById('papel').value;
+            const anillas = document.getElementById('anillas').value;
+            const detalles = document.getElementById('detalles').value || "Sin detalles adicionales";
+
+            // Mensaje perfectamente estructurado para recibir en tu WhatsApp
+            const mensaje = `🌸 *¡Nuevo Pedido de Agenda!* 🌸\n\n` +
+                            `👤 *Nombre:* ${nombre}\n` +
+                            `📞 *Teléfono Cliente:* ${telCliente}\n` +
+                            `✉️ *Correo Cliente:* ${emailCliente}\n` +
+                            `📅 *Fecha de inicio:* ${fechaInicio}\n` +
+                            `📄 *Papel:* ${papel}\n` +
+                            `⭕ *Anillas:* ${anillas}\n\n` +
+                            `✨ *Detalles del diseño:* ${detalles}`;
+
+            // Tu número configurado con el prefijo de España (34)
+            const miTelefono = "34672707366";
+
+            // Generar enlace y redirigir
+            const urlWhatsApp = `https://wa.me/${miTelefono}?text=${encodeURIComponent(mensaje)}`;
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
 
 </body>
 </html>
