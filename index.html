@@ -33,6 +33,8 @@
         input, textarea, select { width: 100%; padding: 0.8rem; border: 1px solid var(--gris-perla); border-radius: 10px; background-color: #FCFCFC !important; color: #4A4A4A !important; font-size: 1rem; }
         button { background-color: #25D366 !important; color: white !important; border: none; padding: 1.1rem; font-size: 1.1rem; font-weight: bold; border-radius: 30px; cursor: pointer; width: 100%; margin-top: 1rem; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); }
         button:hover { background-color: #20ba59 !important; }
+        
+        /* ESTILOS DE LA GALERÍA / PORTFOLIO */
         .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
         .galeria-img { width: 100%; height: 240px; object-fit: cover; border-radius: 15px; }
 
@@ -119,6 +121,7 @@
             box-sizing: border-box;
             box-shadow: 0 4px 10px rgba(0,0,0,0.02);
             transition: background 0.2s;
+            text-align: center;
         }
         .btn-dejar-resena:hover {
             background-color: var(--rosa-pastel) !important;
@@ -269,3 +272,94 @@
 
                 <div class="form-group">
                     <label>Detalles del diseño:</label>
+                    <textarea id="detalles" rows="5" placeholder="Cuéntame cómo quieres tu portada, colores, frases..."></textarea>
+                </div>
+
+                <button type="submit">Enviar Pedido por WhatsApp 📱</button>
+            </form>
+        </section>
+
+        <section id="valoraciones">
+            <h2>Lo que dicen nuestras clientas</h2>
+            <div class="muro-resenas">
+                
+                <div class="tarjeta-resena">
+                    <img src="agenda_1.jpg" alt="Foto de la agenda" class="resena-foto-cliente">
+                    <div class="resena-info">
+                        <p class="resena-autor">María L.</p>
+                        <div class="resena-estrellas">⭐⭐⭐⭐⭐</div>
+                        <p class="resena-texto">"Me llegó la semana pasada y no puedo estar más contenta. El diseño estilo anime es precioso y los acabados son súper profesionales. ¡Repetiré seguro!"</p>
+                    </div>
+                </div>
+
+                <div class="tarjeta-resena">
+                    <img src="agenda_2.jpg" alt="Foto de la agenda" class="resena-foto-cliente">
+                    <div class="resena-info">
+                        <p class="resena-autor">Lucía G.</p>
+                        <div class="resena-estrellas">⭐⭐⭐⭐⭐</div>
+                        <p class="resena-texto">"El papel de 100gr es una maravilla, no traspasa nada de tinta. La atención personalizada para elegir la portada gótica fue de 10."</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">
+                ¿Ya tienes tu agenda? Haz clic aquí para dejarnos tu opinión y foto ✨
+            </a>
+        </section>
+
+        <section id="portfolio">
+            <h2>Agendas que ya he hecho</h2>
+            <div class="galeria">
+                <img src="agenda_1.jpg" alt="Agenda 1" class="galeria-img">
+                <img src="agenda_2.jpg" alt="Agenda 2" class="galeria-img">
+                <img src="agenda_3.jpg" alt="Agenda 3" class="galeria-img">
+                <img src="agenda_4.jpg" alt="Agenda 4" class="galeria-img">
+                <img src="agenda_5.jpg" alt="Agenda 5" class="galeria-img">
+            </div>
+        </section>
+    </div>
+
+    <a href="https://wa.me/34672707366?text=Hola!%20Te%20escribo%20para%20enviarte%20las%20fotos%20de%20mi%20agenda" class="whatsapp-flotante" target="_blank">
+        Enviar fotos por WhatsApp
+    </a>
+
+    <script>
+        document.getElementById('formulario-pedido').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nombre = document.getElementById('nombre').value;
+            const telCliente = document.getElementById('telefono_cliente').value;
+            const emailCliente = document.getElementById('correo_cliente').value;
+            const fechaInicioAgenda = document.getElementById('fecha_inicio_agenda').value;
+            const fechaFinalAgenda = document.getElementById('fecha_final_agenda').value;
+            const fechaEntrega = document.getElementById('fecha_entrega').value;
+            const tematica = document.getElementById('tematica').value;
+            const tipoVista = document.getElementById('tipo_vista').value;
+            const papel = document.getElementById('papel').value;
+            const anillas = document.getElementById('anillas').value;
+            const marcapaginas = document.getElementById('marcapaginas').value;
+            const detalles = document.getElementById('detalles').value || "Sin detalles adicionales";
+
+            const mensaje = `🌸 *¡Nuevo Pedido de Agenda!* 🌸\n\n` +
+                            `👤 *Nombre:* ${nombre}\n` +
+                            `📞 *Teléfono:* ${telCliente}\n` +
+                            `✉️ *Correo:* ${emailCliente}\n\n` +
+                            `✨ *Estilo/Temática:* ${tematica}\n` +
+                            `📅 *Inicio Agenda:* ${fechaInicioAgenda}\n` +
+                            `📆 *Fin Agenda:* ${fechaFinalAgenda}\n` +
+                            `🚚 *Entrega aprox:* ${fechaEntrega}\n\n` +
+                            `📖 *Distribución:* ${tipoVista}\n` +
+                            `📄 *Papel:* ${papel}\n` +
+                            `⭕ *Anillas:* ${anillas}\n` +
+                            `🔖 *Marcapáginas:* ${marcapaginas}\n\n` +
+                            `✨ *Detalles del diseño:* ${detalles}`;
+
+            const miTelefono = "34672707366";
+            const urlWhatsApp = `https://wa.me/${miTelefono}?text=${encodeURIComponent(mensaje)}`;
+            window.open(urlWhatsApp, '_blank');
+        });
+    </script>
+
+</body>
+</html>
