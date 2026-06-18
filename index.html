@@ -34,6 +34,17 @@
         button { background-color: #25D366 !important; color: white !important; border: none; padding: 1.1rem; font-size: 1.1rem; font-weight: bold; border-radius: 30px; cursor: pointer; width: 100%; margin-top: 1rem; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); }
         button:hover { background-color: #20ba59 !important; }
         
+        /* AVISO DE FECHAS NO DISPONIBLES */
+        .aviso-vacaciones {
+            background-color: var(--azul-pastel) !important;
+            border-left: 4px solid var(--lila-pastel);
+            padding: 1rem;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
         /* ESTILOS DE LA GALERÍA / PORTFOLIO */
         .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
         .galeria-img { width: 100%; height: 240px; object-fit: cover; border-radius: 15px; }
@@ -74,43 +85,6 @@
             background-color: #FDFBF7 !important;
             border-radius: 15px;
             border: 1px dashed var(--gris-perla);
-        }
-        .tarjeta-resena {
-            border-left: 4px solid var(--rosa-pastel);
-            background-color: #FDFBF7 !important;
-            padding: 1.5rem;
-            border-radius: 0 15px 15px 0;
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-        .resena-foto-cliente {
-            width: 90px;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid var(--gris-perla);
-            flex-shrink: 0;
-        }
-        .resena-info {
-            flex-grow: 1;
-        }
-        .resena-autor {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin: 0 0 0.3rem 0;
-            color: #4A4A4A;
-        }
-        .resena-estrellas {
-            color: var(--oro-pastel);
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .resena-texto {
-            font-style: italic;
-            margin: 0;
-            line-height: 1.4;
-            color: #666;
         }
         .btn-dejar-resena {
             display: inline-flex;
@@ -161,15 +135,6 @@
                 flex-direction: column;
                 text-align: center;
             }
-            .tarjeta-resena {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
-            .resena-foto-cliente {
-                width: 100%;
-                height: 180px;
-            }
             .whatsapp-flotante {
                 bottom: 20px !important;
                 right: 20px !important;
@@ -204,6 +169,11 @@
 
         <section id="personalizar">
             <h2>Configura tu Agenda</h2>
+            
+            <div class="aviso-vacaciones">
+                📢 *Aviso importante:* Requerimos un **mínimo de 5 días de preparación y envío** desde el momento en que realizas el pedido. Del **23 al 27 de junio** el taller está completo por producción, y del **28 de junio al 9 de julio** cerramos por vacaciones. ¡Gracias! 🌸
+            </div>
+
             <form id="formulario-pedido">
                 
                 <div class="form-group">
@@ -291,11 +261,9 @@
         <section id="valoraciones">
             <h2>Lo que dicen nuestras clientas</h2>
             <div class="muro-resenas">
-                
                 <div class="sin-resenas">
                     ¡Aún no hay valoraciones! Sé la primera en dejarnos tu opinión 🌸
                 </div>
-
             </div>
 
             <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">
@@ -320,6 +288,61 @@
     </a>
 
     <script>
+        // CONFIGURACIÓN DINÁMICA DE MÁRGENES DE FECHA
+        const inputEntrega = document.getElementById('fecha_entrega');
+        
+        // Bloquear visualmente que elijan los primeros 5 días desde hoy en el calendario nativo
+        const hoy = new Date();
+        const diasMargen = 5;
+        const fechaMinima = new Date(hoy.getTime() + (diasMargen * 24 * 60 * 60 * 1000));
+        
+        // Formatear la fecha mínima a YYYY-MM-DD para el atributo 'min' del calendario HTML
+        const yyyy = fechaMinima.getFullYear();
+        const mm = String(fechaMinima.getMonth() + 1).padStart(2, '0');
+        const dd = String(fechaMinima.getDate()).padStart(2, '0');
+        inputEntrega.min = `${yyyy}-${mm}-${dd}`;
+
+        // CONTROL AL SELECCIONAR FECHAS
+        const inputsFecha = ['fecha_inicio_agenda', 'fecha_final_agenda', 'fecha_entrega'];
+        
+        inputsFecha.forEach(id => {
+            const el = document.getElementById(id);
+            el.addEventListener('input', function() {
+                if (!this.value) return;
+                
+                const fechaSeleccionada = new Date(this.value);
+                const año = fechaSeleccionada.getFullYear();
+                const mes = fechaSeleccionada.getMonth(); // 5 es Junio, 6 es Julio
+                const dia = fechaSeleccionada.getDate();
+
+                // 1. Control de margen de 5 días (solo se aplica a la fecha de entrega)
+                if (id === 'fecha_entrega') {
+                    const hoyMilisegundos = new Date().setHours(0,0,0,0);
+                    const seleccionMilisegundos = fechaSeleccionada.setHours(0,0,0,0);
+                    const diferenciaDias = (seleccionMilisegundos - hoyMilisegundos) / (1000 * 60 * 60 * 24);
+                    
+                    if (diferenciaDias < 5) {
+                        alert('Necesitamos un mínimo de 5 días para diseñar, empaquetar y enviar tu agenda. Por favor, selecciona una fecha posterior.');
+                        this.value = '';
+                        return;
+                    }
+                }
+
+                // 2. Bloqueo fijo: Del 23 al 27 de Junio de 2026 (Taller Completo)
+                const esBloqueadoJunio = (año === 2026 && mes === 5 && dia >= 23 && dia <= 27);
+                
+                // 3. Bloqueo fijo: Del 28 de Junio al 9 de Julio de 2026 (Vacaciones)
+                const esVacacionesJunio = (año === 2026 && mes === 5 && dia >= 28);
+                const esVacacionesJulio = (año === 2026 && mes === 6 && dia <= 9);
+
+                if (esBloqueadoJunio || esVacacionesJunio || esVacacionesJulio) {
+                    alert('La fecha seleccionada coincide con días de producción completa o nuestro periodo de vacaciones. Por favor, selecciona otro día.');
+                    this.value = '';
+                }
+            });
+        });
+
+        // ENVÍO DEL FORMULARIO POR WHATSAPP
         document.getElementById('formulario-pedido').addEventListener('submit', function(event) {
             event.preventDefault();
 
