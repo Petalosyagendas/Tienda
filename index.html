@@ -304,11 +304,8 @@
                         <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
                     </div>
                     <div class="resena-galeria-fotos">
-                        <img src="resena_klabel1.png" alt="Foto Agenda Klabel 1">
-                        <img src="resena_klabel2.png" alt="Foto Agenda Klabel 2">
-                        <img src="resena_klabel3.jpg" alt="Foto Agenda Klabel 3">
-                        <img src="resena_klabel4.jpg" alt="Foto Agenda Klabel 4">
-                        <img src="resena_klabel5.jpg" alt="Foto Agenda Klabel 5">
+                        <img src="klabel1.jpg" alt="Foto Agenda Klabel 1">
+                        <img src="klabel5.jpg" alt="Foto Agenda Klabel 5">
                     </div>
                 </div>
 
@@ -368,13 +365,11 @@
             el.addEventListener('input', function() {
                 if (!this.value) return;
                 
-                // Extraer año, mes y día del input de forma limpia
                 const partes = this.value.split('-');
                 const anoElegido = parseInt(partes[0], 10);
-                const mesElegido = parseInt(partes[1], 10); // Mes real (1 a 12)
+                const mesElegido = parseInt(partes[1], 10);
                 const diaElegido = parseInt(partes[2], 10);
 
-                // Validar margen de 5 días SOLO para la fecha de entrega
                 if (id === 'fecha_entrega') {
                     const hoyMilisegundos = new Date().setHours(0,0,0,0);
                     const fechaSeleccionada = new Date(anoElegido, mesElegido - 1, diaElegido).setHours(0,0,0,0);
@@ -387,13 +382,8 @@
                     }
                 }
 
-                // BLOQUEOS DE FECHAS EN EL AÑO 2026
                 if (anoElegido === 2026) {
-                    
-                    // BLOQUEO 1: Del 19 al 24 de Junio (Mes 6)
                     const esBloqueo1 = (mesElegido === 6 && diaElegido >= 19 && diaElegido <= 24);
-                    
-                    // BLOQUEO 2: Del 28 de Junio al 9 de Julio -> Junio (28-30) y Julio (1-9)
                     const esBloqueo2Junio = (mesElegido === 6 && diaElegido >= 28);
                     const esBloqueo2Julio = (mesElegido === 7 && diaElegido <= 9);
 
