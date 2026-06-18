@@ -13,6 +13,7 @@
             --lila-pastel: #E8DFF5 !important;
             --gris-perla: #E2E2E2 !important;
             --texto: #4A4A4A !important;
+            --oro-pastel: #F1C40F !important;
         }
 
         html, body {
@@ -56,6 +57,73 @@
             font-size: 1.05rem;
         }
 
+        /* SECCIÓN: VALORACIONES Y COMENTARIOS */
+        .muro-resenas {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .tarjeta-resena {
+            border-left: 4px solid var(--rosa-pastel);
+            background-color: #FDFBF7 !important;
+            padding: 1.5rem;
+            border-radius: 0 15px 15px 0;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .resena-foto-cliente {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid var(--gris-perla);
+            flex-shrink: 0;
+        }
+        .resena-info {
+            flex-grow: 1;
+        }
+        .resena-autor {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin: 0 0 0.3rem 0;
+            color: #4A4A4A;
+        }
+        .resena-estrellas {
+            color: var(--oro-pastel);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .resena-texto {
+            font-style: italic;
+            margin: 0;
+            line-height: 1.4;
+            color: #666;
+        }
+        .btn-dejar-resena {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: var(--lila-pastel) !important;
+            color: #4A4A4A !important;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            border: none;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: background 0.2s;
+        }
+        .btn-dejar-resena:hover {
+            background-color: var(--rosa-pastel) !important;
+        }
+
         /* BOTÓN FLOTANTE DE WHATSAPP */
         .whatsapp-flotante {
             position: fixed;
@@ -80,6 +148,15 @@
             .sobre-mi-contenido {
                 flex-direction: column;
                 text-align: center;
+            }
+            .tarjeta-resena {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .resena-foto-cliente {
+                width: 100%;
+                height: 180px;
             }
             .whatsapp-flotante {
                 bottom: 20px !important;
@@ -148,6 +225,16 @@
                 </div>
 
                 <div class="form-group">
+                    <label>Estilo o Temática general:</label>
+                    <select id="tematica">
+                        <option value="Pastel / Floral">Pastel / Floral 🌸</option>
+                        <option value="Anime / Ilustración">Anime / Ilustración 🦄</option>
+                        <option value="Gótico / Tenebras">Gótico / Tenebras 💀</option>
+                        <option value="Minimalista / Elegante">Minimalista / Elegante 💼</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label>Distribución interior:</label>
                     <select id="tipo_vista">
                         <option value="Semanal">Agenda Semanal (Semana a la vista)</option>
@@ -173,67 +260,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Detalles del diseño:</label>
-                    <textarea id="detalles" rows="5" placeholder="Cuéntame cómo quieres tu portada, colores, frases..."></textarea>
+                    <label>¿Añadir marcapáginas a juego?</label>
+                    <select id="marcapaginas">
+                        <option value="No">No, solo la agenda</option>
+                        <option value="Sí (+0,80€)">Sí, añadir marcapáginas (+0,80€) 🔖</option>
+                    </select>
                 </div>
 
-                <button type="submit">Enviar Pedido por WhatsApp 📱</button>
-            </form>
-        </section>
-
-        <section id="portfolio">
-            <h2>Agendas que ya he hecho</h2>
-            <div class="galeria">
-                <img src="agenda_1.jpg" alt="Agenda 1" class="galeria-img">
-                <img src="agenda_2.jpg" alt="Agenda 2" class="galeria-img">
-                <img src="agenda_3.jpg" alt="Agenda 3" class="galeria-img">
-                <img src="agenda_4.jpg" alt="Agenda 4" class="galeria-img">
-                <img src="agenda_5.jpg" alt="Agenda 5" class="galeria-img">
-            </div>
-        </section>
-    </div>
-
-    <a href="https://wa.me/34672707366?text=Hola!%20Te%20escribo%20para%20enviarte%20las%20fotos%20de%20mi%20agenda" class="whatsapp-flotante" target="_blank">
-        Enviar fotos por WhatsApp
-    </a>
-
-    <script>
-        document.getElementById('formulario-pedido').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            // Recoger todos los datos del cliente
-            const nombre = document.getElementById('nombre').value;
-            const telCliente = document.getElementById('telefono_cliente').value;
-            const emailCliente = document.getElementById('correo_cliente').value;
-            const fechaInicioAgenda = document.getElementById('fecha_inicio_agenda').value;
-            const fechaFinalAgenda = document.getElementById('fecha_final_agenda').value;
-            const fechaEntrega = document.getElementById('fecha_entrega').value;
-            const tipoVista = document.getElementById('tipo_vista').value;
-            const papel = document.getElementById('papel').value;
-            const anillas = document.getElementById('anillas').value;
-            const detalles = document.getElementById('detalles').value || "Sin detalles adicionales";
-
-            // Mensaje perfectamente estructurado para recibir en tu WhatsApp
-            const mensaje = `🌸 *¡Nuevo Pedido de Agenda!* 🌸\n\n` +
-                            `👤 *Nombre:* ${nombre}\n` +
-                            `📞 *Teléfono:* ${telCliente}\n` +
-                            `✉️ *Correo:* ${emailCliente}\n\n` +
-                            `📅 *Inicio Agenda:* ${fechaInicioAgenda}\n` +
-                            `📆 *Fin Agenda:* ${fechaFinalAgenda}\n` +
-                            `🚚 *Entrega aprox:* ${fechaEntrega}\n\n` +
-                            `📖 *Distribución:* ${tipoVista}\n` +
-                            `📄 *Papel:* ${papel}\n` +
-                            `⭕ *Anillas:* ${anillas}\n\n` +
-                            `✨ *Detalles del diseño:* ${detalles}`;
-
-            // Tu número definitivo configurado con el prefijo de España (34)
-            const miTelefono = "34672707366";
-
-            // Generar enlace y redirigir
-            const urlWhatsApp = `https://wa.me/${miTelefono}?text=${encodeURIComponent(mensaje)}`;
-            window.open(urlWhatsApp, '_blank');
-        });
-    </script>
-
-</body>
-</html>
+                <div class="form-group">
+                    <label>Detalles del diseño:</label>
