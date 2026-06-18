@@ -133,8 +133,26 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Fecha de inicio:</label>
-                    <input type="date" id="fecha_inicio" required>
+                    <label>Fecha de inicio de la agenda:</label>
+                    <input type="date" id="fecha_inicio_agenda" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha final de la agenda:</label>
+                    <input type="date" id="fecha_final_agenda" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha de entrega aproximada:</label>
+                    <input type="date" id="fecha_entrega" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Distribución interior:</label>
+                    <select id="tipo_vista">
+                        <option value="Semanal">Agenda Semanal (Semana a la vista)</option>
+                        <option value="Diaria">Agenda Diaria (Un día por página)</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -187,7 +205,10 @@
             const nombre = document.getElementById('nombre').value;
             const telCliente = document.getElementById('telefono_cliente').value;
             const emailCliente = document.getElementById('correo_cliente').value;
-            const fechaInicio = document.getElementById('fecha_inicio').value;
+            const fechaInicioAgenda = document.getElementById('fecha_inicio_agenda').value;
+            const fechaFinalAgenda = document.getElementById('fecha_final_agenda').value;
+            const fechaEntrega = document.getElementById('fecha_entrega').value;
+            const tipoVista = document.getElementById('tipo_vista').value;
             const papel = document.getElementById('papel').value;
             const anillas = document.getElementById('anillas').value;
             const detalles = document.getElementById('detalles').value || "Sin detalles adicionales";
@@ -195,14 +216,17 @@
             // Mensaje perfectamente estructurado para recibir en tu WhatsApp
             const mensaje = `🌸 *¡Nuevo Pedido de Agenda!* 🌸\n\n` +
                             `👤 *Nombre:* ${nombre}\n` +
-                            `📞 *Teléfono Cliente:* ${telCliente}\n` +
-                            `✉️ *Correo Cliente:* ${emailCliente}\n` +
-                            `📅 *Fecha de inicio:* ${fechaInicio}\n` +
+                            `📞 *Teléfono:* ${telCliente}\n` +
+                            `✉️ *Correo:* ${emailCliente}\n\n` +
+                            `📅 *Inicio Agenda:* ${fechaInicioAgenda}\n` +
+                            `📆 *Fin Agenda:* ${fechaFinalAgenda}\n` +
+                            `🚚 *Entrega aprox:* ${fechaEntrega}\n\n` +
+                            `📖 *Distribución:* ${tipoVista}\n` +
                             `📄 *Papel:* ${papel}\n` +
                             `⭕ *Anillas:* ${anillas}\n\n` +
                             `✨ *Detalles del diseño:* ${detalles}`;
 
-            // Tu número configurado con el prefijo de España (34)
+            // Tu número definitivo configurado con el prefijo de España (34)
             const miTelefono = "34672707366";
 
             // Generar enlace y redirigir
