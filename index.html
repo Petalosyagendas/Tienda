@@ -32,7 +32,6 @@
         .form-group { margin-bottom: 1.5rem; }
         input, textarea, select { width: 100%; padding: 0.8rem; border: 1px solid var(--gris-perla); border-radius: 10px; background-color: #FCFCFC !important; color: #4A4A4A !important; font-size: 1rem; box-sizing: border-box; }
         
-        /* Ajuste específico para inputs de tipo radio */
         input[type="radio"] { width: auto; margin-right: 8px; }
         
         button { background-color: #25D366 !important; color: white !important; border: none; padding: 1.1rem; font-size: 1.1rem; font-weight: bold; border-radius: 30px; cursor: pointer; width: 100%; margin-top: 1rem; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); }
@@ -65,18 +64,9 @@
             border: 4px solid var(--lila-pastel);
             flex-shrink: 0;
         }
-        .sobre-mi-texto p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            font-size: 1.05rem;
-        }
+        .sobre-mi-texto p { line-height: 1.6; margin-bottom: 1rem; font-size: 1.05rem; }
 
-        .muro-resenas {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
+        .muro-resenas { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem; }
         .tarjeta-resena {
             border-left: 4px solid var(--rosa-pastel);
             background-color: #FDFBF7 !important;
@@ -87,25 +77,11 @@
             gap: 1rem;
         }
         .resena-info { width: 100%; }
-        .resena-autor {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin: 0 0 0.3rem 0;
-            color: #4A4A4A;
-        }
+        .resena-autor { font-weight: bold; font-size: 1.1rem; margin: 0 0 0.3rem 0; color: #4A4A4A; }
         .resena-estrellas { color: var(--oro-pastel); font-size: 1rem; margin-bottom: 0.5rem; }
-        .resena-texto {
-            font-style: italic;
-            margin: 0 0 1rem 0;
-            line-height: 1.4;
-            color: #666;
-        }
-        .resena-galeria-fotos {
-            display: flex;
-            gap: 0.5rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
+        .resena-texto { font-style: italic; margin: 0 0 1rem 0; line-height: 1.4; color: #666; }
+        
+        .resena-galeria-fotos { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; }
         .resena-galeria-fotos img {
             width: 100px;
             height: 100px;
@@ -168,7 +144,7 @@
 <body>
 
     <header>
-        <img src="logo.png" alt="Logo" class="logo-tienda">
+        <img src="logo.png" alt="Logo" class="logo-tienda" onerror="this.src='logo.jpg'">
         <h1>Pétalos y Agenda</h1>
     </header>
 
@@ -177,13 +153,11 @@
         <section id="sobre-mi">
             <h2>Sobre mí</h2>
             <div class="sobre-mi-contenido">
-                <img src="logo.png" alt="Creadora" class="sobre-mi-foto">
+                <img src="logo.png" alt="Creadora" class="sobre-mi-foto" onerror="this.src='logo.jpg'">
                 <div class="sobre-mi-texto">
                     <p>¡Hola! Soy la persona que está detrás de estas agendas personalizadas, creadas con cariño, creatividad y mucha atención a los detalles.</p>
-                    <p>Me encanta diseñar agendas únicas que reflejen la personalidad, gustos y necesidades de cada persona. No creo en las agendas impersonales: cada una de mis creaciones está pensada para que quien la reciba sientan que ha sido hecha especialmente para ella.</p>
-                    <p>Trabajo cada diseño de forma personalizada, cuidando desde la portada hasta los pequeños detalles interiores. Ya sea una agenda elegante, divertida, gótica, inspirada en personajes favoritos o adaptada a una profesión concreta, mi objetivo es crear algo útil, bonito y especial.</p>
+                    <p>Me encanta diseñar agendas uniques que reflejen la personalidad, gustos y necesidades de cada persona.</p>
                     <p>Gracias por confiar en mi trabajo y por apoyar un proyecto hecho con ilusión, dedicación y mucho corazón.</p>
-                    <p><strong>Porque organizar tu día también puede ser algo que te represente.</strong></p>
                 </div>
             </div>
         </section>
@@ -192,7 +166,7 @@
             <h2>Configura tu Agenda</h2>
             
             <div class="aviso-vacaciones">
-                📢 *Aviso importante:* Requerimos un **mínimo de 5 días de preparación y envío** desde el momento en que realizas el pedido. Del **19 al 24 de junio** el taller está completo por producción, y del **28 de junio al 9 de julio** cerramos por vacaciones. ¡Gracias! 🌸
+                📢 *Aviso importante:* Requerimos un **mínimo de 5 días de preparación y envío**. Del **19 al 24 de junio** taller completo, y del **28 de junio al 9 de julio** cerramos por vacaciones. ¡Gracias! 🌸
             </div>
 
             <form id="formulario-pedido">
@@ -209,15 +183,15 @@
                     <input type="email" id="correo_cliente" placeholder="Ej: nombre@email.com" required>
                 </div>
                 <div class="form-group">
-                    <label>Fecha de inicio de la agenda:</label>
+                    <label>Fecha de inicio:</label>
                     <input type="date" id="fecha_inicio_agenda" required>
                 </div>
                 <div class="form-group">
-                    <label>Fecha final de la agenda:</label>
+                    <label>Fecha final:</label>
                     <input type="date" id="fecha_final_agenda" required>
                 </div>
                 <div class="form-group">
-                    <label>Fecha de entrega aproximada:</label>
+                    <label>Fecha de entrega aprox:</label>
                     <input type="date" id="fecha_entrega" required>
                 </div>
                 <div class="form-group">
@@ -252,7 +226,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>¿Añadir marcapáginas a juego?</label>
+                    <label>¿Añadir marcapáginas?</label>
                     <select id="marcapaginas">
                         <option value="No">No, solo la agenda</option>
                         <option value="Sí (+0,80€)">Sí, añadir marcapáginas (+0,80€) 🔖</option>
@@ -260,27 +234,23 @@
                 </div>
                 <div class="form-group">
                     <label>Detalles del diseño:</label>
-                    <textarea id="detalles" rows="5" placeholder="Cuéntame cómo quieres tu portada, colores, frases..."></textarea>
+                    <textarea id="detalles" rows="5" placeholder="Cuéntame cómo quieres tu portada..."></textarea>
                 </div>
 
                 <div class="form-group" style="margin-bottom: 20px;">
                     <label style="display: block; font-weight: bold; margin-bottom: 8px;">Método de Entrega:</label>
-                    
                     <div style="margin-bottom: 12px;">
                         <input type="radio" id="envio_domicilio" name="metodo_entrega" value="Envío a domicilio (+3.00€)" checked onchange="toggleDireccion(true)">
                         <label for="envio_domicilio">Envío a domicilio — <strong>3,00 €</strong></label>
                     </div>
-                    
-                    </div>
+                </div>
 
                 <div id="seccion_direccion" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
                     <h4 style="margin-top: 0; margin-bottom: 15px; color: #333;">Dirección de Envío</h4>
-                    
                     <div style="margin-bottom: 10px;">
                         <label for="calle" style="display: block; font-size: 14px; margin-bottom: 4px;">Calle, número, piso/puerta:</label>
                         <input type="text" id="calle" name="envio_calle" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
                     </div>
-                    
                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                         <div style="flex: 1;">
                             <label for="codigo_postal" style="display: block; font-size: 14px; margin-bottom: 4px;">Código Postal:</label>
@@ -291,7 +261,6 @@
                             <input type="text" id="ciudad" name="envio_ciudad" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
                         </div>
                     </div>
-
                     <div>
                         <label for="provincia" style="display: block; font-size: 14px; margin-bottom: 4px;">Provincia:</label>
                         <input type="text" id="provincia" name="envio_provincia" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
@@ -305,7 +274,6 @@
         <section id="valoraciones">
             <h2>Lo que dicen nuestras client@s</h2>
             <div class="muro-resenas">
-                
                 <div class="tarjeta-resena">
                     <div class="resena-info">
                         <p class="resena-autor">Klabel</p>
@@ -313,8 +281,11 @@
                         <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
                     </div>
                     <div class="resena-galeria-fotos">
-                        <img src="klabel1.jpg" alt="Foto Agenda Klabel 1">
-                        <img src="klabel5.jpg" alt="Foto Agenda Klabel 5">
+                        <img src="klabel1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel1.png'">
+                        <img src="klabel2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel2.png'">
+                        <img src="klabel3.jpg" alt="Foto 3" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel3.png'">
+                        <img src="klabel4.jpg" alt="Foto 4" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel4.png'">
+                        <img src="klabel5.jpg" alt="Foto 5" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel5.png'">
                     </div>
                 </div>
 
@@ -325,62 +296,65 @@
                         <p class="resena-texto">"Es preciosa y muy especial"</p>
                     </div>
                     <div class="resena-galeria-fotos">
-                        <img src="resena_toni1.png" alt="Foto Agenda Toñi 1" onerror="this.src='resena_toni1.jpg'">
-                        <img src="resena_toni2.png" alt="Foto Agenda Toñi 2" onerror="this.src='resena_toni2.jpg'">
+                        <img src="toni1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni1.png'">
+                        <img src="toni2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni2.png'">
                     </div>
                 </div>
-
             </div>
-
-            <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">
-                ¿Ya tienes tu agenda? Haz clic aquí para dejarnos tu opinión y foto ✨
-            </a>
+            <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">Dejar opinión ✨</a>
         </section>
 
         <section id="portfolio">
             <h2>Agendas que ya he hecho</h2>
             <div class="galeria">
-                <img src="agenda_1.jpg" alt="Agenda 1" class="galeria-img">
-                <img src="agenda_2.jpg" alt="Agenda 2" class="galeria-img">
-                <img src="agenda_3.jpg" alt="Agenda 3" class="galeria-img">
-                <img src="agenda_4.jpg" alt="Agenda 4" class="galeria-img">
-                <img src="agenda_5.jpg" alt="Agenda 5" class="galeria-img">
+                <img src="agenda_1.jpg" alt="A1" class="galeria-img" onerror="this.src='agenda_1.png'">
+                <img src="agenda_2.jpg" alt="A2" class="galeria-img" onerror="this.src='agenda_2.png'">
+                <img src="agenda_3.jpg" alt="A3" class="galeria-img" onerror="this.src='agenda_3.png'">
+                <img src="agenda_4.jpg" alt="A4" class="galeria-img" onerror="this.src='agenda_4.png'">
+                <img src="agenda_5.jpg" alt="A5" class="galeria-img" onerror="this.src='agenda_5.png'">
             </div>
         </section>
     </div>
 
-    <a href="https://wa.me/34672707366?text=Hola!%20Te%20escribo%20para%20enviarte%20las%20fotos%20de%20mi%20agenda" class="whatsapp-flotante" target="_blank">
-        Enviar fotos por WhatsApp
-    </a>
+    <a href="https://wa.me/34672707366?text=Hola!" class="whatsapp-flotante" target="_blank">Enviar fotos por WhatsApp</a>
 
     <script>
-        // Función para alternar visibilidad y requerimiento de los campos de dirección
         function toggleDireccion(mostrar) {
             const seccion = document.getElementById('seccion_direccion');
             const inputs = seccion.querySelectorAll('input');
-            
-            if (mostrar) {
-                seccion.style.display = 'block';
-                inputs.forEach(input => input.required = true);
-            } else {
-                seccion.style.display = 'none';
-                inputs.forEach(input => input.required = false);
-            }
+            seccion.style.display = mostrar ? 'block' : 'none';
+            inputs.forEach(input => input.required = mostrar);
         }
 
         const inputEntrega = document.getElementById('fecha_entrega');
         const hoy = new Date();
-        const diasMargen = 5;
-        const fechaMinima = new Date(hoy.getTime() + (diasMargen * 24 * 60 * 60 * 1000));
-        
-        const yyyy = fechaMinima.getFullYear();
-        const mm = String(fechaMinima.getMonth() + 1).padStart(2, '0');
-        const dd = String(fechaMinima.getDate()).padStart(2, '0');
-        inputEntrega.min = `${yyyy}-${mm}-${dd}`;
+        const fechaMinima = new Date(hoy.getTime() + (5 * 24 * 60 * 60 * 1000));
+        inputEntrega.min = `${fechaMinima.getFullYear()}-${String(fechaMinima.getMonth() + 1).padStart(2, '0')}-${String(fechaMinima.getDate()).padStart(2, '0')}`;
 
-        const inputsFecha = ['fecha_inicio_agenda', 'fecha_final_agenda', 'fecha_entrega'];
-        
-        inputsFecha.forEach(id => {
-            const el = document.getElementById(id);
-            el.addEventListener('input
-        
+        document.getElementById('formulario-pedido').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const tel = document.getElementById('telefono_cliente').value;
+            const correo = document.getElementById('correo_cliente').value;
+            const fInicio = document.getElementById('fecha_inicio_agenda').value;
+            const fFin = document.getElementById('fecha_final_agenda').value;
+            const fEntrega = document.getElementById('fecha_entrega').value;
+            const tematica = document.getElementById('tematica').value;
+            const vista = document.getElementById('tipo_vista').value;
+            const papel = document.getElementById('papel').value;
+            const anillas = document.getElementById('anillas').value;
+            const marcapaginas = document.getElementById('marcapaginas').value;
+            const detalles = document.getElementById('detalles').value || "Sin detalles";
+
+            const metodo = document.querySelector('input[name="metodo_entrega"]:checked').value;
+            let dirStr = "";
+            if(metodo.includes("domicilio")){
+                dirStr = `📍 *Envío:* ${document.getElementById('calle').value}, ${document.getElementById('codigo_postal').value}, ${document.getElementById('ciudad').value} (${document.getElementById('provincia').value})`;
+            } else { dirStr = "📍 *Recogida Local*"; }
+
+            const mensaje = `🌸 *¡Nuevo Pedido!* 🌸\n\n👤 *Nombre:* ${nombre}\n📞 *Tel:* ${tel}\n✉️ *Correo:* ${correo}\n\n✨ *Estilo:* ${tematica}\n📅 *Del:* ${fInicio} *Al:* ${fFin}\n🚚 *Entrega:* ${fEntrega}\n\n📖 *Vista:* ${vista}\n📄 *Papel:* ${papel}\n⭕ *Anillas:* ${anillas}\n🔖 *Marcapáginas:* ${marcapaginas}\n\n${dirStr}\n\n📝 *Detalles:* ${detalles}`;
+            window.open(`https://wa.me/34672707366?text=${encodeURIComponent(mensaje)}`, '_blank');
+        });
+    </script>
+</body>
+</html>
