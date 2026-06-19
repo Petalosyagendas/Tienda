@@ -30,7 +30,11 @@
         section { background: white !important; padding: 2.5rem; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 2.5rem; }
         h2 { color: #6A6A6A !important; border-bottom: 2px solid var(--azul-pastel); padding-bottom: 0.5rem; }
         .form-group { margin-bottom: 1.5rem; }
-        input, textarea, select { width: 100%; padding: 0.8rem; border: 1px solid var(--gris-perla); border-radius: 10px; background-color: #FCFCFC !important; color: #4A4A4A !important; font-size: 1rem; }
+        input, textarea, select { width: 100%; padding: 0.8rem; border: 1px solid var(--gris-perla); border-radius: 10px; background-color: #FCFCFC !important; color: #4A4A4A !important; font-size: 1rem; box-sizing: border-box; }
+        
+        /* Ajuste específico para inputs de tipo radio */
+        input[type="radio"] { width: auto; margin-right: 8px; }
+        
         button { background-color: #25D366 !important; color: white !important; border: none; padding: 1.1rem; font-size: 1.1rem; font-weight: bold; border-radius: 30px; cursor: pointer; width: 100%; margin-top: 1rem; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); }
         button:hover { background-color: #20ba59 !important; }
         
@@ -258,6 +262,42 @@
                     <label>Detalles del diseño:</label>
                     <textarea id="detalles" rows="5" placeholder="Cuéntame cómo quieres tu portada, colores, frases..."></textarea>
                 </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: bold; margin-bottom: 8px;">Método de Entrega:</label>
+                    
+                    <div style="margin-bottom: 12px;">
+                        <input type="radio" id="envio_domicilio" name="metodo_entrega" value="Envío a domicilio (+3.00€)" checked onchange="toggleDireccion(true)">
+                        <label for="envio_domicilio">Envío a domicilio — <strong>3,00 €</strong></label>
+                    </div>
+                    
+                    </div>
+
+                <div id="seccion_direccion" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                    <h4 style="margin-top: 0; margin-bottom: 15px; color: #333;">Dirección de Envío</h4>
+                    
+                    <div style="margin-bottom: 10px;">
+                        <label for="calle" style="display: block; font-size: 14px; margin-bottom: 4px;">Calle, número, piso/puerta:</label>
+                        <input type="text" id="calle" name="envio_calle" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                        <div style="flex: 1;">
+                            <label for="codigo_postal" style="display: block; font-size: 14px; margin-bottom: 4px;">Código Postal:</label>
+                            <input type="text" id="codigo_postal" name="envio_cp" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="ciudad" style="display: block; font-size: 14px; margin-bottom: 4px;">Ciudad / Localidad:</label>
+                            <input type="text" id="ciudad" name="envio_ciudad" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="provincia" style="display: block; font-size: 14px; margin-bottom: 4px;">Provincia:</label>
+                        <input type="text" id="provincia" name="envio_provincia" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
+                    </div>
+                </div>
+
                 <button type="submit">Enviar Pedido por WhatsApp 📱</button>
             </form>
         </section>
@@ -314,6 +354,20 @@
     </a>
 
     <script>
+        // Función para alternar visibilidad y requerimiento de los campos de dirección
+        function toggleDireccion(mostrar) {
+            const seccion = document.getElementById('seccion_direccion');
+            const inputs = seccion.querySelectorAll('input');
+            
+            if (mostrar) {
+                seccion.style.display = 'block';
+                inputs.forEach(input => input.required = true);
+            } else {
+                seccion.style.display = 'none';
+                inputs.forEach(input => input.required = false);
+            }
+        }
+
         const inputEntrega = document.getElementById('fecha_entrega');
         const hoy = new Date();
         const diasMargen = 5;
@@ -328,74 +382,5 @@
         
         inputsFecha.forEach(id => {
             const el = document.getElementById(id);
-            el.addEventListener('input', function() {
-                if (!this.value) return;
-                
-                const partes = this.value.split('-');
-                const anoElegido = parseInt(partes[0], 10);
-                const mesElegido = parseInt(partes[1], 10);
-                const diaElegido = parseInt(partes[2], 10);
-
-                if (id === 'fecha_entrega') {
-                    const hoyMilisegundos = new Date().setHours(0,0,0,0);
-                    const fechaSeleccionada = new Date(anoElegido, mesElegido - 1, diaElegido).setHours(0,0,0,0);
-                    const diferenciaDias = (fechaSeleccionada - hoyMilisegundos) / (1000 * 60 * 60 * 24);
-                    
-                    if (diferenciaDias < 5) {
-                        alert('Necesitamos un mínimo de 5 días para diseñar, empaquetar y enviar tu agenda. Por favor, selecciona una fecha posterior.');
-                        this.value = '';
-                        return;
-                    }
-                }
-
-                if (anoElegido === 2026) {
-                    const esBloqueo1 = (mesElegido === 6 && diaElegido >= 19 && diaElegido <= 24);
-                    const esBloqueo2Junio = (mesElegido === 6 && diaElegido >= 28);
-                    const esBloqueo2Julio = (mesElegido === 7 && diaElegido <= 9);
-
-                    if (esBloqueo1 || esBloqueo2Junio || esBloqueo2Julio) {
-                        alert('La fecha seleccionada no está disponible por descanso o producción. Por favor, elige otra.');
-                        this.value = '';
-                    }
-                }
-            });
-        });
-
-        document.getElementById('formulario-pedido').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const nombre = document.getElementById('nombre').value;
-            const telCliente = document.getElementById('telefono_cliente').value;
-            const emailCliente = document.getElementById('correo_cliente').value;
-            const fechaInicioAgenda = document.getElementById('fecha_inicio_agenda').value;
-            const fechaFinalAgenda = document.getElementById('fecha_final_agenda').value;
-            const fechaEntrega = document.getElementById('fecha_entrega').value;
-            const tematica = document.getElementById('tematica').value;
-            const tipoVista = document.getElementById('tipo_vista').value;
-            const papel = document.getElementById('papel').value;
-            const anillas = document.getElementById('anillas').value;
-            const marcapaginas = document.getElementById('marcapaginas').value;
-            const detalles = document.getElementById('detalles').value || "Sin detalles adicionales";
-
-            const mensaje = `🌸 *¡Nuevo Pedido de Agenda!* 🌸\n\n` +
-                            `👤 *Nombre:* ${nombre}\n` +
-                            `📞 *Teléfono:* ${telCliente}\n` +
-                            `✉️ *Correo:* ${emailCliente}\n\n` +
-                            `✨ *Estilo/Temática:* ${tematica}\n` +
-                            `📅 *Inicio Agenda:* ${fechaInicioAgenda}\n` +
-                            `📆 *Fin Agenda:* ${fechaFinalAgenda}\n` +
-                            `🚚 *Entrega aprox:* ${fechaEntrega}\n\n` +
-                            `📖 *Distribución:* ${tipoVista}\n` +
-                            `📄 *Papel:* ${papel}\n` +
-                            `⭕ *Anillas:* ${anillas}\n` +
-                            `🔖 *Marcapáginas:* ${marcapaginas}\n\n` +
-                            `✨ *Detalles del diseño:* ${detalles}`;
-
-            const miTelefono = "34672707366";
-            const urlWhatsApp = `https://wa.me/${miTelefono}?text=${encodeURIComponent(mensaje)}`;
-            window.open(urlWhatsApp, '_blank');
-        });
-    </script>
-
-</body>
-</html>
+            el.addEventListener('input
+        
