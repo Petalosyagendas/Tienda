@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
-    <title>Pétalos y Agenda | Agendas Personalizadas</title>
+    <title>Pétalos y Agendas | Agendas Personalizadas</title>
     <style>
         :root {
             --bg-principal: #FDFBF7 !important;
@@ -79,17 +79,28 @@
         .resena-info { width: 100%; }
         .resena-autor { font-weight: bold; font-size: 1.1rem; margin: 0 0 0.3rem 0; color: #4A4A4A; }
         .resena-estrellas { color: var(--oro-pastel); font-size: 1rem; margin-bottom: 0.5rem; }
-        .resena-texto { font-style: italic; margin: 0 0 1rem 0; line-height: 1.4; color: #666; }
+        .resena-texto { font-style: italic; margin: 0; line-height: 1.4; color: #666; }
         
-        .resena-galeria-fotos { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; }
-        .resena-galeria-fotos img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid var(--gris-perla);
-            flex-shrink: 0;
+        .btn-ver-galeria {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--azul-pastel) !important;
+            color: #4A4A4A !important;
+            text-decoration: none;
+            padding: 1rem;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 1rem;
+            font-size: 1rem;
+            border: 2px dashed var(--lila-pastel);
+            width: 100%;
+            box-sizing: border-box;
+            transition: 0.2s;
+            text-align: center;
         }
+        .btn-ver-galeria:hover { background-color: var(--lila-pastel) !important; border-style: solid; }
+
         .btn-dejar-resena {
             display: inline-flex;
             align-items: center;
@@ -145,7 +156,7 @@
 
     <header>
         <img src="logo.png" alt="Logo" class="logo-tienda" onerror="this.src='logo.jpg'">
-        <h1>Pétalos y Agenda</h1>
+        <h1>Pétalos y Agendas</h1>
     </header>
 
     <div class="container">
@@ -156,7 +167,7 @@
                 <img src="logo.png" alt="Creadora" class="sobre-mi-foto" onerror="this.src='logo.jpg'">
                 <div class="sobre-mi-texto">
                     <p>¡Hola! Soy la persona que está detrás de estas agendas personalizadas, creadas con cariño, creatividad y mucha atención a los detalles.</p>
-                    <p>Me encanta diseñar agendas uniques que reflejen la personalidad, gustos y necesidades de cada persona.</p>
+                    <p>Me encanta diseñar agendas únicas que reflejen la personalidad, gustos y necesidades de cada persona.</p>
                     <p>Gracias por confiar en mi trabajo y por apoyar un proyecto hecho con ilusión, dedicación y mucho corazón.</p>
                 </div>
             </div>
@@ -278,14 +289,7 @@
                     <div class="resena-info">
                         <p class="resena-autor">Klabel</p>
                         <div class="resena-estrellas">★★★★★</div>
-                        <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
-                    </div>
-                    <div class="resena-galeria-fotos">
-                        <img src="klabel1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel1.png'">
-                        <img src="klabel2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel2.png'">
-                        <img src="klabel3.jpg" alt="Foto 3" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel3.png'">
-                        <img src="klabel4.jpg" alt="Foto 4" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel4.png'">
-                        <img src="klabel5.jpg" alt="Foto 5" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel5.png'">
+                        <p class="resena-texto">"Me ha gustado mucho, súper original, ideal incluso para regalar."</p>
                     </div>
                 </div>
 
@@ -293,14 +297,13 @@
                     <div class="resena-info">
                         <p class="resena-autor">Toñi</p>
                         <div class="resena-estrellas">★★★★★</div>
-                        <p class="resena-texto">"Es preciosa y muy especial"</p>
-                    </div>
-                    <div class="resena-galeria-fotos">
-                        <img src="toni1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni1.png'">
-                        <img src="toni2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni2.png'">
+                        <p class="resena-texto">"Es preciosa y muy especial."</p>
                     </div>
                 </div>
             </div>
+            
+            <a href="galeria.html" class="btn-ver-galeria">✨ Ver Fotos Reales en la Galería ✨</a>
+            
             <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">Dejar opinión ✨</a>
         </section>
 
