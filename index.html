@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
-    <title>Pétalos y Agendas | Agendas Personalizadas</title>
+    <title>Pétalos y Agenda | Agendas Personalizadas</title>
     <style>
         :root {
             --bg-principal: #FDFBF7 !important;
@@ -79,8 +79,17 @@
         .resena-info { width: 100%; }
         .resena-autor { font-weight: bold; font-size: 1.1rem; margin: 0 0 0.3rem 0; color: #4A4A4A; }
         .resena-estrellas { color: var(--oro-pastel); font-size: 1rem; margin-bottom: 0.5rem; }
-        .resena-texto { font-style: italic; margin: 0; line-height: 1.4; color: #666; }
+        .resena-texto { font-style: italic; margin: 0 0 1rem 0; line-height: 1.4; color: #666; }
         
+        .resena-galeria-fotos { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; }
+        .resena-galeria-fotos img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--gris-perla);
+            flex-shrink: 0;
+        }
         .btn-dejar-resena {
             display: inline-flex;
             align-items: center;
@@ -136,7 +145,7 @@
 
     <header>
         <img src="logo.png" alt="Logo" class="logo-tienda" onerror="this.src='logo.jpg'">
-        <h1>Pétalos y Agendas</h1>
+        <h1>Pétalos y Agenda</h1>
     </header>
 
     <div class="container">
@@ -147,7 +156,7 @@
                 <img src="logo.png" alt="Creadora" class="sobre-mi-foto" onerror="this.src='logo.jpg'">
                 <div class="sobre-mi-texto">
                     <p>¡Hola! Soy la persona que está detrás de estas agendas personalizadas, creadas con cariño, creatividad y mucha atención a los detalles.</p>
-                    <p>Me encanta diseñar agendas únicas que reflejen la personalidad, gustos y necesidades de cada persona.</p>
+                    <p>Me encanta diseñar agendas uniques que reflejen la personalidad, gustos y necesidades de cada persona.</p>
                     <p>Gracias por confiar en mi trabajo y por apoyar un proyecto hecho con ilusión, dedicación y mucho corazón.</p>
                 </div>
             </div>
@@ -157,7 +166,7 @@
             <h2>Configura tu Agenda</h2>
             
             <div class="aviso-vacaciones">
-                📢 *Aviso importante:* Requerimos un **mínimo de 5 días de preparación y envío**. Del **28 de junio al 9 de julio** cerramos por vacaciones. ¡Gracias! 🌸
+                📢 *Aviso importante:* Requerimos un **mínimo de 5 días de preparación y envío**. Del **19 al 24 de junio** taller completo, y del **28 de junio al 9 de julio** cerramos por vacaciones. ¡Gracias! 🌸
             </div>
 
             <form id="formulario-pedido">
@@ -234,10 +243,6 @@
                         <input type="radio" id="envio_domicilio" name="metodo_entrega" value="Envío a domicilio (+3.00€)" checked onchange="toggleDireccion(true)">
                         <label for="envio_domicilio">Envío a domicilio — <strong>3,00 €</strong></label>
                     </div>
-                    <div>
-                        <input type="radio" id="recogida_local" name="metodo_entrega" value="Recogida Local (Gratis)" onchange="toggleDireccion(false)">
-                        <label for="recogida_local">Recogida local — <strong>Gratis</strong></label>
-                    </div>
                 </div>
 
                 <div id="seccion_direccion" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
@@ -262,7 +267,7 @@
                     </div>
                 </div>
 
-                <button type="submit" id="btn-enviar-pedido">Enviar Pedido por WhatsApp 📱</button>
+                <button type="submit">Enviar Pedido por WhatsApp 📱</button>
             </form>
         </section>
 
@@ -273,7 +278,14 @@
                     <div class="resena-info">
                         <p class="resena-autor">Klabel</p>
                         <div class="resena-estrellas">★★★★★</div>
-                        <p class="resena-texto">"Me ha gustado mucho, súper original, ideal incluso para regalar."</p>
+                        <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
+                    </div>
+                    <div class="resena-galeria-fotos">
+                        <img src="klabel1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel1.png'">
+                        <img src="klabel2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel2.png'">
+                        <img src="klabel3.jpg" alt="Foto 3" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel3.png'">
+                        <img src="klabel4.jpg" alt="Foto 4" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel4.png'">
+                        <img src="klabel5.jpg" alt="Foto 5" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel5.png'">
                     </div>
                 </div>
 
@@ -281,11 +293,14 @@
                     <div class="resena-info">
                         <p class="resena-autor">Toñi</p>
                         <div class="resena-estrellas">★★★★★</div>
-                        <p class="resena-texto">"Es preciosa y muy especial."</p>
+                        <p class="resena-texto">"Es preciosa y muy especial"</p>
+                    </div>
+                    <div class="resena-galeria-fotos">
+                        <img src="toni1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni1.png'">
+                        <img src="toni2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni2.png'">
                     </div>
                 </div>
             </div>
-            
             <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">Dejar opinión ✨</a>
         </section>
 
@@ -308,18 +323,13 @@
             const seccion = document.getElementById('seccion_direccion');
             const inputs = seccion.querySelectorAll('input');
             seccion.style.display = mostrar ? 'block' : 'none';
-            inputs.forEach(input => {
-                input.required = mostrar;
-            });
+            inputs.forEach(input => input.required = mostrar);
         }
 
-        // Configuración inicial de la fecha mínima de entrega (+5 días)
         const inputEntrega = document.getElementById('fecha_entrega');
-        if (inputEntrega) {
-            const hoy = new Date();
-            const fechaMinima = new Date(hoy.getTime() + (5 * 24 * 60 * 60 * 1000));
-            inputEntrega.min = `${fechaMinima.getFullYear()}-${String(fechaMinima.getMonth() + 1).padStart(2, '0')}-${String(fechaMinima.getDate()).padStart(2, '0')}`;
-        }
+        const hoy = new Date();
+        const fechaMinima = new Date(hoy.getTime() + (5 * 24 * 60 * 60 * 1000));
+        inputEntrega.min = `${fechaMinima.getFullYear()}-${String(fechaMinima.getMonth() + 1).padStart(2, '0')}-${String(fechaMinima.getDate()).padStart(2, '0')}`;
 
         document.getElementById('formulario-pedido').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -336,15 +346,11 @@
             const marcapaginas = document.getElementById('marcapaginas').value;
             const detalles = document.getElementById('detalles').value || "Sin detalles";
 
-            const metodoElement = document.querySelector('input[name="metodo_entrega"]:checked');
-            const metodo = metodoElement ? metodoElement.value : "Envío a domicilio (+3.00€)";
-            
+            const metodo = document.querySelector('input[name="metodo_entrega"]:checked').value;
             let dirStr = "";
             if(metodo.includes("domicilio")){
                 dirStr = `📍 *Envío:* ${document.getElementById('calle').value}, ${document.getElementById('codigo_postal').value}, ${document.getElementById('ciudad').value} (${document.getElementById('provincia').value})`;
-            } else { 
-                dirStr = "📍 *Recogida Local*"; 
-            }
+            } else { dirStr = "📍 *Recogida Local*"; }
 
             const mensaje = `🌸 *¡Nuevo Pedido!* 🌸\n\n👤 *Nombre:* ${nombre}\n📞 *Tel:* ${tel}\n✉️ *Correo:* ${correo}\n\n✨ *Estilo:* ${tematica}\n📅 *Del:* ${fInicio} *Al:* ${fFin}\n🚚 *Entrega:* ${fEntrega}\n\n📖 *Vista:* ${vista}\n📄 *Papel:* ${papel}\n⭕ *Anillas:* ${anillas}\n🔖 *Marcapáginas:* ${marcapaginas}\n\n${dirStr}\n\n📝 *Detalles:* ${detalles}`;
             window.open(`https://wa.me/34672707366?text=${encodeURIComponent(mensaje)}`, '_blank');
