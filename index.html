@@ -12,6 +12,7 @@
             --gris-perla: #F2F1F6;
             --texto-oscuro: #5A545E;
             --rosa-acento: #F3B0C3;
+            --oro-estrella: #FFD166;
         }
 
         body {
@@ -21,7 +22,8 @@
             margin: 0;
             padding: 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
@@ -31,12 +33,30 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
+            margin-bottom: 30px;
+        }
+
+        /* --- ESTILOS DE LOGO Y SOBRE MÍ --- */
+        .header-tienda {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-tienda {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--rosa-pastel);
+            margin-bottom: 15px;
         }
 
         h2 {
             text-align: center;
             color: var(--texto-oscuro);
             margin-bottom: 5px;
+            margin-top: 0;
         }
 
         .subtitle {
@@ -46,6 +66,29 @@
             margin-bottom: 25px;
         }
 
+        .seccion-sobre-mi {
+            background-color: #FFF9FA;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px dashed var(--rosa-acento);
+            text-align: center;
+        }
+
+        .seccion-sobre-mi h3 {
+            margin-top: 0;
+            color: var(--texto-oscuro);
+            font-size: 18px;
+        }
+
+        .seccion-sobre-mi p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #6C6672;
+            margin: 0;
+        }
+
+        /* --- ESTILOS DEL FORMULARIO --- */
         .form-group {
             margin-bottom: 20px;
         }
@@ -95,7 +138,6 @@
             cursor: pointer;
         }
 
-        /* Contenedor de la dirección de envío */
         .seccion-direccion {
             margin-top: 15px;
             margin-bottom: 25px;
@@ -140,15 +182,115 @@
         button[type="submit"]:hover {
             background-color: #E299AC;
         }
+
+        /* --- ESTILOS DE RESEÑAS Y GALERÍAS --- */
+        .reviews-section, #portfolio {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            box-sizing: border-box;
+        }
+
+        .reviews-section h3, #portfolio h2 {
+            text-align: center;
+            color: var(--texto-oscuro);
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tarjeta-resena {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--lila-pastel);
+        }
+
+        .tarjeta-resena:nth-child(even) {
+            border-left: 4px solid var(--azul-pastel);
+        }
+
+        .resena-autor {
+            font-weight: bold;
+            margin: 0 0 4px 0;
+        }
+
+        .resena-estrellas {
+            color: var(--oro-estrella);
+            margin-bottom: 8px;
+        }
+
+        .resena-texto {
+            font-style: italic;
+            color: #6C6672;
+            margin: 0 0 12px 0;
+        }
+
+        .resena-galeria-fotos {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .resena-galeria-fotos img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .btn-dejar-resena {
+            display: inline-block;
+            background-color: var(--rosa-acento);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-dejar-resena:hover {
+            background-color: #E299AC;
+        }
+
+        .galeria {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .galeria-img {
+            width: 120px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Pétalos y Agendas</h2>
-    <div class="subtitle">Personaliza tu agenda a tu estilo</div>
+    <!-- El Logo de tu Tienda -->
+    <div class="header-tienda">
+        <img src="logo.png" alt="Logo Pétalos y Agendas" class="logo-tienda" onerror="this.src='logo.jpg'">
+        <h2>Pétalos y Agendas</h2>
+        <div class="subtitle">Personaliza tu agenda a tu estilo</div>
+    </div>
 
-    <!-- Reemplaza el action con tu enlace de Formspree cuando lo tengas listo -->
+    <!-- Sección Sobre Mí -->
+    <div class="seccion-sobre-mi">
+        <h3>¡Hola! Soy Alanis ✨</h3>
+        <p>Creo agendas artesanales y 100% personalizadas diseñadas especialmente para ti. Cuéntame tu idea y la haré realidad cuidando cada pequeño detalle.</p>
+    </div>
+
+    <!-- Formulario de Pedido (Formspree) -->
     <form action="https://formspree.io/f/tu_id_aquí" method="POST">
         
         <!-- Datos del Cliente -->
@@ -164,7 +306,7 @@
 
         <!-- Personalización de la Agenda -->
         <div class="form-group">
-            <label for="Estilo">Estilo de la Agenda:</label>
+            <label for="estilo">Estilo de la Agenda:</label>
             <select id="estilo" name="estilo_agenda" required>
                 <option value="" disabled selected>Selecciona un estilo...</option>
                 <option value="Anime">Anime (Ilustraciones y estética japonesa)</option>
@@ -186,7 +328,7 @@
             <small style="color: #999; font-size: 12px; display: block; margin-top: 4px;">Necesitamos un mínimo de 5 días para preparar tu diseño personalizado.</small>
         </div>
 
-        <!-- NUEVO: Método de Entrega (Envío por 3€) -->
+        <!-- Método de Entrega (Envío por 3€) -->
         <div class="form-group">
             <label>Método de Entrega:</label>
             <div class="radio-group">
@@ -194,17 +336,10 @@
                     <input type="radio" id="envio_domicilio" name="metodo_entrega" value="Envío a domicilio (+3.00€)" checked onchange="toggleDireccion(true)">
                     <span>Envío a domicilio — <strong>3,00 €</strong></span>
                 </label>
-                <!-- Descomenta si en el futuro permites recogida gratuita -->
-                <!--
-                <label class="radio-option">
-                    <input type="radio" id="recogida_local" name="metodo_entrega" value="Recogida local (Gratis)" onchange="toggleDireccion(false)">
-                    <span>Recogida local — <strong>Gratis</strong></span>
-                </label>
-                -->
             </div>
         </div>
 
-        <!-- NUEVO: Campos desglosados de Dirección de Envío -->
+        <!-- Campos de Dirección de Envío -->
         <div id="seccion_direccion" class="seccion-direccion">
             <h4>Dirección de Envío</h4>
             
@@ -235,16 +370,64 @@
     </form>
 </div>
 
+<!-- SECCIÓN: Lo que dicen nuestros clientes -->
+<section class="reviews-section">
+    <h3>Lo que dicen nuestros clientes ✨</h3>
+    
+    <div class="muro-resenas">
+        <div class="tarjeta-resena">
+            <div class="resena-info">
+                <p class="resena-autor">Klabel</p>
+                <div class="resena-estrellas">★★★★★</div>
+                <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
+            </div>
+            <div class="resena-galeria-fotos">
+                <img src="klabel1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel1.png'">
+                <img src="klabel2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel2.png'">
+                <img src="klabel3.jpg" alt="Foto 3" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel3.png'">
+                <img src="klabel4.jpg" alt="Foto 4" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel4.png'">
+                <img src="klabel5.jpg" alt="Foto 5" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel5.png'">
+            </div>
+        </div>
+
+        <div class="tarjeta-resena">
+            <div class="resena-info">
+                <p class="resena-autor">Toñi</p>
+                <div class="resena-estrellas">★★★★★</div>
+                <p class="resena-texto">"Es preciosa y muy especial"</p>
+            </div>
+            <div class="resena-galeria-fotos">
+                <img src="toni1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni1.png'">
+                <img src="toni2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni2.png'">
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">Dejar opinión ✨</a>
+    </div>
+</section>
+
+<!-- SECCIÓN: Portfolio / Galerías -->
+<section id="portfolio">
+    <h2>Agendas que ya he hecho</h2>
+    <div class="galeria">
+        <img src="agenda_1.jpg" alt="A1" class="galeria-img" onerror="this.src='agenda_1.png'">
+        <img src="agenda_2.jpg" alt="A2" class="galeria-img" onerror="this.src='agenda_2.png'">
+        <img src="agenda_3.jpg" alt="A3" class="galeria-img" onerror="this.src='agenda_3.png'">
+        <img src="agenda_4.jpg" alt="A4" class="galeria-img" onerror="this.src='agenda_4.png'">
+        <img src="agenda_5.jpg" alt="A5" class="galeria-img" onerror="this.src='agenda_5.png'">
+    </div>
+</section>
+
 <script>
     // Configuración automática de los 5 días mínimos de diseño
     document.addEventListener("DOMContentLoaded", function() {
         const fechaInput = document.getElementById("fecha_entrega");
         const hoy = new Date();
         
-        // Sumar 5 días a la fecha de hoy
         hoy.setDate(hoy.getDate() + 5);
         
-        // Formatear la fecha a YYYY-MM-DD para el atributo 'min' del input
         const año = hoy.getFullYear();
         const mes = String(hoy.getMonth() + 1).padStart(2, '0');
         const dia = String(hoy.getDate()).padStart(2, '0');
