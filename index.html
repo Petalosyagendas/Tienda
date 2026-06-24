@@ -3,16 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light">
 <title>Pétalos y Agenda | Agendas Personalizadas</title>
 
 <style>
-:root {
-    --bg-principal:#FDFBF7;
-    --rosa-pastel:#F3E1E4;
-    --azul-pastel:#E1ECF4;
-    --lila-pastel:#E8DFF5;
-    --gris-perla:#E2E2E2;
+:root{
+    --rosa:#F3E1E4;
+    --azul:#E1ECF4;
+    --lila:#E8DFF5;
     --texto:#4A4A4A;
 }
 
@@ -21,11 +18,11 @@ html,body{
     padding:0;
     font-family:'Segoe UI';
     background:#FDFBF7;
-    color:#4A4A4A;
+    color:var(--texto);
 }
 
 header{
-    background:var(--rosa-pastel);
+    background:var(--rosa);
     text-align:center;
     padding:2.5rem;
 }
@@ -51,11 +48,12 @@ section{
     box-shadow:0 4px 15px rgba(0,0,0,0.05);
 }
 
+/* FORM */
 input,select,textarea{
     width:100%;
     padding:10px;
     border-radius:10px;
-    border:1px solid var(--gris-perla);
+    border:1px solid #ddd;
 }
 
 /* BOTÓN */
@@ -66,7 +64,6 @@ button{
     color:white;
     border:none;
     border-radius:30px;
-    font-weight:bold;
 }
 
 /* DIRECCION */
@@ -78,7 +75,7 @@ button{
     border-radius:10px;
 }
 
-/* ⭐ RESEÑAS */
+/* RESEÑAS */
 .tarjeta-resena{
     background:white;
     padding:20px;
@@ -125,6 +122,20 @@ button{
 
 <div class="container">
 
+<!-- SOBRE MÍ (RESTAURADO) -->
+<section>
+<h2>Sobre mí</h2>
+
+<p>
+¡Hola! Soy la persona detrás de estas agendas personalizadas, creadas con mucho cariño y dedicación.
+Me encanta diseñar agendas únicas que reflejen la personalidad de cada persona.
+</p>
+
+<p>
+Gracias por confiar en mi trabajo 💕
+</p>
+</section>
+
 <!-- FORMULARIO -->
 <section>
 <h2>Configura tu Agenda</h2>
@@ -168,7 +179,7 @@ Envío a domicilio
 </form>
 </section>
 
-<!-- ⭐ RESEÑAS CORREGIDAS -->
+<!-- RESEÑAS -->
 <section>
 <h2>Reseñas de clientas ✨</h2>
 
