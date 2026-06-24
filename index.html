@@ -12,7 +12,6 @@
             --gris-perla: #F2F1F6;
             --texto-oscuro: #5A545E;
             --rosa-acento: #F3B0C3;
-            --oro-estrella: #FFD166;
             --whatsapp-color: #25D366;
         }
 
@@ -30,90 +29,89 @@
         .container {
             background-color: #FFFFFF;
             width: 100%;
-            max-width: 600px;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            max-width: 550px;
+            padding: 35px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(163, 142, 147, 0.08);
             box-sizing: border-box;
-            margin-bottom: 30px;
-            position: relative;
+            margin-top: 20px;
+            margin-bottom: 40px;
         }
 
         .header-tienda {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .logo-contenedor {
             background-color: var(--rosa-pastel);
-            width: 140px;
-            height: 140px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(243, 176, 195, 0.2);
         }
 
         .logo-tienda {
-            width: 115px;
-            height: 115px;
+            width: 110px;
+            height: 110px;
             object-fit: cover;
             border-radius: 50%;
             border: 3px solid #FFFFFF;
         }
 
-        h2, h3 {
-            text-align: center;
-            color: var(--texto-oscuro);
-            margin-top: 0;
-        }
-
         h2 {
-            margin-bottom: 5px;
+            margin: 0 0 5px 0;
+            font-size: 26px;
+            color: var(--texto-oscuro);
+            font-weight: 700;
         }
 
         .subtitle {
-            text-align: center;
             font-size: 14px;
-            color: #8A8290;
-            margin-bottom: 25px;
+            color: #A39BA8;
+            letter-spacing: 0.5px;
         }
 
+        /* --- SECCIÓN SOBRE MÍ ORIGINAL --- */
         .seccion-sobre-mi {
-            background-color: #FFF0F2;
-            padding: 22px;
-            border-radius: 16px;
-            margin-bottom: 30px;
-            border: 2px dashed var(--rosa-acento);
-            text-align: center;
-            box-shadow: inset 0 0 10px rgba(255, 223, 229, 0.3);
+            margin-bottom: 35px;
+            padding: 5px 10px;
         }
 
         .seccion-sobre-mi h3 {
-            color: #D67D93;
-            font-size: 19px;
-            margin-bottom: 8px;
-            font-weight: 700;
+            color: var(--texto-oscuro);
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 12px;
+            text-align: center;
         }
 
         .seccion-sobre-mi p {
             font-size: 14.5px;
             line-height: 1.6;
             color: #6C6672;
-            margin: 0;
+            margin: 0 0 14px 0;
+            text-align: justify;
         }
 
+        .seccion-sobre-mi p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- FORMULARIO ESTILIZADO Y LIMPIO --- */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         label {
             display: block;
             font-weight: 600;
             margin-bottom: 8px;
-            font-size: 15px;
+            font-size: 14px;
+            color: var(--texto-oscuro);
         }
 
         input[type="text"],
@@ -122,54 +120,36 @@
         select,
         textarea {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #DDD;
-            border-radius: 8px;
+            padding: 12px 15px;
+            border: 1px solid #E4E1E6;
+            border-radius: 10px;
             box-sizing: border-box;
-            font-size: 14px;
-            background-color: #FAFAFA;
-            transition: border-color 0.3s;
+            font-size: 14.5px;
+            background-color: #FBFBFC;
+            color: var(--texto-oscuro);
+            transition: all 0.3s ease;
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--rosa-acento);
-            background-color: #FFF;
-        }
-
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background-color: #FCFAFD;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #EEE;
-        }
-
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 8px rgba(243, 176, 195, 0.25);
         }
 
         .seccion-direccion {
-            margin-top: 15px;
-            margin-bottom: 25px;
-            padding: 18px;
-            border: 1px solid var(--rosa-pastel);
-            border-radius: 10px;
-            background-color: #FFFDFE;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            background-color: #F9F8FA;
+            border: 1px solid #EFECEF;
         }
 
         .seccion-direccion h4 {
-            margin-top: 0;
-            margin-bottom: 15px;
+            margin: 0 0 15px 0;
             color: var(--texto-oscuro);
-            font-size: 16px;
-            border-bottom: 1px solid var(--rosa-pastel);
-            padding-bottom: 5px;
+            font-size: 15px;
+            font-weight: 600;
         }
 
         .flex-inputs {
@@ -186,167 +166,44 @@
             background-color: var(--rosa-acento);
             color: white;
             border: none;
-            padding: 14px;
+            padding: 15px;
             font-size: 16px;
             font-weight: bold;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(243, 176, 195, 0.3);
         }
 
         button[type="submit"]:hover {
             background-color: #E299AC;
         }
 
-        .btn-whatsapp-cuerpo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background-color: var(--whatsapp-color);
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 8px;
-            text-align: center;
-            margin-top: 10px;
-            transition: background-color 0.3s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .btn-whatsapp-cuerpo:hover {
-            background-color: #1ebe57;
-        }
-
         .whatsapp-float {
             position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 20px;
-            right: 20px;
+            width: 56px;
+            height: 56px;
+            bottom: 24px;
+            right: 24px;
             background-color: var(--whatsapp-color);
-            color: #FFF;
             border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
             transition: transform 0.3s;
         }
 
         .whatsapp-float:hover {
-            transform: scale(1.1);
-            color: #FFF;
+            transform: scale(1.08);
         }
 
         .whatsapp-icon-svg {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             fill: white;
-        }
-
-        .reviews-section, .portfolio-section {
-            margin-top: 40px;
-            border-top: 1px solid #EEE;
-            padding-top: 30px;
-        }
-
-        .reviews-section h3, .portfolio-section h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-
-        .tarjeta-resena {
-            background-color: #FAFAFA;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border-left: 4px solid var(--lila-pastel);
-            border-top: 1px solid #EEE;
-            border-right: 1px solid #EEE;
-            border-bottom: 1px solid #EEE;
-        }
-
-        .tarjeta-resena:nth-child(even) {
-            border-left: 4px solid var(--azul-pastel);
-        }
-
-        .resena-autor {
-            font-weight: bold;
-            margin: 0 0 4px 0;
-            font-size: 14px;
-        }
-
-        .resena-estrellas {
-            color: var(--oro-estrella);
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        .resena-texto {
-            font-style: italic;
-            color: #6C6672;
-            margin: 0 0 12px 0;
-            font-size: 13.5px;
-        }
-
-        .resena-galeria-fotos {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .resena-galeria-fotos img {
-            width: 55px;
-            height: 55px;
-            object-fit: cover;
-            border-radius: 6px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
-        }
-
-        .contenedor-btn-resena {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .btn-dejar-resena {
-            display: inline-block;
-            background-color: var(--rosa-acento);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-
-        .btn-dejar-resena:hover {
-            background-color: #E299AC;
-        }
-
-        .galeria {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 10px;
-        }
-
-        .galeria-img {
-            width: 110px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 8px;
-            flex-shrink: 0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
     </style>
 </head>
@@ -361,22 +218,24 @@
         <div class="subtitle">Personaliza tu agenda a tu estilo</div>
     </div>
 
+    <!-- Tu texto largo original y completo -->
     <div class="seccion-sobre-mi">
         <h3>¡Hola! Soy Alanis ✨</h3>
-        <p>Creo agendas artesanales y 100% personalizadas diseñadas especialmente para ti. Cuéntame tu idea y la haré realidad cuidando cada pequeño detalle.</p>
+        <p>¡Bienvenido/a a Pétalos y Agendas! Aquí creo agendas totalmente artesanales y 100% personalizadas, hechas a mano desde cero y diseñadas en exclusiva para adaptarse por completo a lo que buscas y necesitas.</p>
+        <p>Puedes elegir el gramaje de las hojas (trabajo con papel de alta calidad de 80g, 90g y hasta 100g para que puedas escribir o pintar sin que se traspase nada), así como el tipo de anillas de la estructura, incluyendo acabados transparentes preciosos que le dan un toque único y muy limpio.</p>
+        <p>Me adapto al estilo que más vaya contigo: desde diseños inspirados en la estética Anime, portadas florales delicadas, mundos de fantasía o un estilo pastel minimalista muy fino. Cuéntame cuál es tu idea o la temática que tienes en mente y yo me encargaré de plasmarla cuidando cada pequeño detalle para crear la agenda de tus sueños.</p>
     </div>
 
-    <!-- El formulario ahora llama a una función de JS para mandar todo por WhatsApp -->
     <form id="formulario-agenda" onsubmit="enviarWhatsApp(event)">
         
         <div class="form-group">
             <label for="nombre">Nombre Completo:</label>
-            <input type="text" id="nombre" placeholder="Ej. Tomás" required>
+            <input type="text" id="nombre" placeholder="Tu nombre" required>
         </div>
 
         <div class="form-group">
             <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" placeholder="ejemplo@correo.com" required>
+            <input type="email" id="email" placeholder="tu@correo.com" required>
         </div>
 
         <div class="form-group">
@@ -392,27 +251,17 @@
 
         <div class="form-group">
             <label for="detalles">Detalles de personalización (Nombres, frases, portada):</label>
-            <textarea id="detalles" rows="3" placeholder="Cuéntame cómo te gustaría que fuera tu portada, interior o si lleva algún nombre grabado..."></textarea>
+            <textarea id="detalles" rows="4" placeholder="Cuéntame tu idea para la portada, el interior, hojas o detalles especiales..."></textarea>
         </div>
 
         <div class="form-group">
             <label for="fecha_entrega">Fecha deseada de entrega:</label>
             <input type="date" id="fecha_entrega" required>
-            <small style="color: #999; font-size: 12px; display: block; margin-top: 4px;">Necesitamos un mínimo de 5 días para preparar tu diseño personalizado.</small>
-        </div>
-
-        <div class="form-group">
-            <label>Método de Entrega:</label>
-            <div class="radio-group">
-                <label class="radio-option">
-                    <input type="radio" id="envio_domicilio" name="metodo_entrega" value="Envío a domicilio (+3.00€)" checked onchange="toggleDireccion(true)">
-                    <span>Envío a domicilio — <strong>3,00 €</strong></span>
-                </label>
-            </div>
+            <small style="color: #A39BA8; font-size: 12px; display: block; margin-top: 6px;">Necesitamos un mínimo de 5 días para diseñar tu agenda única.</small>
         </div>
 
         <div id="seccion_direccion" class="seccion-direccion">
-            <h4>Dirección de Envío</h4>
+            <h4>Dirección para el Envío (A domicilio por 3,00 €)</h4>
             
             <div class="form-group" style="margin-bottom: 12px;">
                 <label for="calle" style="font-size: 13px; margin-bottom: 4px;">Calle, número, piso y puerta:</label>
@@ -422,78 +271,26 @@
             <div class="flex-inputs" style="margin-bottom: 12px;">
                 <div>
                     <label for="codigo_postal" style="font-size: 13px; margin-bottom: 4px;">Código Postal:</label>
-                    <input type="text" id="codigo_postal" placeholder="Ej. 28001" required>
+                    <input type="text" id="codigo_postal" placeholder="28001" required>
                 </div>
                 <div>
                     <label for="ciudad" style="font-size: 13px; margin-bottom: 4px;">Ciudad:</label>
-                    <input type="text" id="ciudad" placeholder="Ej. Madrid" required>
+                    <input type="text" id="ciudad" placeholder="Madrid" required>
                 </div>
             </div>
 
             <div class="form-group" style="margin-bottom: 0;">
                 <label for="provincia" style="font-size: 13px; margin-bottom: 4px;">Provincia:</label>
-                <input type="text" id="provincia" placeholder="Ej. Madrid" required>
+                <input type="text" id="provincia" placeholder="Madrid" required>
             </div>
         </div>
 
-        <button type="submit">Confirmar y Solicitar Agenda</button>
+        <button type="submit">Solicitar mi Agenda Personalizada</button>
     </form>
-
-    <a href="https://wa.me/34672707366?text=¡Hola!%20Tengo%20una%20duda%20sobre%20las%20agendas%20personalizadas..." class="btn-whatsapp-cuerpo" target="_blank">
-        <svg class="whatsapp-icon-svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
-        ¿Tienes dudas? Escríbeme por WhatsApp
-    </a>
-
-    <div class="reviews-section">
-        <h3>Lo que dicen nuestros clientes ✨</h3>
-        
-        <div class="muro-resenas">
-            <div class="tarjeta-resena">
-                <div class="resena-info">
-                    <p class="resena-autor">Klabel</p>
-                    <div class="resena-estrellas">★★★★★</div>
-                    <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
-                </div>
-                <div class="resena-galeria-fotos">
-                    <img src="klabel1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel1.png'">
-                    <img src="klabel2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel2.png'">
-                    <img src="klabel3.jpg" alt="Foto 3" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel3.png'">
-                    <img src="klabel4.jpg" alt="Foto 4" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel4.png'">
-                    <img src="klabel5.jpg" alt="Foto 5" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel5.png'">
-                </div>
-            </div>
-
-            <div class="tarjeta-resena">
-                <div class="resena-info">
-                    <p class="resena-autor">Toñi</p>
-                    <div class="resena-estrellas">★★★★★</div>
-                    <p class="resena-texto">"Es preciosa y muy especial"</p>
-                </div>
-                <div class="resena-galeria-fotos">
-                    <img src="toni1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni1.png'">
-                    <img src="toni2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni2.png'">
-                </div>
-            </div>
-        </div>
-        
-        <div class="contenedor-btn-resena">
-            <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">Dejar opinión ✨</a>
-        </div>
-    </div>
-
-    <div class="portfolio-section" id="portfolio">
-        <h2>Agendas que ya he hecho</h2>
-        <div class="galeria">
-            <img src="agenda_1.jpg" alt="A1" class="galeria-img" onerror="this.src='agenda_1.png'">
-            <img src="agenda_2.jpg" alt="A2" class="galeria-img" onerror="this.src='agenda_2.png'">
-            <img src="agenda_3.jpg" alt="A3" class="galeria-img" onerror="this.src='agenda_3.png'">
-            <img src="agenda_4.jpg" alt="A4" class="galeria-img" onerror="this.src='agenda_4.png'">
-            <img src="agenda_5.jpg" alt="A5" class="galeria-img" onerror="this.src='agenda_5.png'">
-        </div>
-    </div>
 </div>
 
-<a href="https://wa.me/34672707366?text=¡Hola!%20Tengo%20una%20duda%20sobre%20las%20agendas%20personalizadas..." class="whatsapp-float" target="_blank">
+<!-- Botón flotante directo y discreto -->
+<a href="https://wa.me/34672707366?text=¡Hola!%20Tengo%20una%20duda%20sobre%20las%20agendas%20personalizadas..." class="whatsapp-float" target="_blank" title="Escríbenos por WhatsApp">
     <svg class="whatsapp-icon-svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
 </a>
 
@@ -502,30 +299,16 @@
         const fechaInput = document.getElementById("fecha_entrega");
         const hoy = new Date();
         
+        // Bloqueo automático del margen mínimo de 5 días
         hoy.setDate(hoy.getDate() + 5);
         
         const año = hoy.getFullYear();
         const mes = String(hoy.getMonth() + 1).padStart(2, '0');
         const dia = String(hoy.getDate()).padStart(2, '0');
         
-        const fechaMinima = `${año}-${mes}-${dia}`;
-        fechaInput.min = fechaMinima;
+        fechaInput.min = `${año}-${mes}-${dia}`;
     });
 
-    function toggleDireccion(mostrar) {
-        const seccion = document.getElementById('seccion_direccion');
-        const inputs = seccion.querySelectorAll('input');
-        
-        if (mostrar) {
-            seccion.style.display = 'block';
-            inputs.forEach(input => input.required = true);
-        } else {
-            seccion.style.display = 'none';
-            inputs.forEach(input => input.required = false);
-        }
-    }
-
-    // Nueva función para enviar los datos limpios por WhatsApp
     function enviarWhatsApp(event) {
         event.preventDefault();
 
@@ -535,24 +318,21 @@
         const detalles = document.getElementById('detalles').value || "Ninguno";
         const fecha = document.getElementById('fecha_entrega').value;
         
-        let mensaje = `¡Hola! He rellenado el formulario de pedido:\n\n`;
+        let mensaje = `¡Hola! Quiero hacer un pedido en Pétalos y Agendas:\n\n`;
         mensaje += `*Nombre:* ${nombre}\n`;
         mensaje += `*Email:* ${email}\n`;
-        mensaje += `*Estilo de Agenda:* ${estilo}\n`;
+        mensaje += `*Estilo:* ${estilo}\n`;
         mensaje += `*Detalles:* ${detalles}\n`;
-        mensaje += `*Fecha deseada:* ${fecha}\n`;
+        mensaje += `*Fecha de entrega:* ${fecha}\n`;
 
-        const mostrarDireccion = document.getElementById('envio_domicilio').checked;
-        if (mostrarDireccion) {
-            const calle = document.getElementById('calle').value;
-            const cp = document.getElementById('codigo_postal').value;
-            const ciudad = document.getElementById('ciudad').value;
-            const provincia = document.getElementById('provincia').value;
-            
-            mensaje += `\n*Dirección de Envío:*\n`;
-            mensaje += `${calle}\n${cp}, ${ciudad} (${provincia})\n`;
-            mensaje += `*Método:* Envío a domicilio (+3.00€)`;
-        }
+        const calle = document.getElementById('calle').value;
+        const cp = document.getElementById('codigo_postal').value;
+        const ciudad = document.getElementById('ciudad').value;
+        const provincia = document.getElementById('provincia').value;
+        
+        mensaje += `\n*Dirección de Envío:*\n`;
+        mensaje += `${calle}\n${cp}, ${ciudad} (${provincia})\n`;
+        mensaje += `*Método:* Envío a domicilio (+3.00€)`;
 
         const numeroTelefono = "34672707366";
         const url = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
