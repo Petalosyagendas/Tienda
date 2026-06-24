@@ -1,183 +1,202 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light">
-    <title>Pétalos y Agenda | Agendas Personalizadas</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Pétalos y Agenda | Agendas Personalizadas</title>
 
-    <style>
-        :root {
-            --bg-principal: #FDFBF7 !important;
-            --rosa-pastel: #F3E1E4 !important;
-            --azul-pastel: #E1ECF4 !important;
-            --lila-pastel: #E8DFF5 !important;
-            --gris-perla: #E2E2E2 !important;
-            --texto: #4A4A4A !important;
-            --oro-pastel: #F1C40F !important;
-        }
+<style>
+:root {
+    --bg-principal:#FDFBF7;
+    --rosa-pastel:#F3E1E4;
+    --azul-pastel:#E1ECF4;
+    --lila-pastel:#E8DFF5;
+    --gris-perla:#E2E2E2;
+    --texto:#4A4A4A;
+}
 
-        html, body {
-            background-color: #FDFBF7 !important;
-            color: #4A4A4A !important;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+html,body{
+    margin:0;
+    padding:0;
+    font-family:'Segoe UI';
+    background:#FDFBF7;
+    color:#4A4A4A;
+}
 
-        header { background-color: var(--rosa-pastel) !important; text-align: center; padding: 2.5rem; border-bottom: 3px solid var(--lila-pastel); }
-        .logo-tienda { max-width: 130px; height: 130px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); background-color: white !important; }
+header{
+    background:var(--rosa-pastel);
+    text-align:center;
+    padding:2.5rem;
+}
 
-        .container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+.logo-tienda{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    object-fit:cover;
+}
 
-        section { background: white !important; padding: 2.5rem; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 2.5rem; }
+.container{
+    max-width:800px;
+    margin:auto;
+    padding:20px;
+}
 
-        h2 { color: #6A6A6A !important; border-bottom: 2px solid var(--azul-pastel); padding-bottom: 0.5rem; }
+section{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.05);
+}
 
-        .form-group { margin-bottom: 1.5rem; }
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:1px solid var(--gris-perla);
+}
 
-        input, textarea, select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid var(--gris-perla);
-            border-radius: 10px;
-            background-color: #FCFCFC !important;
-            color: #4A4A4A !important;
-            font-size: 1rem;
-            box-sizing: border-box;
-        }
+/* BOTÓN */
+button{
+    width:100%;
+    padding:15px;
+    background:#25D366;
+    color:white;
+    border:none;
+    border-radius:30px;
+    font-weight:bold;
+}
 
-        button {
-            background-color: #25D366 !important;
-            color: white !important;
-            border: none;
-            padding: 1.1rem;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 1rem;
-        }
+/* DIRECCION */
+#seccion_direccion{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    background:#f7f7f7;
+    border-radius:10px;
+}
 
-        .aviso-vacaciones {
-            background-color: var(--azul-pastel) !important;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-bottom: 1.5rem;
-        }
+/* ⭐ RESEÑAS */
+.tarjeta-resena{
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
 
-        .whatsapp-flotante {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25D366 !important;
-            color: white !important;
-            padding: 14px 24px !important;
-            border-radius: 50px !important;
-            text-decoration: none !important;
-            font-weight: bold !important;
-        }
+.resena-fotos{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
+    margin-top:10px;
+}
 
-        /* 🚨 IMPORTANTE: oculto por defecto */
-        #seccion_direccion {
-            display: none;
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
-    </style>
+.resena-fotos img{
+    width:90px;
+    height:90px;
+    object-fit:cover;
+    border-radius:12px;
+    flex-shrink:0;
+    border:1px solid #ddd;
+}
+
+.whatsapp-flotante{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:white;
+    padding:15px 20px;
+    border-radius:50px;
+    text-decoration:none;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <img src="logo.png" class="logo-tienda">
-    <h1>Pétalos y Agenda</h1>
+<img src="logo.png" class="logo-tienda">
+<h1>Pétalos y Agenda</h1>
 </header>
 
 <div class="container">
 
+<!-- FORMULARIO -->
 <section>
 <h2>Configura tu Agenda</h2>
 
-<div class="aviso-vacaciones">
-📢 Pedido mínimo 5 días. Consultar fechas de vacaciones.
-</div>
-
 <form id="formulario-pedido">
 
-    <div class="form-group">
-        <input id="nombre" placeholder="Nombre" required>
-    </div>
+<input id="nombre" placeholder="Nombre" required>
+<input id="telefono_cliente" placeholder="Teléfono" required>
+<input id="correo_cliente" placeholder="Correo" required>
 
-    <div class="form-group">
-        <input id="telefono_cliente" placeholder="Teléfono" required>
-    </div>
+<input type="date" id="fecha_inicio_agenda">
+<input type="date" id="fecha_final_agenda">
+<input type="date" id="fecha_entrega">
 
-    <div class="form-group">
-        <input id="correo_cliente" placeholder="Correo" required>
-    </div>
+<select id="tematica">
+<option>Pastel</option>
+<option>Anime</option>
+</select>
 
-    <div class="form-group">
-        <input type="date" id="fecha_inicio_agenda" required>
-    </div>
+<select id="tipo_vista">
+<option>Semanal</option>
+<option>Diaria</option>
+</select>
 
-    <div class="form-group">
-        <input type="date" id="fecha_final_agenda" required>
-    </div>
+<textarea id="detalles"></textarea>
 
-    <div class="form-group">
-        <input type="date" id="fecha_entrega" required>
-    </div>
+<label>
+<input type="radio" id="envio_domicilio" name="metodo_entrega" checked onchange="toggleDireccion()">
+Envío a domicilio
+</label>
 
-    <select id="tematica">
-        <option>Pastel</option>
-        <option>Anime</option>
-    </select>
+<div id="seccion_direccion">
+<input id="calle" placeholder="Calle">
+<input id="codigo_postal" placeholder="CP">
+<input id="ciudad" placeholder="Ciudad">
+<input id="provincia" placeholder="Provincia">
+</div>
 
-    <select id="tipo_vista">
-        <option>Semanal</option>
-        <option>Diaria</option>
-    </select>
-
-    <select id="papel">
-        <option>80 gr</option>
-        <option>90 gr</option>
-        <option>100 gr</option>
-    </select>
-
-    <select id="anillas">
-        <option>Transparentes</option>
-        <option>Color (+0,50€)</option>
-    </select>
-
-    <select id="marcapaginas">
-        <option>No</option>
-        <option>Sí (+0,80€)</option>
-    </select>
-
-    <textarea id="detalles" placeholder="Detalles"></textarea>
-
-    <label>
-        <input type="radio" id="envio_domicilio" name="metodo_entrega"
-        value="Envío a domicilio (+3€)" checked onchange="toggleDireccion()">
-        Envío a domicilio
-    </label>
-
-    <!-- 🚨 OCULTO POR DEFECTO -->
-    <div id="seccion_direccion">
-        <input id="calle" placeholder="Calle">
-        <input id="codigo_postal" placeholder="CP">
-        <input id="ciudad" placeholder="Ciudad">
-        <input id="provincia" placeholder="Provincia">
-    </div>
-
-    <button type="submit">Enviar por WhatsApp</button>
+<button type="submit">Enviar por WhatsApp</button>
 
 </form>
+</section>
+
+<!-- ⭐ RESEÑAS CORREGIDAS -->
+<section>
+<h2>Reseñas de clientas ✨</h2>
+
+<!-- KLABEL -->
+<div class="tarjeta-resena">
+<p><strong>Klabel</strong> ⭐⭐⭐⭐⭐</p>
+<p>"Me ha gustado mucho, súper original"</p>
+
+<div class="resena-fotos">
+<img src="https://drive.google.com/uc?id=1JFunf60vnIN3Pui31yypSOBEsz_Win_E">
+<img src="https://drive.google.com/uc?id=1Cy5fVeAvmfqoxWrLazWVsx1Zg7YhNRJv">
+<img src="https://drive.google.com/uc?id=1opvO38p9ZCvKfVtdnnmNMBEikGYjiciY">
+<img src="https://drive.google.com/uc?id=1oELGQbgjQbxsIUeFkjSSoB_J4hsyZFFG">
+<img src="https://drive.google.com/uc?id=1REt-gBYpqEpjDTNcdoMUyJ0hUUrlHSQx">
+</div>
+</div>
+
+<!-- TOÑI -->
+<div class="tarjeta-resena">
+<p><strong>Toñi</strong> ⭐⭐⭐⭐⭐</p>
+<p>"Es preciosa y muy especial"</p>
+
+<div class="resena-fotos">
+<img src="https://drive.google.com/uc?id=1yeVBhQHu-bk6eGMZzUtXh0PUN-eWsQpj">
+<img src="https://drive.google.com/uc?id=12ycaIUOMXyvvHQhYvl6Vk87YT9_0u10z">
+</div>
+</div>
+
 </section>
 
 </div>
@@ -186,37 +205,23 @@
 
 <script>
 
-function toggleDireccion() {
-    const seccion = document.getElementById('seccion_direccion');
-    const envio = document.getElementById('envio_domicilio').checked;
-
-    seccion.style.display = envio ? 'block' : 'none';
-
-    seccion.querySelectorAll('input').forEach(i => {
-        i.required = envio;
-    });
+function toggleDireccion(){
+    const sec = document.getElementById("seccion_direccion");
+    const envio = document.getElementById("envio_domicilio").checked;
+    sec.style.display = envio ? "block" : "none";
 }
 
-/* 🔥 ACTIVA AL CARGAR */
-window.addEventListener("DOMContentLoaded", function () {
-    toggleDireccion();
-});
+window.addEventListener("DOMContentLoaded", toggleDireccion);
 
-document.getElementById('formulario-pedido').addEventListener('submit', function(e){
+document.getElementById("formulario-pedido").addEventListener("submit", function(e){
     e.preventDefault();
 
-    const nombre = document.getElementById('nombre').value;
-    const tel = document.getElementById('telefono_cliente').value;
-    const correo = document.getElementById('correo_cliente').value;
+    const nombre = document.getElementById("nombre").value;
+    const tel = document.getElementById("telefono_cliente").value;
 
-    const mensaje =
-`🌸 NUEVO PEDIDO 🌸
+    const msg = `🌸 NUEVO PEDIDO 🌸\n👤 ${nombre}\n📞 ${tel}`;
 
-👤 ${nombre}
-📞 ${tel}
-✉️ ${correo}`;
-
-    window.open(`https://wa.me/34672707366?text=${encodeURIComponent(mensaje)}`, '_blank');
+    window.open(`https://wa.me/34672707366?text=${encodeURIComponent(msg)}`, "_blank");
 });
 
 </script>
