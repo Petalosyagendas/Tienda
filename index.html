@@ -234,6 +234,10 @@
                         <input type="radio" id="envio_domicilio" name="metodo_entrega" value="Envío a domicilio (+3.00€)" checked onchange="toggleDireccion(true)">
                         <label for="envio_domicilio">Envío a domicilio — <strong>3,00 €</strong></label>
                     </div>
+                    <div>
+                        <input type="radio" id="recogida_local" name="metodo_entrega" value="Recogida Local (Gratis)" onchange="toggleDireccion(false)">
+                        <label for="recogida_local">Recogida local — <strong>Gratis</strong></label>
+                    </div>
                 </div>
 
                 <div id="seccion_direccion" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
@@ -258,7 +262,7 @@
                     </div>
                 </div>
 
-                <button type="submit">Enviar Pedido por WhatsApp 📱</button>
+                <button type="submit" id="btn-enviar-pedido">Enviar Pedido por WhatsApp 📱</button>
             </form>
         </section>
 
@@ -304,13 +308,18 @@
             const seccion = document.getElementById('seccion_direccion');
             const inputs = seccion.querySelectorAll('input');
             seccion.style.display = mostrar ? 'block' : 'none';
-            inputs.forEach(input => input.required = mostrar);
+            inputs.forEach(input => {
+                input.required = mostrar;
+            });
         }
 
+        // Configuración inicial de la fecha mínima de entrega (+5 días)
         const inputEntrega = document.getElementById('fecha_entrega');
-        const hoy = new Date();
-        const fechaMinima = new Date(hoy.getTime() + (5 * 24 * 60 * 60 * 1000));
-        inputEntrega.min = `${fechaMinima.getFullYear()}-${String(fechaMinima.getMonth() + 1).padStart(2, '0')}-${String(fechaMinima.getDate()).padStart(2, '0')}`;
+        if (inputEntrega) {
+            const hoy = new Date();
+            const fechaMinima = new Date(hoy.getTime() + (5 * 24 * 60 * 60 * 1000));
+            inputEntrega.min = `${fechaMinima.getFullYear()}-${String(fechaMinima.getMonth() + 1).padStart(2, '0')}-${String(fechaMinima.getDate()).padStart(2, '0')}`;
+        }
 
         document.getElementById('formulario-pedido').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -327,11 +336,15 @@
             const marcapaginas = document.getElementById('marcapaginas').value;
             const detalles = document.getElementById('detalles').value || "Sin detalles";
 
-            const metodo = document.querySelector('input[name="metodo_entrega"]:checked').value;
+            const metodoElement = document.querySelector('input[name="metodo_entrega"]:checked');
+            const metodo = metodoElement ? metodoElement.value : "Envío a domicilio (+3.00€)";
+            
             let dirStr = "";
             if(metodo.includes("domicilio")){
                 dirStr = `📍 *Envío:* ${document.getElementById('calle').value}, ${document.getElementById('codigo_postal').value}, ${document.getElementById('ciudad').value} (${document.getElementById('provincia').value})`;
-            } else { dirStr = "📍 *Recogida Local*"; }
+            } else { 
+                dirStr = "📍 *Recogida Local*"; 
+            }
 
             const mensaje = `🌸 *¡Nuevo Pedido!* 🌸\n\n👤 *Nombre:* ${nombre}\n📞 *Tel:* ${tel}\n✉️ *Correo:* ${correo}\n\n✨ *Estilo:* ${tematica}\n📅 *Del:* ${fInicio} *Al:* ${fFin}\n🚚 *Entrega:* ${fEntrega}\n\n📖 *Vista:* ${vista}\n📄 *Papel:* ${papel}\n⭕ *Anillas:* ${anillas}\n🔖 *Marcapáginas:* ${marcapaginas}\n\n${dirStr}\n\n📝 *Detalles:* ${detalles}`;
             window.open(`https://wa.me/34672707366?text=${encodeURIComponent(mensaje)}`, '_blank');
