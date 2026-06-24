@@ -37,7 +37,6 @@
             margin-bottom: 30px;
         }
 
-        /* --- ESTILOS DE LOGO Y SOBRE MÍ --- */
         .header-tienda {
             text-align: center;
             margin-bottom: 25px;
@@ -88,7 +87,6 @@
             margin: 0;
         }
 
-        /* --- ESTILOS DEL FORMULARIO --- */
         .form-group {
             margin-bottom: 20px;
         }
@@ -183,7 +181,6 @@
             background-color: #E299AC;
         }
 
-        /* --- ESTILOS DE RESEÑAS Y GALERÍAS --- */
         .reviews-section, #portfolio {
             width: 100%;
             max-width: 600px;
@@ -277,23 +274,19 @@
 <body>
 
 <div class="container">
-    <!-- El Logo de tu Tienda -->
     <div class="header-tienda">
         <img src="logo.png" alt="Logo Pétalos y Agendas" class="logo-tienda" onerror="this.src='logo.jpg'">
         <h2>Pétalos y Agendas</h2>
         <div class="subtitle">Personaliza tu agenda a tu estilo</div>
     </div>
 
-    <!-- Sección Sobre Mí -->
     <div class="seccion-sobre-mi">
         <h3>¡Hola! Soy Alanis ✨</h3>
         <p>Creo agendas artesanales y 100% personalizadas diseñadas especialmente para ti. Cuéntame tu idea y la haré realidad cuidando cada pequeño detalle.</p>
     </div>
 
-    <!-- Formulario de Pedido (Formspree) -->
     <form action="https://formspree.io/f/tu_id_aquí" method="POST">
         
-        <!-- Datos del Cliente -->
         <div class="form-group">
             <label for="nombre">Nombre Completo:</label>
             <input type="text" id="nombre" name="nombre" placeholder="Ej. Tomás" required>
@@ -304,7 +297,6 @@
             <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
         </div>
 
-        <!-- Personalización de la Agenda -->
         <div class="form-group">
             <label for="estilo">Estilo de la Agenda:</label>
             <select id="estilo" name="estilo_agenda" required>
@@ -321,14 +313,12 @@
             <textarea id="detalles" name="detalles_personalizacion" rows="3" placeholder="Cuéntame cómo te gustaría que fuera tu portada, interior o si lleva algún nombre grabado..."></textarea>
         </div>
 
-        <!-- Control de Fecha con margen de 5 días mínimos de diseño -->
         <div class="form-group">
             <label for="fecha_entrega">Fecha deseada de entrega:</label>
             <input type="date" id="fecha_entrega" name="fecha_entrega" required>
             <small style="color: #999; font-size: 12px; display: block; margin-top: 4px;">Necesitamos un mínimo de 5 días para preparar tu diseño personalizado.</small>
         </div>
 
-        <!-- Método de Entrega (Envío por 3€) -->
         <div class="form-group">
             <label>Método de Entrega:</label>
             <div class="radio-group">
@@ -339,7 +329,6 @@
             </div>
         </div>
 
-        <!-- Campos de Dirección de Envío -->
         <div id="seccion_direccion" class="seccion-direccion">
             <h4>Dirección de Envío</h4>
             
@@ -365,12 +354,10 @@
             </div>
         </div>
 
-        <!-- Botón de Envío -->
         <button type="submit">Confirmar y Solicitar Agenda</button>
     </form>
 </div>
 
-<!-- SECCIÓN: Lo que dicen nuestros clientes -->
 <section class="reviews-section">
     <h3>Lo que dicen nuestros clientes ✨</h3>
     
@@ -408,7 +395,6 @@
     </div>
 </section>
 
-<!-- SECCIÓN: Portfolio / Galerías -->
 <section id="portfolio">
     <h2>Agendas que ya he hecho</h2>
     <div class="galeria">
@@ -421,7 +407,6 @@
 </section>
 
 <script>
-    // Configuración automática de los 5 días mínimos de diseño
     document.addEventListener("DOMContentLoaded", function() {
         const fechaInput = document.getElementById("fecha_entrega");
         const hoy = new Date();
@@ -436,7 +421,6 @@
         fechaInput.min = fechaMinima;
     });
 
-    // Función para ocultar o mostrar los campos de dirección
     function toggleDireccion(mostrar) {
         const seccion = document.getElementById('seccion_direccion');
         const inputs = seccion.querySelectorAll('input');
