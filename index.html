@@ -3,13 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>Pétalos y Agenda | Agendas Personalizadas</title>
 
 <style>
-:root{
+:root {
     --rosa:#F3E1E4;
     --azul:#E1ECF4;
     --lila:#E8DFF5;
+    --gris:#E2E2E2;
     --texto:#4A4A4A;
 }
 
@@ -21,6 +23,7 @@ html,body{
     color:var(--texto);
 }
 
+/* HEADER */
 header{
     background:var(--rosa);
     text-align:center;
@@ -34,12 +37,14 @@ header{
     object-fit:cover;
 }
 
+/* CONTENEDOR */
 .container{
     max-width:800px;
     margin:auto;
     padding:20px;
 }
 
+/* SECCIONES */
 section{
     background:white;
     padding:25px;
@@ -48,12 +53,13 @@ section{
     box-shadow:0 4px 15px rgba(0,0,0,0.05);
 }
 
-/* FORM */
+/* FORMULARIO */
 input,select,textarea{
     width:100%;
     padding:10px;
     border-radius:10px;
-    border:1px solid #ddd;
+    border:1px solid var(--gris);
+    margin-top:5px;
 }
 
 /* BOTÓN */
@@ -64,9 +70,11 @@ button{
     color:white;
     border:none;
     border-radius:30px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-/* DIRECCION */
+/* DIRECCIÓN */
 #seccion_direccion{
     display:none;
     margin-top:15px;
@@ -100,6 +108,7 @@ button{
     border:1px solid #ddd;
 }
 
+/* WHATSAPP */
 .whatsapp-flotante{
     position:fixed;
     bottom:20px;
@@ -109,6 +118,7 @@ button{
     padding:15px 20px;
     border-radius:50px;
     text-decoration:none;
+    font-weight:bold;
 }
 </style>
 </head>
@@ -122,17 +132,15 @@ button{
 
 <div class="container">
 
-<!-- SOBRE MÍ (RESTAURADO) -->
+<!-- SOBRE MÍ -->
 <section>
 <h2>Sobre mí</h2>
-
 <p>
-¡Hola! Soy la persona detrás de estas agendas personalizadas, creadas con mucho cariño y dedicación.
-Me encanta diseñar agendas únicas que reflejen la personalidad de cada persona.
+Hola 💕 soy la persona detrás de estas agendas personalizadas.
+Diseño cada una con cariño, creatividad y atención a los detalles.
 </p>
-
 <p>
-Gracias por confiar en mi trabajo 💕
+Gracias por confiar en mi trabajo ✨
 </p>
 </section>
 
@@ -153,6 +161,7 @@ Gracias por confiar en mi trabajo 💕
 <select id="tematica">
 <option>Pastel</option>
 <option>Anime</option>
+<option>Minimalista</option>
 </select>
 
 <select id="tipo_vista">
@@ -160,7 +169,7 @@ Gracias por confiar en mi trabajo 💕
 <option>Diaria</option>
 </select>
 
-<textarea id="detalles"></textarea>
+<textarea id="detalles" placeholder="Detalles del diseño"></textarea>
 
 <label>
 <input type="radio" id="envio_domicilio" name="metodo_entrega" checked onchange="toggleDireccion()">
@@ -169,12 +178,12 @@ Envío a domicilio
 
 <div id="seccion_direccion">
 <input id="calle" placeholder="Calle">
-<input id="codigo_postal" placeholder="CP">
+<input id="codigo_postal" placeholder="Código Postal">
 <input id="ciudad" placeholder="Ciudad">
 <input id="provincia" placeholder="Provincia">
 </div>
 
-<button type="submit">Enviar por WhatsApp</button>
+<button type="submit">Enviar por WhatsApp 📲</button>
 
 </form>
 </section>
@@ -212,7 +221,10 @@ Envío a domicilio
 
 </div>
 
-<a class="whatsapp-flotante" href="https://wa.me/34672707366">WhatsApp</a>
+<!-- WHATSAPP -->
+<a class="whatsapp-flotante" href="https://wa.me/34672707366">
+WhatsApp
+</a>
 
 <script>
 
@@ -229,8 +241,14 @@ document.getElementById("formulario-pedido").addEventListener("submit", function
 
     const nombre = document.getElementById("nombre").value;
     const tel = document.getElementById("telefono_cliente").value;
+    const correo = document.getElementById("correo_cliente").value;
 
-    const msg = `🌸 NUEVO PEDIDO 🌸\n👤 ${nombre}\n📞 ${tel}`;
+    const msg =
+`🌸 NUEVO PEDIDO 🌸
+
+👤 ${nombre}
+📞 ${tel}
+✉️ ${correo}`;
 
     window.open(`https://wa.me/34672707366?text=${encodeURIComponent(msg)}`, "_blank");
 });
