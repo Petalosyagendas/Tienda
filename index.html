@@ -187,7 +187,7 @@
 
         <section id="personalizar">
             <h2>Configura tu Agenda</h2>
-            <form id="orderForm">
+            <form id="orderForm" onsubmit="event.preventDefault(); enviarPorWhatsApp();">
                 
                 <div class="form-group">
                     <label for="nombre">Nombre Completo:</label>
@@ -242,7 +242,7 @@
                     Precio total estimado: <span id="precioTotal">21,50</span>€
                 </div>
 
-                <button type="button" onclick="enviarPorWhatsApp()">Enviar diseño por WhatsApp 💬</button>
+                <button type="submit">Enviar diseño por WhatsApp 💬</button>
             </form>
         </section>
 
@@ -329,7 +329,7 @@
             var papel = papelSelect.value;
             
             var anillasSelect = document.getElementById('anillas');
-            var anillas = anillasSelect.value;
+            var_anillas = anillasSelect.value;
             
             var precioFinal = document.getElementById('precioTotal').innerText + "€";
             var detalles = document.getElementById('detalles').value;
@@ -347,7 +347,7 @@
                 "*Nombre:* " + encodeURIComponent(nombre) + "%0A" +
                 "*Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
                 "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
-                "*Tipo de Anillas:* " + encodeURIComponent(anillas) + "%0A" +
+                "*Tipo de Anillas:* " + encodeURIComponent(var_anillas) + "%0A" +
                 "*Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
                 "*Entrega:* " + encodeURIComponent(entrega) + "%0A" +
                 "*Detalles del diseño:* " + encodeURIComponent(detalles) + "%0A%0A" +
