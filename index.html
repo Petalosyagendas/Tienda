@@ -51,11 +51,14 @@
             margin-bottom: 15px;
         }
 
-        h2 {
+        h2, h3 {
             text-align: center;
             color: var(--texto-oscuro);
-            margin-bottom: 5px;
             margin-top: 0;
+        }
+
+        h2 {
+            margin-bottom: 5px;
         }
 
         .subtitle {
@@ -72,12 +75,6 @@
             margin-bottom: 30px;
             border: 1px dashed var(--rosa-acento);
             text-align: center;
-        }
-
-        .seccion-sobre-mi h3 {
-            margin-top: 0;
-            color: var(--texto-oscuro);
-            font-size: 18px;
         }
 
         .seccion-sobre-mi p {
@@ -175,34 +172,34 @@
             cursor: pointer;
             transition: background-color 0.3s;
             margin-top: 10px;
+            margin-bottom: 10px;
         }
 
         button[type="submit"]:hover {
             background-color: #E299AC;
         }
 
-        .reviews-section, #portfolio {
-            width: 100%;
-            max-width: 600px;
-            margin-top: 20px;
-            margin-bottom: 30px;
-            box-sizing: border-box;
+        /* --- SECCIÓN RESEÑAS Y PORTFOLIO INTEGRADOS --- */
+        .reviews-section, .portfolio-section {
+            margin-top: 40px;
+            border-top: 1px solid #EEE;
+            padding-top: 30px;
         }
 
-        .reviews-section h3, #portfolio h2 {
-            text-align: center;
-            color: var(--texto-oscuro);
+        .reviews-section h3, .portfolio-section h2 {
             font-size: 20px;
             margin-bottom: 20px;
         }
 
         .tarjeta-resena {
-            background-color: #FFFFFF;
-            padding: 20px;
+            background-color: #FAFAFA;
+            padding: 15px;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
             margin-bottom: 15px;
             border-left: 4px solid var(--lila-pastel);
+            border-top: 1px solid #EEE;
+            border-right: 1px solid #EEE;
+            border-bottom: 1px solid #EEE;
         }
 
         .tarjeta-resena:nth-child(even) {
@@ -212,17 +209,20 @@
         .resena-autor {
             font-weight: bold;
             margin: 0 0 4px 0;
+            font-size: 14px;
         }
 
         .resena-estrellas {
             color: var(--oro-estrella);
             margin-bottom: 8px;
+            font-size: 14px;
         }
 
         .resena-texto {
             font-style: italic;
             color: #6C6672;
             margin: 0 0 12px 0;
+            font-size: 13.5px;
         }
 
         .resena-galeria-fotos {
@@ -232,10 +232,16 @@
         }
 
         .resena-galeria-fotos img {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             object-fit: cover;
             border-radius: 6px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+        .contenedor-btn-resena {
+            text-align: center;
+            margin-top: 15px;
         }
 
         .btn-dejar-resena {
@@ -262,29 +268,32 @@
         }
 
         .galeria-img {
-            width: 120px;
-            height: 160px;
+            width: 110px;
+            height: 150px;
             object-fit: cover;
             border-radius: 8px;
             flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <!-- Encabezado de la Tienda -->
     <div class="header-tienda">
         <img src="logo.png" alt="Logo Pétalos y Agendas" class="logo-tienda" onerror="this.src='logo.jpg'">
         <h2>Pétalos y Agendas</h2>
         <div class="subtitle">Personaliza tu agenda a tu estilo</div>
     </div>
 
+    <!-- Sección Sobre Mí -->
     <div class="seccion-sobre-mi">
         <h3>¡Hola! Soy Alanis ✨</h3>
         <p>Creo agendas artesanales y 100% personalizadas diseñadas especialmente para ti. Cuéntame tu idea y la haré realidad cuidando cada pequeño detalle.</p>
     </div>
 
+    <!-- Formulario de Compra -->
     <form action="https://formspree.io/f/tu_id_aquí" method="POST">
         
         <div class="form-group">
@@ -356,55 +365,57 @@
 
         <button type="submit">Confirmar y Solicitar Agenda</button>
     </form>
+
+    <!-- Sección de Reseñas Integrada -->
+    <div class="reviews-section">
+        <h3>Lo que dicen nuestros clientes ✨</h3>
+        
+        <div class="muro-resenas">
+            <div class="tarjeta-resena">
+                <div class="resena-info">
+                    <p class="resena-autor">Klabel</p>
+                    <div class="resena-estrellas">★★★★★</div>
+                    <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
+                </div>
+                <div class="resena-galeria-fotos">
+                    <img src="klabel1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel1.png'">
+                    <img src="klabel2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel2.png'">
+                    <img src="klabel3.jpg" alt="Foto 3" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel3.png'">
+                    <img src="klabel4.jpg" alt="Foto 4" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel4.png'">
+                    <img src="klabel5.jpg" alt="Foto 5" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel5.png'">
+                </div>
+            </div>
+
+            <div class="tarjeta-resena">
+                <div class="resena-info">
+                    <p class="resena-autor">Toñi</p>
+                    <div class="resena-estrellas">★★★★★</div>
+                    <p class="resena-texto">"Es preciosa y muy especial"</p>
+                </div>
+                <div class="resena-galeria-fotos">
+                    <img src="toni1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni1.png'">
+                    <img src="toni2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni2.png'">
+                </div>
+            </div>
+        </div>
+        
+        <div class="contenedor-btn-resena">
+            <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">Dejar opinión ✨</a>
+        </div>
+    </div>
+
+    <!-- Sección del Portfolio Integrada -->
+    <div class="portfolio-section" id="portfolio">
+        <h2>Agendas que ya he hecho</h2>
+        <div class="galeria">
+            <img src="agenda_1.jpg" alt="A1" class="galeria-img" onerror="this.src='agenda_1.png'">
+            <img src="agenda_2.jpg" alt="A2" class="galeria-img" onerror="this.src='agenda_2.png'">
+            <img src="agenda_3.jpg" alt="A3" class="galeria-img" onerror="this.src='agenda_3.png'">
+            <img src="agenda_4.jpg" alt="A4" class="galeria-img" onerror="this.src='agenda_4.png'">
+            <img src="agenda_5.jpg" alt="A5" class="galeria-img" onerror="this.src='agenda_5.png'">
+        </div>
+    </div>
 </div>
-
-<section class="reviews-section">
-    <h3>Lo que dicen nuestros clientes ✨</h3>
-    
-    <div class="muro-resenas">
-        <div class="tarjeta-resena">
-            <div class="resena-info">
-                <p class="resena-autor">Klabel</p>
-                <div class="resena-estrellas">★★★★★</div>
-                <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
-            </div>
-            <div class="resena-galeria-fotos">
-                <img src="klabel1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel1.png'">
-                <img src="klabel2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel2.png'">
-                <img src="klabel3.jpg" alt="Foto 3" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel3.png'">
-                <img src="klabel4.jpg" alt="Foto 4" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel4.png'">
-                <img src="klabel5.jpg" alt="Foto 5" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel5.png'">
-            </div>
-        </div>
-
-        <div class="tarjeta-resena">
-            <div class="resena-info">
-                <p class="resena-autor">Toñi</p>
-                <div class="resena-estrellas">★★★★★</div>
-                <p class="resena-texto">"Es preciosa y muy especial"</p>
-            </div>
-            <div class="resena-galeria-fotos">
-                <img src="toni1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni1.png'">
-                <img src="toni2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni2.png'">
-            </div>
-        </div>
-    </div>
-    
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">Dejar opinión ✨</a>
-    </div>
-</section>
-
-<section id="portfolio">
-    <h2>Agendas que ya he hecho</h2>
-    <div class="galeria">
-        <img src="agenda_1.jpg" alt="A1" class="galeria-img" onerror="this.src='agenda_1.png'">
-        <img src="agenda_2.jpg" alt="A2" class="galeria-img" onerror="this.src='agenda_2.png'">
-        <img src="agenda_3.jpg" alt="A3" class="galeria-img" onerror="this.src='agenda_3.png'">
-        <img src="agenda_4.jpg" alt="A4" class="galeria-img" onerror="this.src='agenda_4.png'">
-        <img src="agenda_5.jpg" alt="A5" class="galeria-img" onerror="this.src='agenda_5.png'">
-    </div>
-</section>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
