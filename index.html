@@ -3,366 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light">
-    <title>Pétalos y Agenda | Agendas Personalizadas</title>
+    <title>Pétalos y Agendas - Personaliza tu Agenda</title>
     <style>
         :root {
-            --bg-principal: #FDFBF7 !important;
-            --rosa-pastel: #F3E1E4 !important;
-            --azul-pastel: #E1ECF4 !important;
-            --lila-pastel: #E8DFF5 !important;
-            --gris-perla: #E2E2E2 !important;
-            --texto: #4A4A4A !important;
-            --oro-pastel: #F1C40F !important;
+            --rosa-pastel: #FFDFE5;
+            --azul-pastel: #E1F0F7;
+            --lila-pastel: #EADCF0;
+            --gris-perla: #F2F1F6;
+            --texto-oscuro: #5A545E;
+            --rosa-acento: #F3B0C3;
         }
 
-        html, body {
-            background-color: #FDFBF7 !important;
-            color: #4A4A4A !important;
-            margin: 0;
-            padding: 0;
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        header { background-color: var(--rosa-pastel) !important; text-align: center; padding: 2.5rem; border-bottom: 3px solid var(--lila-pastel); }
-        .logo-tienda { max-width: 130px; height: 130px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); background-color: white !important; }
-        .container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
-        section { background: white !important; padding: 2.5rem; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 2.5rem; }
-        h2 { color: #6A6A6A !important; border-bottom: 2px solid var(--azul-pastel); padding-bottom: 0.5rem; }
-        .form-group { margin-bottom: 1.5rem; }
-        input, textarea, select { width: 100%; padding: 0.8rem; border: 1px solid var(--gris-perla); border-radius: 10px; background-color: #FCFCFC !important; color: #4A4A4A !important; font-size: 1rem; box-sizing: border-box; }
-        
-        input[type="radio"] { width: auto; margin-right: 8px; }
-        
-        button { background-color: #25D366 !important; color: white !important; border: none; padding: 1.1rem; font-size: 1.1rem; font-weight: bold; border-radius: 30px; cursor: pointer; width: 100%; margin-top: 1rem; box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2); }
-        button:hover { background-color: #20ba59 !important; }
-        
-        .aviso-vacaciones {
-            background-color: var(--azul-pastel) !important;
-            border-left: 4px solid var(--lila-pastel);
-            padding: 1rem;
-            border-radius: 0 10px 10px 0;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-        .galeria-img { width: 100%; height: 240px; object-fit: cover; border-radius: 15px; }
-
-        .sobre-mi-contenido {
+            background-color: var(--gris-perla);
+            color: var(--texto-oscuro);
+            margin: 0;
+            padding: 20px;
             display: flex;
-            gap: 2rem;
-            align-items: center;
-            margin-top: 1.5rem;
+            justify-content: center;
         }
-        .sobre-mi-foto {
-            width: 180px;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid var(--lila-pastel);
-            flex-shrink: 0;
-        }
-        .sobre-mi-texto p { line-height: 1.6; margin-bottom: 1rem; font-size: 1.05rem; }
 
-        .muro-resenas { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem; }
-        .tarjeta-resena {
-            border-left: 4px solid var(--rosa-pastel);
-            background-color: #FDFBF7 !important;
-            padding: 1.5rem;
-            border-radius: 0 15px 15px 0;
+        .container {
+            background-color: #FFFFFF;
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--texto-oscuro);
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #8A8290;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #DDD;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: #FAFAFA;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--rosa-acento);
+            background-color: #FFF;
+        }
+
+        .radio-group {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-        }
-        .resena-info { width: 100%; }
-        .resena-autor { font-weight: bold; font-size: 1.1rem; margin: 0 0 0.3rem 0; color: #4A4A4A; }
-        .resena-estrellas { color: var(--oro-pastel); font-size: 1rem; margin-bottom: 0.5rem; }
-        .resena-texto { font-style: italic; margin: 0 0 1rem 0; line-height: 1.4; color: #666; }
-        
-        .resena-galeria-fotos { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; }
-        .resena-galeria-fotos img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
+            gap: 10px;
+            background-color: #FCFAFD;
+            padding: 12px;
             border-radius: 8px;
-            border: 1px solid var(--gris-perla);
-            flex-shrink: 0;
+            border: 1px solid #EEE;
         }
-        .btn-dejar-resena {
-            display: inline-flex;
+
+        .radio-option {
+            display: flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
-            background-color: var(--lila-pastel) !important;
-            color: #4A4A4A !important;
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            font-weight: bold;
-            margin-top: 1.5rem;
-            font-size: 1rem;
-            border: none;
+            cursor: pointer;
+        }
+
+        /* Contenedor de la dirección de envío */
+        .seccion-direccion {
+            margin-top: 15px;
+            margin-bottom: 25px;
+            padding: 18px;
+            border: 1px solid var(--rosa-pastel);
+            border-radius: 10px;
+            background-color: #FFFDFE;
+        }
+
+        .seccion-direccion h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: var(--texto-oscuro);
+            font-size: 16px;
+            border-bottom: 1px solid var(--rosa-pastel);
+            padding-bottom: 5px;
+        }
+
+        .flex-inputs {
+            display: flex;
+            gap: 12px;
+        }
+
+        .flex-inputs > div {
+            flex: 1;
+        }
+
+        button[type="submit"] {
             width: 100%;
-            box-sizing: border-box;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            transition: background 0.2s;
-            text-align: center;
-        }
-        .btn-dejar-resena:hover { background-color: var(--rosa-pastel) !important; }
-
-        .whatsapp-flotante {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25D366 !important;
-            color: white !important;
-            padding: 14px 24px !important;
-            border-radius: 50px !important;
-            text-decoration: none !important;
-            font-weight: bold !important;
-            font-size: 1rem !important;
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.2) !important;
-            z-index: 99999 !important;
-            display: flex !important;
-            align-items: center !important;
-            gap: 10px !important;
+            background-color: var(--rosa-acento);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
         }
 
-        @media (max-width: 600px) {
-            .sobre-mi-contenido { flex-direction: column; text-align: center; }
-            .whatsapp-flotante {
-                bottom: 20px !important;
-                right: 20px !important;
-                padding: 12px 20px !important;
-                font-size: 0.9rem !important;
-            }
+        button[type="submit"]:hover {
+            background-color: #E299AC;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <img src="logo.png" alt="Logo" class="logo-tienda" onerror="this.src='logo.jpg'">
-        <h1>Pétalos y Agenda</h1>
-    </header>
+<div class="container">
+    <h2>Pétalos y Agendas</h2>
+    <div class="subtitle">Personaliza tu agenda a tu estilo</div>
 
-    <div class="container">
+    <!-- Reemplaza el action con tu enlace de Formspree cuando lo tengas listo -->
+    <form action="https://formspree.io/f/tu_id_aquí" method="POST">
         
-        <!-- SECCIÓN 1: SOBRE MÍ -->
-        <section id="sobre-mi">
-            <h2>Sobre mí</h2>
-            <div class="sobre-mi-contenido">
-                <img src="logo.png" alt="Creadora" class="sobre-mi-foto" onerror="this.src='logo.jpg'">
-                <div class="sobre-mi-texto">
-                    <p>¡Hola! Soy la persona que está detrás de estas agendas personalizadas, creadas con cariño, creatividad y mucha atención a los detalles.</p>
-                    <p>Me encanta diseñar agendas únicas que reflejen la personalidad, gustos y necesidades de cada persona. No creo en las agendas impersonales: cada una de mis creaciones está pensada para que quien la reciba sienta que ha sido hecha especialmente para ella.</p>
-                    <p>Trabajo cada diseño de forma personalizada, cuidando desde la portada hasta los pequeños detalles interiores. Ya sea una agenda elegante, divertida, gótica, inspirada en personajes favoritos o adaptada a una profesión concreta, mi objetivo es crear algo útil, bonito y especial.</p>
-                    <p>Gracias por confiar en mi trabajo y por apoyar un proyecto hecho con ilusión, dedicación y mucho corazón.</p>
-                    <p><strong>Porque organizar tu día también puede ser algo que te represente.</strong></p>
-                </div>
-            </div>
-        </section>
+        <!-- Datos del Cliente -->
+        <div class="form-group">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Tomás" required>
+        </div>
 
-        <!-- SECCIÓN 2: CONFIGURADOR DE PEDIDOS -->
-        <section id="personalizar">
-            <h2>Configura tu Agenda</h2>
+        <div class="form-group">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required>
+        </div>
+
+        <!-- Personalización de la Agenda -->
+        <div class="form-group">
+            <label for="Estilo">Estilo de la Agenda:</label>
+            <select id="estilo" name="estilo_agenda" required>
+                <option value="" disabled selected>Selecciona un estilo...</option>
+                <option value="Anime">Anime (Ilustraciones y estética japonesa)</option>
+                <option value="Pastel Minimalista">Pastel Minimalista (Tonos suaves y limpios)</option>
+                <option value="Fantasía">Fantasía / Literatura</option>
+                <option value="Floral">Pétalos (Elegante floral)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="detalles">Detalles de personalización (Nombres, frases, portada):</label>
+            <textarea id="detalles" name="detalles_personalizacion" rows="3" placeholder="Cuéntame cómo te gustaría que fuera tu portada, interior o si lleva algún nombre grabado..."></textarea>
+        </div>
+
+        <!-- Control de Fecha con margen de 5 días mínimos de diseño -->
+        <div class="form-group">
+            <label for="fecha_entrega">Fecha deseada de entrega:</label>
+            <input type="date" id="fecha_entrega" name="fecha_entrega" required>
+            <small style="color: #999; font-size: 12px; display: block; margin-top: 4px;">Necesitamos un mínimo de 5 días para preparar tu diseño personalizado.</small>
+        </div>
+
+        <!-- NUEVO: Método de Entrega (Envío por 3€) -->
+        <div class="form-group">
+            <label>Método de Entrega:</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" id="envio_domicilio" name="metodo_entrega" value="Envío a domicilio (+3.00€)" checked onchange="toggleDireccion(true)">
+                    <span>Envío a domicilio — <strong>3,00 €</strong></span>
+                </label>
+                <!-- Descomenta si en el futuro permites recogida gratuita -->
+                <!--
+                <label class="radio-option">
+                    <input type="radio" id="recogida_local" name="metodo_entrega" value="Recogida local (Gratis)" onchange="toggleDireccion(false)">
+                    <span>Recogida local — <strong>Gratis</strong></span>
+                </label>
+                -->
+            </div>
+        </div>
+
+        <!-- NUEVO: Campos desglosados de Dirección de Envío -->
+        <div id="seccion_direccion" class="seccion-direccion">
+            <h4>Dirección de Envío</h4>
             
-            <div class="aviso-vacaciones">
-                📢 *Aviso importante:* Requerimos un **mínimo de 5 días de preparación y envío**. Del **19 al 24 de junio** taller completo, y del **28 de junio al 9 de julio** cerramos por vacaciones. ¡Gracias! 🌸
+            <div class="form-group" style="margin-bottom: 12px;">
+                <label for="calle" style="font-size: 13px; margin-bottom: 4px;">Calle, número, piso y puerta:</label>
+                <input type="text" id="calle" name="envio_calle" placeholder="Ej. Calle Mayor 12, 3ºB" required>
+            </div>
+            
+            <div class="flex-inputs" style="margin-bottom: 12px;">
+                <div>
+                    <label for="codigo_postal" style="font-size: 13px; margin-bottom: 4px;">Código Postal:</label>
+                    <input type="text" id="codigo_postal" name="envio_cp" placeholder="Ej. 28001" required>
+                </div>
+                <div>
+                    <label for="ciudad" style="font-size: 13px; margin-bottom: 4px;">Ciudad:</label>
+                    <input type="text" id="ciudad" name="envio_ciudad" placeholder="Ej. Madrid" required>
+                </div>
             </div>
 
-            <form id="formulario-pedido">
-                <div class="form-group">
-                    <label>Nombre Completo:</label>
-                    <input type="text" id="nombre" placeholder="Tu nombre" required>
-                </div>
-                <div class="form-group">
-                    <label>Tu Teléfono (WhatsApp):</label>
-                    <input type="tel" id="telefono_cliente" placeholder="Ej: 600000000" required>
-                </div>
-                <div class="form-group">
-                    <label>Tu Correo Electrónico:</label>
-                    <input type="email" id="correo_cliente" placeholder="Ej: nombre@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Fecha de inicio:</label>
-                    <input type="date" id="fecha_inicio_agenda" required>
-                </div>
-                <div class="form-group">
-                    <label>Fecha final:</label>
-                    <input type="date" id="fecha_final_agenda" required>
-                </div>
-                <div class="form-group">
-                    <label>Fecha de entrega aprox:</label>
-                    <input type="date" id="fecha_entrega" required>
-                </div>
-                <div class="form-group">
-                    <label>Estilo o Temática general:</label>
-                    <select id="tematica">
-                        <option value="Pastel / Floral">Pastel / Floral 🌸</option>
-                        <option value="Anime / Ilustración">Anime / Ilustración 🦄</option>
-                        <option value="Gótico / Tenebras">Gótico / Tenebras 💀</option>
-                        <option value="Minimalista / Elegante">Minimalista / Elegante 💼</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Distribución interior:</label>
-                    <select id="tipo_vista">
-                        <option value="Semanal">Agenda Semanal (Semana a la vista)</option>
-                        <option value="Diaria">Agenda Diaria (Un día por página)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Grosor del papel:</label>
-                    <select id="papel">
-                        <option value="80 gr — 21,50€">80 gr — 21,50€</option>
-                        <option value="90 gr — 27,00€">90 gr — 27,00€</option>
-                        <option value="100 gr — 33,00€">100 gr — 33,00€</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Tipo de anillas:</label>
-                    <select id="anillas">
-                        <option value="Anillas estándar (Transparentes)">Anillas estándar (Transparentes)</option>
-                        <option value="Anillas de color (+0,50€)">Anillas de color (+0,50€)</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>¿Añadir marcapáginas?</label>
-                    <select id="marcapaginas">
-                        <option value="No">No, solo la agenda</option>
-                        <option value="Sí (+0,80€)">Sí, añadir marcapáginas (+0,80€) 🔖</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Detalles del diseño:</label>
-                    <textarea id="detalles" rows="5" placeholder="Cuéntame cómo quieres tu portada..."></textarea>
-                </div>
-
-                <!-- Método de Entrega y Dirección -->
-                <div class="form-group" style="margin-bottom: 20px;">
-                    <label style="display: block; font-weight: bold; margin-bottom: 8px;">Método de Entrega:</label>
-                    <div style="margin-bottom: 12px;">
-                        <input type="radio" id="envio_domicilio" name="metodo_entrega" value="Envío a domicilio (+3.00€)" checked onchange="toggleDireccion(true)">
-                        <label for="envio_domicilio">Envío a domicilio — <strong>3,00 €</strong></label>
-                    </div>
-                </div>
-
-                <!-- Dirección -->
-                <div id="seccion_direccion" style="margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
-                    <h4 style="margin-top: 0; margin-bottom: 15px; color: #333;">Dirección de Envío</h4>
-                    <div style="margin-bottom: 10px;">
-                        <label for="calle" style="display: block; font-size: 14px; margin-bottom: 4px;">Calle, número, piso/puerta:</label>
-                        <input type="text" id="calle" name="envio_calle" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
-                    </div>
-                    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-                        <div style="flex: 1;">
-                            <label for="codigo_postal" style="display: block; font-size: 14px; margin-bottom: 4px;">Código Postal:</label>
-                            <input type="text" id="codigo_postal" name="envio_cp" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
-                        </div>
-                        <div style="flex: 1;">
-                            <label for="ciudad" style="display: block; font-size: 14px; margin-bottom: 4px;">Ciudad / Localidad:</label>
-                            <input type="text" id="ciudad" name="envio_ciudad" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="provincia" style="display: block; font-size: 14px; margin-bottom: 4px;">Provincia:</label>
-                        <input type="text" id="provincia" name="envio_provincia" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required>
-                    </div>
-                </div>
-
-                <button type="submit">Enviar Pedido por WhatsApp 📱</button>
-            </form>
-        </section>
-
-        <!-- SECCIÓN 3: VALORACIONES -->
-        <section id="valoraciones">
-            <h2>Lo que dicen nuestras client@s</h2>
-            <div class="muro-resenas">
-                <div class="tarjeta-resena">
-                    <div class="resena-info">
-                        <p class="resena-autor">Klabel</p>
-                        <div class="resena-estrellas">★★★★★</div>
-                        <p class="resena-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
-                    </div>
-                    <div class="resena-galeria-fotos">
-                        <img src="klabel1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel1.png'">
-                        <img src="klabel2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel2.png'">
-                        <img src="klabel3.jpg" alt="Foto 3" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel3.png'">
-                        <img src="klabel4.jpg" alt="Foto 4" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel4.png'">
-                        <img src="klabel5.jpg" alt="Foto 5" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_klabel5.png'">
-                    </div>
-                </div>
-
-                <div class="tarjeta-resena">
-                    <div class="resena-info">
-                        <p class="resena-autor">Toñi</p>
-                        <div class="resena-estrellas">★★★★★</div>
-                        <p class="resena-texto">"Es preciosa y muy especial"</p>
-                    </div>
-                    <div class="resena-galeria-fotos">
-                        <img src="toni1.jpg" alt="Foto 1" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni1.png'">
-                        <img src="toni2.jpg" alt="Foto 2" onerror="this.src=this.src.includes('.jpg')?this.src.replace('.jpg','.png'):'resena_toni2.png'">
-                    </div>
-                </div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label for="provincia" style="font-size: 13px; margin-bottom: 4px;">Provincia:</label>
+                <input type="text" id="provincia" name="envio_provincia" placeholder="Ej. Madrid" required>
             </div>
-            <a href="https://forms.gle/CxzEPFie9SdudYwJ6" class="btn-dejar-resena" target="_blank">Dejar opinión ✨</a>
-        </section>
+        </div>
 
-        <!-- SECCIÓN 4: PORTFOLIO -->
-        <section id="portfolio">
-            <h2>Agendas que ya he hecho</h2>
-            <div class="galeria">
-                <img src="agenda_1.jpg" alt="A1" class="galeria-img" onerror="this.src='agenda_1.png'">
-                <img src="agenda_2.jpg" alt="A2" class="galeria-img" onerror="this.src='agenda_2.png'">
-                <img src="agenda_3.jpg" alt="A3" class="galeria-img" onerror="this.src='agenda_3.png'">
-                <img src="agenda_4.jpg" alt="A4" class="galeria-img" onerror="this.src='agenda_4.png'">
-                <img src="agenda_5.jpg" alt="A5" class="galeria-img" onerror="this.src='agenda_5.png'">
-            </div>
-        </section>
-    </div>
+        <!-- Botón de Envío -->
+        <button type="submit">Confirmar y Solicitar Agenda</button>
+    </form>
+</div>
 
-    <a href="https://wa.me/34672707366?text=Hola!" class="whatsapp-flotante" target="_blank">Enviar fotos por WhatsApp</a>
-
-    <script>
-        function toggleDireccion(mostrar) {
-            const seccion = document.getElementById('seccion_direccion');
-            const inputs = seccion.querySelectorAll('input');
-            seccion.style.display = mostrar ? 'block' : 'none';
-            inputs.forEach(input => input.required = mostrar);
-        }
-
-        const inputEntrega = document.getElementById('fecha_entrega');
+<script>
+    // Configuración automática de los 5 días mínimos de diseño
+    document.addEventListener("DOMContentLoaded", function() {
+        const fechaInput = document.getElementById("fecha_entrega");
         const hoy = new Date();
-        const fechaMinima = new Date(hoy.getTime() + (5 * 24 * 60 * 60 * 1000));
-        inputEntrega.min = `${fechaMinima.getFullYear()}-${String(fechaMinima.getMonth() + 1).padStart(2, '0')}-${String(fechaMinima.getDate()).padStart(2, '0')}`;
+        
+        // Sumar 5 días a la fecha de hoy
+        hoy.setDate(hoy.getDate() + 5);
+        
+        // Formatear la fecha a YYYY-MM-DD para el atributo 'min' del input
+        const año = hoy.getFullYear();
+        const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+        const dia = String(hoy.getDate()).padStart(2, '0');
+        
+        const fechaMinima = `${año}-${mes}-${dia}`;
+        fechaInput.min = fechaMinima;
+    });
 
-        document.getElementById('formulario-pedido').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const nombre = document.getElementById('nombre').value;
-            const tel = document.getElementById('telefono_cliente').value;
-            const correo = document.getElementById('correo_cliente').value;
-            const fInicio = document.getElementById('fecha_inicio_agenda').value;
-            const fFin = document.getElementById('fecha_final_agenda').value;
-            const fEntrega = document.getElementById('fecha_entrega').value;
-            const tematica = document.getElementById('tematica').value;
-            const vista = document.getElementById('tipo_vista').value;
-            const papel = document.getElementById('papel').value;
-            const anillas = document.getElementById('anillas').value;
-            const marcapaginas = document.getElementById('marcapaginas').value;
-            const detalles = document.getElementById('detalles').value || "Sin detalles";
+    // Función para ocultar o mostrar los campos de dirección
+    function toggleDireccion(mostrar) {
+        const seccion = document.getElementById('seccion_direccion');
+        const inputs = seccion.querySelectorAll('input');
+        
+        if (mostrar) {
+            seccion.style.display = 'block';
+            inputs.forEach(input => input.required = true);
+        } else {
+            seccion.style.display = 'none';
+            inputs.forEach(input => input.required = false);
+        }
+    }
+</script>
 
-            const metodo = document.querySelector('input[name="metodo_entrega"]:checked').value;
-            let dirStr = "";
-            if(metodo.includes("domicilio")){
-                dirStr = `📍 *Envío:* ${document.getElementById('calle').value}, ${document.getElementById('codigo_postal').value}, ${document.getElementById('ciudad').value} (${document.getElementById('provincia').value})`;
-            } else { dirStr = "📍 *Recogida Local*"; }
-
-            const mensaje = `🌸 *¡Nuevo Pedido!* 🌸\n\n👤 *Nombre:* ${nombre}\n📞 *Tel:* ${tel}\n✉️ *Correo:* ${correo}\n\n✨ *Estilo:* ${tematica}\n📅 *Del:* ${fInicio} *Al:* ${fFin}\n🚚 *Entrega:* ${fEntrega}\n\n📖 *Vista:* ${vista}\n📄 *Papel:* ${papel}\n⭕ *Anillas:* ${anillas}\n🔖 *Marcapáginas:* ${marcapaginas}\n\n${dirStr}\n\n📝 *Detalles:* ${detalles}`;
-            window.open(`https://wa.me/34672707366?text=${encodeURIComponent(mensaje)}`, '_blank');
-        });
-    </script>
 </body>
 </html>
