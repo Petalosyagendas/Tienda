@@ -70,6 +70,32 @@
             margin-top: 0;
         }
 
+        /* NUEVOS ESTILOS PARA LA SECCIÓN SOBRE MÍ */
+        .sobre-mi-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .sobre-mi-foto {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--rosa-pastel);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+            margin: 0 auto;
+        }
+
+        .sobre-mi-texto {
+            flex: 1;
+            min-width: 250px;
+            line-height: 1.6;
+            color: #5A5A5A !important;
+        }
+
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -185,6 +211,20 @@
 
     <div class="container">
 
+        <!-- NUEVA SECCIÓN SOBRE MÍ -->
+        <section id="sobre-mi">
+            <h2>Conóceme</h2>
+            <div class="sobre-mi-container">
+                <!-- Puedes cambiar 'tu_foto.jpg' por el nombre real de tu archivo de imagen si tienes una -->
+                <img src="logo.png" alt="Mi Foto" class="sobre-mi-foto">
+                <div class="sobre-mi-texto">
+                    <p>¡Hola! Qué ilusión que estés aquí. Detrás de <strong>Pétalos y Agenda</strong> estoy yo, creando diseños a mano con mucho mimo y dedicación.</p>
+                    <p>Cada agenda es un proyecto único diseñado exclusivamente para ti, cuidando cada detalle desde la elección del grosor del papel hasta el color de las anillas. Mi objetivo es ayudarte a organizar tus días de la forma más bonita posible. ¡Espero que disfrutemos juntas diseñando la tuya!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN FORMULARIO -->
         <section id="personalizar">
             <h2>Configura tu Agenda</h2>
             <form id="orderForm" onsubmit="event.preventDefault(); enviarPorWhatsApp();">
@@ -246,6 +286,7 @@
             </form>
         </section>
 
+        <!-- SECCIÓN GALERÍA -->
         <section id="portfolio">
             <h2>Agendas que ya he hecho</h2>
             <p style="color: #7A7A7A;">Inspírate con algunos de mis trabajos anteriores:</p>
@@ -258,6 +299,7 @@
 
     </div>
 
+    <!-- BOTÓN FLOTANTE VERDE DE WHATSAPP -->
     <a href="https://wa.me/34672707366?text=%C2%A1Hola%21%20Te%20escribo%20desde%20la%20web%20para%20pasarte%20unas%20fotos%20para%20mi%20agenda." class="whatsapp-btn" target="_blank">
         💬 Enviar Fotos por WhatsApp
     </a>
