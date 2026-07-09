@@ -348,12 +348,31 @@
         <section id="opiniones">
             <h2>Opiniones de nuestras clientas</h2>
             <div class="comentarios-container">
+                <!-- COMENTARIO 1: IRIS -->
                 <div class="comentario-card">
                     <div class="comentario-header">
                         <span class="comentario-nombre">Iris</span>
                         <span class="comentario-estrellas">★★★★★</span>
                     </div>
                     <p class="comentario-texto">"Me encanta de la manera que está organizada y como están reflejados mis gustos a lo largo de la agenda. En definitiva es una agenda preciosa que estoy segura que voy a aprovechar para organizarme. Muchísimas graciass"[cite: 1]</p>
+                </div>
+
+                <!-- COMENTARIO 2: TOÑI -->
+                <div class="comentario-card">
+                    <div class="comentario-header">
+                        <span class="comentario-nombre">Toñi</span>
+                        <span class="comentario-estrellas">★★★★★</span>
+                    </div>
+                    <p class="comentario-texto">"Es preciosa y muy especial Me encanta"[cite: 2]</p>
+                </div>
+
+                <!-- COMENTARIO 3: KLABEL -->
+                <div class="comentario-card">
+                    <div class="comentario-header">
+                        <span class="comentario-nombre">Klabel</span>
+                        <span class="comentario-estrellas">★★★★★</span>
+                    </div>
+                    <p class="comentario-texto">"Me a gustado mucho super original ideal incluso para regalar"[cite: 3]</p>
                 </div>
             </div>
         </section>
@@ -420,7 +439,7 @@
             var selectMarcapaginas = document.getElementById('marcapaginas');
             var extraMarcapaginas = parseFloat(selectMarcapaginas.options[selectMarcapaginas.selectedIndex].getAttribute('data-extra'));
             
-            var total = precioPapel + extraAnillas + extraMarcapaginas;[cite: 1]
+            var total = precioPapel + extraAnillas + extraMarcapaginas;
             
             document.getElementById('precioTotal').innerText = total.toFixed(2).replace('.', ',');
         }
@@ -457,7 +476,7 @@
                 "*Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
                 "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
                 "*Tipo de Anillas:* " + encodeURIComponent(var_anillas) + "%0A" +
-                "*¿Incluye Marcapáginas?:* " + encodeURIComponent(llevaMarcapaginas) + "%0A" +[cite: 1]
+                "*¿Incluye Marcapáginas?:* " + encodeURIComponent(llevaMarcapaginas) + "%0A" +
                 "*Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
                 "*Entrega:* " + encodeURIComponent(entrega) + "%0A" +
                 "*Detalles del diseño:* " + encodeURIComponent(detalles) + "%0A%0A" +
