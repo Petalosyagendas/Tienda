@@ -70,7 +70,6 @@
             margin-top: 0;
         }
 
-        /* NUEVOS ESTILOS PARA LA SECCIÓN SOBRE MÍ */
         .sobre-mi-container {
             display: flex;
             align-items: center;
@@ -183,6 +182,46 @@
             transform: scale(1.02);
         }
 
+        /* ESTILOS PARA LA SECCIÓN DE OPINIONES */
+        .comentarios-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .comentario-card {
+            background-color: var(--bg-principal);
+            border-left: 4px solid var(--rosa-pastel);
+            padding: 1.5rem;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .comentario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .comentario-nombre {
+            font-weight: bold;
+            color: #5A5A5A;
+        }
+
+        .comentario-estrellas {
+            color: #FFD700;
+            font-size: 1.1rem;
+        }
+
+        .comentario-texto {
+            margin: 0;
+            line-height: 1.5;
+            font-style: italic;
+            color: #6A6A6A;
+        }
+
         .whatsapp-btn {
             position: fixed;
             bottom: 25px;
@@ -211,11 +250,10 @@
 
     <div class="container">
 
-        <!-- NUEVA SECCIÓN SOBRE MÍ -->
+        <!-- SECCIÓN SOBRE MÍ -->
         <section id="sobre-mi">
             <h2>Conóceme</h2>
             <div class="sobre-mi-container">
-                <!-- Puedes cambiar 'tu_foto.jpg' por el nombre real de tu archivo de imagen si tienes una -->
                 <img src="logo.png" alt="Mi Foto" class="sobre-mi-foto">
                 <div class="sobre-mi-texto">
                     <p>¡Hola! Qué ilusión que estés aquí. Detrás de <strong>Pétalos y Agenda</strong> estoy yo, creando diseños a mano con mucho mimo y dedicación.</p>
@@ -257,6 +295,15 @@
                     </select>
                 </div>
 
+                <!-- CAMPO MARCAPÁGINAS -->
+                <div class="form-group">
+                    <label for="marcapaginas">¿Quieres añadir un marcapáginas a juego?</label>
+                    <select id="marcapaginas" onchange="actualizarPrecio()">
+                        <option value="No" data-extra="0.00">No, gracias</option>
+                        <option value="Sí" data-extra="5.50">Sí, añadir marcapáginas personalizado — +5,50€</option>
+                    </select>
+                </div>
+
                 <div class="form-group">
                     <label for="detalles">Preguntas de diseño (Colores preferidos, temáticas, frases para la portada...):</label>
                     <textarea id="detalles" rows="5" placeholder="Cuéntame detalladamente cómo te gustaría el diseño, si has elegido anillas de color dime qué color te gustaría, etc."></textarea>
@@ -294,6 +341,20 @@
                 <img src="agenda_1.jpg" alt="Mi Agenda Personalizada 1" class="galeria-img">
                 <img src="agenda_2.jpg" alt="Mi Agenda Personalizada 2" class="galeria-img">
                 <img src="agenda_3.jpg" alt="Mi Agenda Personalizada 3" class="galeria-img">
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE OPINIONES -->
+        <section id="opiniones">
+            <h2>Opiniones de nuestras clientas</h2>
+            <div class="comentarios-container">
+                <div class="comentario-card">
+                    <div class="comentario-header">
+                        <span class="comentario-nombre">Iris</span>
+                        <span class="comentario-estrellas">★★★★★</span>
+                    </div>
+                    <p class="comentario-texto">"Me encanta de la manera que está organizada y como están reflejados mis gustos a lo largo de la agenda. En definitiva es una agenda preciosa que estoy segura que voy a aprovechar para organizarme. Muchísimas graciass"[cite: 1]</p>
+                </div>
             </div>
         </section>
 
@@ -356,7 +417,10 @@
             var selectAnillas = document.getElementById('anillas');
             var extraAnillas = parseFloat(selectAnillas.options[selectAnillas.selectedIndex].getAttribute('data-extra'));
             
-            var total = precioPapel + extraAnillas;
+            var selectMarcapaginas = document.getElementById('marcapaginas');
+            var extraMarcapaginas = parseFloat(selectMarcapaginas.options[selectMarcapaginas.selectedIndex].getAttribute('data-extra'));
+            
+            var total = precioPapel + extraAnillas + extraMarcapaginas;[cite: 1]
             
             document.getElementById('precioTotal').innerText = total.toFixed(2).replace('.', ',');
         }
@@ -372,6 +436,9 @@
             
             var anillasSelect = document.getElementById('anillas');
             var var_anillas = anillasSelect.value;
+
+            var marcapaginasSelect = document.getElementById('marcapaginas');
+            var llevaMarcapaginas = marcapaginasSelect.value;
             
             var precioFinal = document.getElementById('precioTotal').innerText + "€";
             var detalles = document.getElementById('detalles').value;
@@ -390,6 +457,7 @@
                 "*Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
                 "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
                 "*Tipo de Anillas:* " + encodeURIComponent(var_anillas) + "%0A" +
+                "*¿Incluye Marcapáginas?:* " + encodeURIComponent(llevaMarcapaginas) + "%0A" +[cite: 1]
                 "*Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
                 "*Entrega:* " + encodeURIComponent(entrega) + "%0A" +
                 "*Detalles del diseño:* " + encodeURIComponent(detalles) + "%0A%0A" +
