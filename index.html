@@ -300,11 +300,38 @@
                     <label for="marcapaginas">¿Quieres añadir un marcapáginas a juego?</label>
                     <select id="marcapaginas" onchange="actualizarPrecio()">
                         <option value="No" data-extra="0.00">No, gracias</option>
-                        <option value="Sí" data-extra="5.50">Sí, añadir marcapáginas personalizado — +5,50€</option>
+                        <option value="Sí" data-extra="6.50">Sí, añadir marcapáginas personalizado — +6,50€</option>
+                    </select>
+                </div>
+
+                <!-- SECCIÓN: APARTADO HORARIO -->
+                <h3 style="color: #6A6A6A; margin-top: 2rem; border-bottom: 1px dashed var(--azul-pastel); padding-bottom: 0.5rem;">Opciones del Horario</h3>
+                
+                <div class="form-group">
+                    <label for="horario_plastificado">Horario - Plastificado:</label>
+                    <select id="horario_plastificado">
+                        <option value="Brillo">Plastificado Brillo</option>
+                        <option value="Mate">Plastificado Mate</option>
                     </select>
                 </div>
 
                 <div class="form-group">
+                    <label for="horario_grosor">Horario - Grosor del papel:</label>
+                    <select id="horario_grosor">
+                        <option value="90g">90g</option>
+                        <option value="100g">100g</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="horario_tamano">Horario - Tamaño del papel:</label>
+                    <select id="horario_tamano">
+                        <option value="A4">A4</option>
+                        <option value="A5">A5</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-top: 2rem;">
                     <label for="detalles">Preguntas de diseño (Colores preferidos, temáticas, frases para la portada...):</label>
                     <textarea id="detalles" rows="5" placeholder="Cuéntame detalladamente cómo te gustaría el diseño, si has elegido anillas de color dime qué color te gustaría, etc."></textarea>
                 </div>
@@ -348,31 +375,28 @@
         <section id="opiniones">
             <h2>Opiniones de nuestras clientas</h2>
             <div class="comentarios-container">
-                <!-- COMENTARIO 1: IRIS -->
                 <div class="comentario-card">
                     <div class="comentario-header">
                         <span class="comentario-nombre">Iris</span>
                         <span class="comentario-estrellas">★★★★★</span>
                     </div>
-                    <p class="comentario-texto">"Me encanta de la manera que está organizada y como están reflejados mis gustos a lo largo de la agenda. En definitiva es una agenda preciosa que estoy segura que voy a aprovechar para organizarme. Muchísimas graciass"[cite: 1]</p>
+                    <p class="comentario-texto">"Me encanta de la manera que está organizada y como están reflejados mis gustos a lo largo de la agenda. En definitiva es una agenda preciosa que estoy segura que voy a aprovechar para organizarme. Muchísimas graciass"</p>
                 </div>
 
-                <!-- COMENTARIO 2: TOÑI -->
                 <div class="comentario-card">
                     <div class="comentario-header">
                         <span class="comentario-nombre">Toñi</span>
                         <span class="comentario-estrellas">★★★★★</span>
                     </div>
-                    <p class="comentario-texto">"Es preciosa y muy especial Me encanta"[cite: 2]</p>
+                    <p class="comentario-texto">"Es preciosa y muy especial Me encanta"</p>
                 </div>
 
-                <!-- COMENTARIO 3: KLABEL -->
                 <div class="comentario-card">
                     <div class="comentario-header">
                         <span class="comentario-nombre">Klabel</span>
                         <span class="comentario-estrellas">★★★★★</span>
                     </div>
-                    <p class="comentario-texto">"Me a gustado mucho super original ideal incluso para regalar"[cite: 3]</p>
+                    <p class="comentario-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
                 </div>
             </div>
         </section>
@@ -458,6 +482,11 @@
 
             var marcapaginasSelect = document.getElementById('marcapaginas');
             var llevaMarcapaginas = marcapaginasSelect.value;
+
+            // Variables del Horario
+            var hPlastificado = document.getElementById('horario_plastificado').value;
+            var hGrosor = document.getElementById('horario_grosor').value;
+            var hTamano = document.getElementById('horario_tamano').value;
             
             var precioFinal = document.getElementById('precioTotal').innerText + "€";
             var detalles = document.getElementById('detalles').value;
@@ -476,7 +505,11 @@
                 "*Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
                 "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
                 "*Tipo de Anillas:* " + encodeURIComponent(var_anillas) + "%0A" +
-                "*¿Incluye Marcapáginas?:* " + encodeURIComponent(llevaMarcapaginas) + "%0A" +
+                "*¿Incluye Marcapáginas?:* " + encodeURIComponent(llevaMarcapaginas) + "%0A%0A" +
+                "*-- OPCIONES HORARIO --*" + "%0A" +
+                "*Plastificado:* " + encodeURIComponent(hPlastificado) + "%0A" +
+                "*Grosor Horario:* " + encodeURIComponent(hGrosor) + "%0A" +
+                "*Tamaño Horario:* " + encodeURIComponent(hTamano) + "%0A%0A" +
                 "*Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
                 "*Entrega:* " + encodeURIComponent(entrega) + "%0A" +
                 "*Detalles del diseño:* " + encodeURIComponent(detalles) + "%0A%0A" +
