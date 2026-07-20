@@ -203,6 +203,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0.5rem;
+            color: #4A4A4A !important;
         }
 
         .comentario-nombre {
@@ -304,8 +305,8 @@
                     </select>
                 </div>
 
-                <!-- SECCIÓN: APARTADO HORARIO -->
-                <h3 style="color: #6A6A6A; margin-top: 2rem; border-bottom: 1px dashed var(--azul-pastel); padding-bottom: 0.5rem;">Opciones del Horario</h3>
+                <!-- SECCIÓN: APARTADO HORARIO (Incluye +1,50€ automáticos al precio) -->
+                <h3 style="color: #6A6A6A; margin-top: 2rem; border-bottom: 1px dashed var(--azul-pastel); padding-bottom: 0.5rem;">Opciones del Horario (+1,50€)</h3>
                 
                 <div class="form-group">
                     <label for="horario_plastificado">Horario - Plastificado:</label>
@@ -352,8 +353,9 @@
                     </div>
                 </div>
 
+                <!-- PRECIO BASE INICIALIZADO A 23,00€ (21,50€ de la agenda básica + 1,50€ del horario fijos) -->
                 <div class="precio-box">
-                    Precio total estimado: <span id="precioTotal">21,50</span>€
+                    Precio total estimado: <span id="precioTotal">23,00</span>€
                 </div>
 
                 <button type="submit">Enviar diseño por WhatsApp 💬</button>
@@ -463,7 +465,8 @@
             var selectMarcapaginas = document.getElementById('marcapaginas');
             var extraMarcapaginas = parseFloat(selectMarcapaginas.options[selectMarcapaginas.selectedIndex].getAttribute('data-extra'));
             
-            var total = precioPapel + extraAnillas + extraMarcapaginas;
+            // Sumamos los componentes elegidos + los 1.50€ obligatorios del horario fijos
+            var total = precioPapel + extraAnillas + extraMarcapaginas + 1.50;
             
             document.getElementById('precioTotal').innerText = total.toFixed(2).replace('.', ',');
         }
@@ -506,7 +509,7 @@
                 "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
                 "*Tipo de Anillas:* " + encodeURIComponent(var_anillas) + "%0A" +
                 "*¿Incluye Marcapáginas?:* " + encodeURIComponent(llevaMarcapaginas) + "%0A%0A" +
-                "*-- OPCIONES HORARIO --*" + "%0A" +
+                "*-- OPCIONES HORARIO (+1,50€) --*" + "%0A" +
                 "*Plastificado:* " + encodeURIComponent(hPlastificado) + "%0A" +
                 "*Grosor Horario:* " + encodeURIComponent(hGrosor) + "%0A" +
                 "*Tamaño Horario:* " + encodeURIComponent(hTamano) + "%0A%0A" +
