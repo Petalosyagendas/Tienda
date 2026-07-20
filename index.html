@@ -182,6 +182,16 @@
             transform: scale(1.02);
         }
 
+        /* CONTENEDOR OCULTO PARA EL HORARIO */
+        #seccion_opciones_horario {
+            display: none;
+            background-color: #FAF6F0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            border: 1px dashed var(--rosa-pastel);
+        }
+
         /* ESTILOS PARA LA SECCIÓN DE OPINIONES */
         .comentarios-container {
             display: flex;
@@ -305,31 +315,42 @@
                     </select>
                 </div>
 
-                <!-- SECCIÓN: APARTADO HORARIO (Incluye +1,50€ automáticos al precio) -->
-                <h3 style="color: #6A6A6A; margin-top: 2rem; border-bottom: 1px dashed var(--azul-pastel); padding-bottom: 0.5rem;">Opciones del Horario (+1,50€)</h3>
-                
+                <!-- PREGUNTA CONTROL: HORARIO OPCIONAL -->
                 <div class="form-group">
-                    <label for="horario_plastificado">Horario - Plastificado:</label>
-                    <select id="horario_plastificado">
-                        <option value="Brillo">Plastificado Brillo</option>
-                        <option value="Mate">Plastificado Mate</option>
+                    <label for="incluye_horario">¿Quieres añadir un Horario personalizado?</label>
+                    <select id="incluye_horario" onchange="gestionarSeccionHorario()">
+                        <option value="No" data-extra="0.00">No, sin horario</option>
+                        <option value="Sí" data-extra="1.50">Sí, añadir horario personalizado — +1,50€</option>
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <label for="horario_grosor">Horario - Grosor del papel:</label>
-                    <select id="horario_grosor">
-                        <option value="90g">90g</option>
-                        <option value="100g">100g</option>
-                    </select>
-                </div>
+                <!-- SECCIÓN DESPLEGABLE: APARTADO HORARIO -->
+                <div id="seccion_opciones_horario">
+                    <h3 style="color: #6A6A6A; margin-top: 0; border-bottom: 1px dashed var(--azul-pastel); padding-bottom: 0.5rem;">Opciones del Horario</h3>
+                    
+                    <div class="form-group">
+                        <label for="horario_plastificado">Horario - Plastificado:</label>
+                        <select id="horario_plastificado">
+                            <option value="Brillo">Plastificado Brillo</option>
+                            <option value="Mate">Plastificado Mate</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="horario_tamano">Horario - Tamaño del papel:</label>
-                    <select id="horario_tamano">
-                        <option value="A4">A4</option>
-                        <option value="A5">A5</option>
-                    </select>
+                    <div class="form-group">
+                        <label for="horario_grosor">Horario - Grosor del papel:</label>
+                        <select id="horario_grosor">
+                            <option value="90g">90g</option>
+                            <option value="100g">100g</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="horario_tamano">Horario - Tamaño del papel:</label>
+                        <select id="horario_tamano">
+                            <option value="A4">A4</option>
+                            <option value="A5">A5</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group" style="margin-top: 2rem;">
@@ -353,9 +374,9 @@
                     </div>
                 </div>
 
-                <!-- PRECIO BASE INICIALIZADO A 23,00€ (21,50€ de la agenda básica + 1,50€ del horario fijos) -->
+                <!-- PRECIO BASE REINICIALIZADO A 21,50€ (Sin el horario por defecto) -->
                 <div class="precio-box">
-                    Precio total estimado: <span id="precioTotal">23,00</span>€
+                    Precio total estimado: <span id="precioTotal">21,50</span>€
                 </div>
 
                 <button type="submit">Enviar diseño por WhatsApp 💬</button>
@@ -455,6 +476,20 @@
             }
         }
 
+        // Muestra u oculta las opciones del horario según la elección de la clienta
+        function gestionarSeccionHorario() {
+            var incluyeHorario = document.getElementById('incluye_horario').value;
+            var divHorario = document.getElementById('seccion_opciones_horario');
+            
+            if (incluyeHorario === "Sí") {
+                divHorario.style.display = "block";
+            } else {
+                divHorario.style.display = "none";
+            }
+            
+            actualizarPrecio();
+        }
+
         function actualizarPrecio() {
             var selectPapel = document.getElementById('papel');
             var precioPapel = parseFloat(selectPapel.options[selectPapel.selectedIndex].getAttribute('data-precio'));
@@ -465,8 +500,11 @@
             var selectMarcapaginas = document.getElementById('marcapaginas');
             var extraMarcapaginas = parseFloat(selectMarcapaginas.options[selectMarcapaginas.selectedIndex].getAttribute('data-extra'));
             
-            // Sumamos los componentes elegidos + los 1.50€ obligatorios del horario fijos
-            var total = precioPapel + extraAnillas + extraMarcapaginas + 1.50;
+            var selectHorario = document.getElementById('incluye_horario');
+            var extraHorario = parseFloat(selectHorario.options[selectHorario.selectedIndex].getAttribute('data-extra'));
+            
+            // Sumamos todo dinámicamente
+            var total = precioPapel + extraAnillas + extraMarcapaginas + extraHorario;
             
             document.getElementById('precioTotal').innerText = total.toFixed(2).replace('.', ',');
         }
@@ -487,9 +525,21 @@
             var llevaMarcapaginas = marcapaginasSelect.value;
 
             // Variables del Horario
-            var hPlastificado = document.getElementById('horario_plastificado').value;
-            var hGrosor = document.getElementById('horario_grosor').value;
-            var hTamano = document.getElementById('horario_tamano').value;
+            var incluyeHorario = document.getElementById('incluye_horario').value;
+            var infoHorarioWhatsApp = "";
+
+            if (incluyeHorario === "Sí") {
+                var hPlastificado = document.getElementById('horario_plastificado').value;
+                var hGrosor = document.getElementById('horario_grosor').value;
+                var hTamano = document.getElementById('horario_tamano').value;
+
+                infoHorarioWhatsApp = "*¿Incluye Horario?:* Sí (+1,50€)%0A" +
+                                      "*Plastificado Horario:* " + encodeURIComponent(hPlastificado) + "%0A" +
+                                      "*Grosor Horario:* " + encodeURIComponent(hGrosor) + "%0A" +
+                                      "*Tamaño Horario:* " + encodeURIComponent(hTamano) + "%0A%0A";
+            } else {
+                infoHorarioWhatsApp = "*¿Incluye Horario?:* No%0A%0A";
+            }
             
             var precioFinal = document.getElementById('precioTotal').innerText + "€";
             var detalles = document.getElementById('detalles').value;
@@ -509,10 +559,7 @@
                 "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
                 "*Tipo de Anillas:* " + encodeURIComponent(var_anillas) + "%0A" +
                 "*¿Incluye Marcapáginas?:* " + encodeURIComponent(llevaMarcapaginas) + "%0A%0A" +
-                "*-- OPCIONES HORARIO (+1,50€) --*" + "%0A" +
-                "*Plastificado:* " + encodeURIComponent(hPlastificado) + "%0A" +
-                "*Grosor Horario:* " + encodeURIComponent(hGrosor) + "%0A" +
-                "*Tamaño Horario:* " + encodeURIComponent(hTamano) + "%0A%0A" +
+                infoHorarioWhatsApp +
                 "*Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
                 "*Entrega:* " + encodeURIComponent(entrega) + "%0A" +
                 "*Detalles del diseño:* " + encodeURIComponent(detalles) + "%0A%0A" +
