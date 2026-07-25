@@ -72,7 +72,7 @@
 
         .sobre-mi-container {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 2rem;
             flex-wrap: wrap;
         }
@@ -93,6 +93,10 @@
             min-width: 250px;
             line-height: 1.6;
             color: #5A5A5A !important;
+        }
+
+        .sobre-mi-texto p {
+            margin-bottom: 1rem;
         }
 
         .form-group {
@@ -267,8 +271,14 @@
             <div class="sobre-mi-container">
                 <img src="logo.png" alt="Mi Foto" class="sobre-mi-foto">
                 <div class="sobre-mi-texto">
-                    <p>¡Hola! Qué ilusión que estés aquí. Detrás de <strong>Pétalos y Agenda</strong> estoy yo, creando diseños a mano con mucho mimo y dedicación.</p>
-                    <p>Cada agenda es un proyecto único diseñado exclusivamente para ti, cuidando cada detalle desde la elección del grosor del papel hasta el color de las anillas. Mi objetivo es ayudarte a organizar tus días de la forma más bonita posible. ¡Espero que disfrutemos juntas diseñando la tuya!</p>
+                    <p>¡Hola! Soy <strong>Alanis</strong>, la persona, las manos y la ilusión que están detrás de <strong>Pétalos y Agenda</strong>.</p>
+                    <p>Si te soy sincera, este proyecto no nació como un plan de negocio pensado sobre el papel; nació por pura necesidad y frustración. Durante años me volví loca buscando la agenda "perfecta". Compraba una y siempre pasaba lo mismo: o le faltaban secciones que para mí eran fundamentales, o venía llena de páginas que jamás usaba, o las dos cosas a la vez. Al final, nunca sentía que encajara del todo conmigo.</p>
+                    <p>Un año me cansé y me dije: <em>“¿Y si me la trazo y me la diseño yo misma? Si total, me va a costar lo mismo que comprar una hecha”</em>. Y así lo hice: diseñé mi propia agenda desde cero, exactamente con lo que necesitaba y con el papel y acabado que a mí me gustaba.</p>
+                    <p>Todo cambió en clase. Una amiga del curso me vio usarla, la hojeó y me dijo: <em>"¡Oye, me encanta tu agenda! Yo quiero una así"</em>. Se la hice con todo el cariño del mundo, y a partir de ahí comenzó la magia: otras compañeras del curso empezaron a verlas, a pedirme las suyas personalizadas... y lo que empezó como una solución para mi día a día, se convirtió en una cadena de ilusión.</p>
+                    <p>Ahí me di cuenta de que no era la única que buscaba algo diferente. Dije: <em>"¿Y si creo una tienda online para ayudar a más gente a tener la agenda que de verdad necesita?"</em>. Y así nació y fue creciendo <strong>Pétalos y Agenda</strong>.</p>
+                    <p>El nombre lo dice todo: busca combinar la delicadeza y el mimo de cada detalle hecho a mano (cada pétalo) con la estructura, las anillas y la practicidad de tu día a día (tu agenda). Aquí maquetamos cada hoja, elegimos un papel grueso de calidad que no traspasa y personalizamos cada portada pensando en ti.</p>
+                    <p>Gracias por apostar por el trabajo artesanal, por apoyar este proyecto que empezó en un aula entre compañeras y por dejarme acompañarte en tu día a día.</p>
+                    <p><strong>¡Bienvenida a Pétalos y Agenda! 📖✨</strong></p>
                 </div>
             </div>
         </section>
@@ -292,7 +302,7 @@
                 <div class="form-group">
                     <label for="papel">Grosor del papel de tu agenda:</label>
                     <select id="papel" onchange="actualizarPrecio()">
-                        <option value="80gr" data-precio="23.50">80 gr — 23,50€</option>
+                        <option value="80gr" data-precio="23.50">80 gr — 23,00€</option>
                         <option value="90gr" data-precio="28.50">90 gr — 28,50€</option>
                         <option value="100gr" data-precio="34.00">100 gr — 34,00€</option>
                     </select>
@@ -524,7 +534,6 @@
             }
         }
 
-        // Muestra u oculta las opciones del horario
         function gestionarSeccionHorario() {
             var incluyeHorario = document.getElementById('incluye_horario').value;
             var divHorario = document.getElementById('seccion_opciones_horario');
@@ -538,7 +547,6 @@
             actualizarPrecio();
         }
 
-        // Muestra u oculta las opciones de portadas de asignaturas
         function gestionarSeccionAsignaturas() {
             var incluyeAsignaturas = document.getElementById('incluye_asignaturas').value;
             var divAsignaturas = document.getElementById('seccion_opciones_asignaturas');
@@ -565,7 +573,6 @@
             var selectHorario = document.getElementById('incluye_horario');
             var extraHorario = parseFloat(selectHorario.options[selectHorario.selectedIndex].getAttribute('data-extra'));
 
-            // Cálculo dinámico de asignaturas (1,00€ por cada una)
             var incluyeAsignaturas = document.getElementById('incluye_asignaturas').value;
             var extraAsignaturas = 0;
 
@@ -575,7 +582,6 @@
                 extraAsignaturas = numAsig * 1.00;
             }
             
-            // Sumamos todo dinámicamente
             var total = precioPapel + extraAnillas + extraMarcapaginas + extraHorario + extraAsignaturas;
             
             document.getElementById('precioTotal').innerText = total.toFixed(2).replace('.', ',');
@@ -596,7 +602,6 @@
             var marcapaginasSelect = document.getElementById('marcapaginas');
             var llevaMarcapaginas = marcapaginasSelect.value;
 
-            // Variables del Horario
             var incluyeHorario = document.getElementById('incluye_horario').value;
             var infoHorarioWhatsApp = "";
 
@@ -613,7 +618,6 @@
                 infoHorarioWhatsApp = "*¿Incluye Horario?:* No%0A%0A";
             }
 
-            // Variables de Portadas de Asignaturas
             var incluyeAsignaturas = document.getElementById('incluye_asignaturas').value;
             var infoAsignaturasWhatsApp = "";
 
