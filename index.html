@@ -355,8 +355,8 @@
 
                 <!-- PREGUNTA CONTROL: PORTADAS PARA ASIGNATURAS / SEPARADORES -->
                 <div class="form-group">
-                    <label for="incluye_asignaturas">¿Quieres añadir Portadas para Asignaturas / Separadores de archivador?</label>
-                    <small style="color: #8A8A8A; display: block; margin-bottom: 0.4rem;">* Complemento exclusivo para tu pedido de agenda (1,00€ por portada / A4 - 160gr).</small>
+                    <label for="incluye_asignaturas">¿Quieres añadir Portadas para Asignaturas / Separadores?</label>
+                    <small style="color: #8A8A8A; display: block; margin-bottom: 0.4rem;">* Complemento exclusivo para tu pedido de agenda (1,00€ por portada).</small>
                     <select id="incluye_asignaturas" onchange="gestionarSeccionAsignaturas()">
                         <option value="No">No, sin portadas de asignaturas</option>
                         <option value="Sí">Sí, añadir portadas para asignaturas (1,00€/ud)</option>
@@ -365,10 +365,10 @@
 
                 <!-- SECCIÓN DESPLEGABLE: PORTADAS DE ASIGNATURAS -->
                 <div id="seccion_opciones_asignaturas">
-                    <h3 style="color: #6A6A6A; margin-top: 0; border-bottom: 1px dashed var(--azul-pastel); padding-bottom: 0.5rem;">Opciones de Separadores para Archivador</h3>
+                    <h3 style="color: #6A6A6A; margin-top: 0; border-bottom: 1px dashed var(--azul-pastel); padding-bottom: 0.5rem;">Opciones de Portadas de Asignaturas</h3>
                     
                     <div class="form-group">
-                        <label for="num_asignaturas">¿Cuántas portadas de asignatura necesitas? (1,00€ cada una):</label>
+                        <label for="num_asignaturas">¿Cuántas portadas de asignatura necesitas? (1,00€ por cada una):</label>
                         <input type="number" id="num_asignaturas" value="1" min="1" max="20" onchange="actualizarPrecio()" oninput="actualizarPrecio()">
                     </div>
 
@@ -383,11 +383,6 @@
                             <option value="2 agujeros">2 agujeros</option>
                             <option value="4 agujeros">4 agujeros</option>
                         </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Tamaño y Papel:</label>
-                        <input type="text" value="A4 — Papel de 160 gr" disabled style="opacity: 0.8; cursor: not-allowed;">
                     </div>
                 </div>
 
@@ -632,8 +627,7 @@
                 infoAsignaturasWhatsApp = "*¿Incluye Portadas Asignaturas?:* Sí (+" + totalExtraAsig + "€)%0A" +
                                           "*Cantidad de portadas:* " + numAsig + "%0A" +
                                           "*Asignaturas:* " + encodeURIComponent(nombresAsig) + "%0A" +
-                                          "*Agujeros Separador:* " + encodeURIComponent(aAgujeros) + "%0A" +
-                                          "*Formato:* A4 (160 gr)%0A%0A";
+                                          "*Agujeros:* " + encodeURIComponent(aAgujeros) + "%0A%0A";
             } else {
                 infoAsignaturasWhatsApp = "*¿Incluye Portadas Asignaturas?:* No%0A%0A";
             }
