@@ -107,7 +107,7 @@
             color: #4A4A4A !important;
         }
 
-        input[type="text"], input[type="date"], textarea, select {
+        input[type="text"], input[type="number"], input[type="date"], textarea, select {
             width: 100%;
             padding: 0.8rem;
             border: 1px solid var(--gris-perla);
@@ -356,10 +356,10 @@
                 <!-- PREGUNTA CONTROL: PORTADAS PARA ASIGNATURAS / SEPARADORES -->
                 <div class="form-group">
                     <label for="incluye_asignaturas">¿Quieres añadir Portadas para Asignaturas / Separadores de archivador?</label>
-                    <small style="color: #8A8A8A; display: block; margin-bottom: 0.4rem;">* Complemento exclusivo para tu pedido de agenda (A4 - 160gr).</small>
+                    <small style="color: #8A8A8A; display: block; margin-bottom: 0.4rem;">* Complemento exclusivo para tu pedido de agenda (1,00€ por portada / A4 - 160gr).</small>
                     <select id="incluye_asignaturas" onchange="gestionarSeccionAsignaturas()">
-                        <option value="No" data-extra="0.00">No, sin portadas de asignaturas</option>
-                        <option value="Sí" data-extra="1.00">Sí, añadir portadas para asignaturas — +1,00€</option>
+                        <option value="No">No, sin portadas de asignaturas</option>
+                        <option value="Sí">Sí, añadir portadas para asignaturas (1,00€/ud)</option>
                     </select>
                 </div>
 
@@ -367,6 +367,16 @@
                 <div id="seccion_opciones_asignaturas">
                     <h3 style="color: #6A6A6A; margin-top: 0; border-bottom: 1px dashed var(--azul-pastel); padding-bottom: 0.5rem;">Opciones de Separadores para Archivador</h3>
                     
+                    <div class="form-group">
+                        <label for="num_asignaturas">¿Cuántas portadas de asignatura necesitas? (1,00€ cada una):</label>
+                        <input type="number" id="num_asignaturas" value="1" min="1" max="20" onchange="actualizarPrecio()" oninput="actualizarPrecio()">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombres_asignaturas">¿Cuáles son las asignaturas?:</label>
+                        <input type="text" id="nombres_asignaturas" placeholder="Ej: Lengua, Mates, Historia, Inglés...">
+                    </div>
+
                     <div class="form-group">
                         <label for="asignaturas_agujeros">Número de agujeros:</label>
                         <select id="asignaturas_agujeros">
@@ -382,8 +392,8 @@
                 </div>
 
                 <div class="form-group" style="margin-top: 2rem;">
-                    <label for="detalles">Preguntas de diseño (Colores preferidos, temáticas, frases para la portada, asignaturas que necesitas...):</label>
-                    <textarea id="detalles" rows="5" placeholder="Cuéntame detalladamente cómo te gustaría el diseño, las asignaturas para las portadas si las has contratado, etc."></textarea>
+                    <label for="detalles">Preguntas de diseño (Colores preferidos, temáticas, frases para la portada, etc.):</label>
+                    <textarea id="detalles" rows="5" placeholder="Cuéntame detalladamente cómo te gustaría el diseño general de tu agenda..."></textarea>
                 </div>
 
                 <div class="form-group">
@@ -402,7 +412,6 @@
                     </div>
                 </div>
 
-                <!-- PRECIO BASE REINICIALIZADO A 23,50€ -->
                 <div class="precio-box">
                     Precio total estimado: <span id="precioTotal">23,50</span>€
                 </div>
@@ -561,8 +570,15 @@
             var selectHorario = document.getElementById('incluye_horario');
             var extraHorario = parseFloat(selectHorario.options[selectHorario.selectedIndex].getAttribute('data-extra'));
 
-            var selectAsignaturas = document.getElementById('incluye_asignaturas');
-            var extraAsignaturas = parseFloat(selectAsignaturas.options[selectAsignaturas.selectedIndex].getAttribute('data-extra'));
+            // Cálculo dinámico de asignaturas (1,00€ por cada una)
+            var incluyeAsignaturas = document.getElementById('incluye_asignaturas').value;
+            var extraAsignaturas = 0;
+
+            if (incluyeAsignaturas === "Sí") {
+                var numAsig = parseInt(document.getElementById('num_asignaturas').value) || 1;
+                if (numAsig < 1) numAsig = 1;
+                extraAsignaturas = numAsig * 1.00;
+            }
             
             // Sumamos todo dinámicamente
             var total = precioPapel + extraAnillas + extraMarcapaginas + extraHorario + extraAsignaturas;
@@ -607,9 +623,15 @@
             var infoAsignaturasWhatsApp = "";
 
             if (incluyeAsignaturas === "Sí") {
+                var numAsig = parseInt(document.getElementById('num_asignaturas').value) || 1;
+                if (numAsig < 1) numAsig = 1;
+                var nombresAsig = document.getElementById('nombres_asignaturas').value || "No especificadas";
                 var aAgujeros = document.getElementById('asignaturas_agujeros').value;
+                var totalExtraAsig = (numAsig * 1.00).toFixed(2).replace('.', ',');
 
-                infoAsignaturasWhatsApp = "*¿Incluye Portadas Asignaturas?:* Sí (+1,00€)%0A" +
+                infoAsignaturasWhatsApp = "*¿Incluye Portadas Asignaturas?:* Sí (+" + totalExtraAsig + "€)%0A" +
+                                          "*Cantidad de portadas:* " + numAsig + "%0A" +
+                                          "*Asignaturas:* " + encodeURIComponent(nombresAsig) + "%0A" +
                                           "*Agujeros Separador:* " + encodeURIComponent(aAgujeros) + "%0A" +
                                           "*Formato:* A4 (160 gr)%0A%0A";
             } else {
