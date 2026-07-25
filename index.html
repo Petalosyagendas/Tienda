@@ -182,8 +182,8 @@
             transform: scale(1.02);
         }
 
-        /* CONTENEDOR OCULTO PARA EL HORARIO */
-        #seccion_opciones_horario {
+        /* CONTENEDORES OCULTOS PARA COMPLEMENTOS */
+        #seccion_opciones_horario, #seccion_opciones_asignaturas {
             display: none;
             background-color: #FAF6F0;
             padding: 1.5rem;
@@ -290,7 +290,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="papel">Grosor del papel:</label>
+                    <label for="papel">Grosor del papel de tu agenda:</label>
                     <select id="papel" onchange="actualizarPrecio()">
                         <option value="80gr" data-precio="23.50">80 gr — 23,50€</option>
                         <option value="90gr" data-precio="28.50">90 gr — 28,50€</option>
@@ -353,9 +353,37 @@
                     </div>
                 </div>
 
+                <!-- PREGUNTA CONTROL: PORTADAS PARA ASIGNATURAS / SEPARADORES -->
+                <div class="form-group">
+                    <label for="incluye_asignaturas">¿Quieres añadir Portadas para Asignaturas / Separadores de archivador?</label>
+                    <small style="color: #8A8A8A; display: block; margin-bottom: 0.4rem;">* Complemento exclusivo para tu pedido de agenda (A4 - 160gr).</small>
+                    <select id="incluye_asignaturas" onchange="gestionarSeccionAsignaturas()">
+                        <option value="No" data-extra="0.00">No, sin portadas de asignaturas</option>
+                        <option value="Sí" data-extra="1.00">Sí, añadir portadas para asignaturas — +1,00€</option>
+                    </select>
+                </div>
+
+                <!-- SECCIÓN DESPLEGABLE: PORTADAS DE ASIGNATURAS -->
+                <div id="seccion_opciones_asignaturas">
+                    <h3 style="color: #6A6A6A; margin-top: 0; border-bottom: 1px dashed var(--azul-pastel); padding-bottom: 0.5rem;">Opciones de Separadores para Archivador</h3>
+                    
+                    <div class="form-group">
+                        <label for="asignaturas_agujeros">Número de agujeros:</label>
+                        <select id="asignaturas_agujeros">
+                            <option value="2 agujeros">2 agujeros</option>
+                            <option value="4 agujeros">4 agujeros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tamaño y Papel:</label>
+                        <input type="text" value="A4 — Papel de 160 gr" disabled style="opacity: 0.8; cursor: not-allowed;">
+                    </div>
+                </div>
+
                 <div class="form-group" style="margin-top: 2rem;">
-                    <label for="detalles">Preguntas de diseño (Colores preferidos, temáticas, frases para la portada...):</label>
-                    <textarea id="detalles" rows="5" placeholder="Cuéntame detalladamente cómo te gustaría el diseño, si has elegido anillas de color dime qué color te gustaría, etc."></textarea>
+                    <label for="detalles">Preguntas de diseño (Colores preferidos, temáticas, frases para la portada, asignaturas que necesitas...):</label>
+                    <textarea id="detalles" rows="5" placeholder="Cuéntame detalladamente cómo te gustaría el diseño, las asignaturas para las portadas si las has contratado, etc."></textarea>
                 </div>
 
                 <div class="form-group">
@@ -492,7 +520,7 @@
             }
         }
 
-        // Muestra u oculta las opciones del horario según la elección de la clienta
+        // Muestra u oculta las opciones del horario
         function gestionarSeccionHorario() {
             var incluyeHorario = document.getElementById('incluye_horario').value;
             var divHorario = document.getElementById('seccion_opciones_horario');
@@ -501,6 +529,20 @@
                 divHorario.style.display = "block";
             } else {
                 divHorario.style.display = "none";
+            }
+            
+            actualizarPrecio();
+        }
+
+        // Muestra u oculta las opciones de portadas de asignaturas
+        function gestionarSeccionAsignaturas() {
+            var incluyeAsignaturas = document.getElementById('incluye_asignaturas').value;
+            var divAsignaturas = document.getElementById('seccion_opciones_asignaturas');
+            
+            if (incluyeAsignaturas === "Sí") {
+                divAsignaturas.style.display = "block";
+            } else {
+                divAsignaturas.style.display = "none";
             }
             
             actualizarPrecio();
@@ -518,9 +560,12 @@
             
             var selectHorario = document.getElementById('incluye_horario');
             var extraHorario = parseFloat(selectHorario.options[selectHorario.selectedIndex].getAttribute('data-extra'));
+
+            var selectAsignaturas = document.getElementById('incluye_asignaturas');
+            var extraAsignaturas = parseFloat(selectAsignaturas.options[selectAsignaturas.selectedIndex].getAttribute('data-extra'));
             
             // Sumamos todo dinámicamente
-            var total = precioPapel + extraAnillas + extraMarcapaginas + extraHorario;
+            var total = precioPapel + extraAnillas + extraMarcapaginas + extraHorario + extraAsignaturas;
             
             document.getElementById('precioTotal').innerText = total.toFixed(2).replace('.', ',');
         }
@@ -556,6 +601,20 @@
             } else {
                 infoHorarioWhatsApp = "*¿Incluye Horario?:* No%0A%0A";
             }
+
+            // Variables de Portadas de Asignaturas
+            var incluyeAsignaturas = document.getElementById('incluye_asignaturas').value;
+            var infoAsignaturasWhatsApp = "";
+
+            if (incluyeAsignaturas === "Sí") {
+                var aAgujeros = document.getElementById('asignaturas_agujeros').value;
+
+                infoAsignaturasWhatsApp = "*¿Incluye Portadas Asignaturas?:* Sí (+1,00€)%0A" +
+                                          "*Agujeros Separador:* " + encodeURIComponent(aAgujeros) + "%0A" +
+                                          "*Formato:* A4 (160 gr)%0A%0A";
+            } else {
+                infoAsignaturasWhatsApp = "*¿Incluye Portadas Asignaturas?:* No%0A%0A";
+            }
             
             var precioFinal = document.getElementById('precioTotal').innerText + "€";
             var detalles = document.getElementById('detalles').value;
@@ -563,7 +622,7 @@
             var entrega = document.querySelector('input[name="entrega"]:checked').value;
 
             if(!nombre || !fecha) {
-                alert("Por favor, rellena tu nombre y selecciona el día en el que quieres que empiece tu agenda.");
+                alert("Para poder realizar un pedido de agenda (y sus complementos), por favor rellena tu nombre y la fecha de inicio.");
                 return;
             }
 
@@ -572,10 +631,11 @@
             var mensaje = "¡Hola! He rellenado el formulario de la web para una agenda personalizada:%0A%0A" +
                 "*Nombre:* " + encodeURIComponent(nombre) + "%0A" +
                 "*Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
-                "*Grosor de Papel:* " + encodeURIComponent(papel) + "%0A" +
+                "*Grosor de Papel de Agenda:* " + encodeURIComponent(papel) + "%0A" +
                 "*Tipo de Anillas:* " + encodeURIComponent(var_anillas) + "%0A" +
                 "*¿Incluye Marcapáginas?:* " + encodeURIComponent(llevaMarcapaginas) + "%0A%0A" +
                 infoHorarioWhatsApp +
+                infoAsignaturasWhatsApp +
                 "*Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
                 "*Entrega:* " + encodeURIComponent(entrega) + "%0A" +
                 "*Detalles del diseño:* " + encodeURIComponent(detalles) + "%0A%0A" +
