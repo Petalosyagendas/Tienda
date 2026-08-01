@@ -346,7 +346,7 @@
                 <div class="form-group">
                     <label for="fecha">¿A partir de qué día quieres tus agendas?</label>
                     <input type="date" id="fecha" onchange="validarFechaOcupada()" required>
-                    <small style="color: #8A8A8A; display: block; margin-top: 0.3rem;">* Se requiere un mínimo de 5 días desde hoy para el diseño.</small>
+                    <small style="color: #8A8A8A; display: block; margin-top: 0.3rem;">* Se requiere un mínimo de 4 días desde hoy para el diseño.</small>
                 </div>
 
                 <!-- CONTENEDOR DONDE SE AÑADEN LAS AGENDAS -->
@@ -375,7 +375,7 @@
                         </label>
                     </div>
                     <small style="color: #6A6A6A; display: block; margin-top: 0.5rem; background: #F3E1E4; padding: 0.6rem; border-radius: 8px;">
-                        ✨ <strong>¡ENVÍO GRATIS!</strong> A partir de 3 agendas o comprando agendas con pack completo (marcapáginas + horario + portadas).
+                        ✨ <strong>¡ENVÍO GRATIS!</strong> A partir de 3 agendas o comprando agenda + pack completo (marcapáginas + horario + portadas).
                     </small>
                 </div>
 
@@ -464,8 +464,8 @@
         // Tabla de precios según formato y gramaje
         var preciosPapel = {
             "Semana Vista": {
-                "80gr": 23.00,
-                "90gr": 27.50,
+                "80gr": 22.00,
+                "90gr": 27,
                 "100gr": 30.00
             },
             "2 Días por Vista": {
@@ -548,8 +548,8 @@
                 <div class="form-group">
                     <label>Grosor del papel:</label>
                     <select class="agenda-papel" onchange="actualizarPrecio()">
-                        <option value="80gr">80 gr — 23,00€</option>
-                        <option value="90gr">90 gr — 27,50€</option>
+                        <option value="80gr">80 gr — 22,00€</option>
+                        <option value="90gr">90 gr — 27€</option>
                         <option value="100gr">100 gr — 30,00€</option>
                     </select>
                 </div>
