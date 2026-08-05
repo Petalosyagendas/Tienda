@@ -465,13 +465,18 @@
         var preciosPapel = {
             "Semana Vista": {
                 "80gr": 22.00,
-                "90gr": 27,
+                "90gr": 27.00,
                 "100gr": 30.00
             },
             "2 Días por Vista": {
                 "80gr": 32.00,
                 "90gr": 38.50,
                 "100gr": 42.00
+            },
+            "1 Día por Vista": {
+                "80gr": 42.00,
+                "90gr": 50.00,
+                "100gr": 58.00
             }
         };
 
@@ -537,11 +542,12 @@
                     ${id > 1 ? `<button type="button" class="btn-eliminar" onclick="eliminarAgenda(${id})">Eliminar</button>` : ''}
                 </h3>
 
-                <div class="form-group">
+               <div class="form-group">
                     <label>Formato de la agenda:</label>
                     <select class="agenda-formato" onchange="actualizarOpcionesPapel(${id})">
                         <option value="Semana Vista">Semana Vista</option>
                         <option value="2 Días por Vista">2 Días por Vista</option>
+                        <option value="1 Día por Vista">1 Día por Vista</option>
                     </select>
                 </div>
 
