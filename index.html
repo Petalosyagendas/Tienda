@@ -637,11 +637,68 @@
                     </div>
                 </div>
 
-                <div class="form-group" style="margin-top:1rem;">
-                    <label>Detalles de diseño para esta agenda:</label>
-                    <textarea class="agenda-detalles" rows="3" placeholder="Colores preferidos, personaje/temática anime, nombre en la portada..."></textarea>
-                </div>
-            </div>`;
+             <!-- FORMULARIO DE DISEÑO -->
+<div class="form-group" style="margin-top:1.5rem; padding:1rem; background:#FAF7F7; border-radius:8px; border:1px solid #EAEAEA;">
+    <h4 style="margin-top:0; color:#333;">Formulario para el diseño de la agenda</h4>
+
+    <div class="form-group">
+        <label>¿Nombre del dueño de la agenda?</label>
+        <input type="text" class="agenda-dueno" placeholder="Escribe el nombre o texto para la portada">
+    </div>
+
+    <div class="form-group">
+        <label>¿Qué estilo o temática te gustaría para el diseño de tu portada?</label>
+        <select class="agenda-estilo">
+            <option value="🌸 Pastel / Floral">🌸 Pastel / Floral</option>
+            <option value="⭐ Anime / Ilustración">⭐ Anime / Ilustración</option>
+            <option value="🏎️ Coches y Motor">🏎️ Coches y Motor</option>
+            <option value="✨ Minimalista / Elegante">✨ Minimalista / Elegante</option>
+            <option value="🖤 Gótico / Oscuro">🖤 Gótico / Oscuro</option>
+            <option value="✍️ Otro (especificar abajo)">✍️ Otro (especificar abajo)</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Si has elegido "Otro", especifícalo aquí:</label>
+        <input type="text" class="agenda-estilo-otro" placeholder="Describe la temática que quieres">
+    </div>
+
+    <div class="form-group">
+        <label>¿Qué secciones extra quieres incluir en tu agenda?</label>
+        <textarea class="agenda-secciones-extra" rows="2" placeholder="Ej: Control de plazos, habit tracker, horario, presupuesto..."></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>¿Estudias o trabajas o ambas?</label>
+        <select class="agenda-ocupacion">
+            <option value="Estudio">Estudio</option>
+            <option value="Trabajo">Trabajo</option>
+            <option value="Ambas">Ambas (Estudio y Trabajo)</option>
+            <option value="Ninguna">Ninguna</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Si estudias o trabajas, ¿de qué campo, carrera o profesión es?</label>
+        <input type="text" class="agenda-profesion" placeholder="Ej: Abogacía, Oposiciones, Magisterio, Administración...">
+    </div>
+
+    <div class="form-group">
+        <label>¿Cuál es tu color o paleta de colores favorita?</label>
+        <input type="text" class="agenda-colores" placeholder="Ej: Tonos pastel, verde agua, morado y dorado...">
+    </div>
+
+    <div class="form-group">
+        <label>¿Cuáles son tus hobbys o aficiones?</label>
+        <small style="color: #6A6A6A; display: block; margin-bottom: 0.3rem;">Cuéntame qué te gusta hacer en tu tiempo libre.</small>
+        <textarea class="agenda-hobbys" rows="2" placeholder="Ej: Leer, la hípica, jardinería, manualidades..."></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>¿Para qué uso principal vas a querer la agenda?</label>
+        <textarea class="agenda-uso" rows="2" placeholder="Ej: Para organizar turnos de trabajo, llevar la oposición al día, tareas del hogar y personales..."></textarea>
+    </div>
+</div>`;
 
             document.getElementById('contenedor_agendas').insertAdjacentHTML('beforeend', html);
             actualizarPrecio();
@@ -739,75 +796,98 @@
             document.getElementById('precioTotal').innerText = totalFinal.toFixed(2).replace('.', ',');
         }
 
-        function enviarPorWhatsApp() {
-            var miTelefono = "34672707366";
-            var nombre = document.getElementById('nombre').value;
-            var fecha = document.getElementById('fecha').value;
+       function enviarPorWhatsApp() {
+    var miTelefono = "34672707366";
+    var nombre = document.getElementById('nombre').value;
+    var fecha = document.getElementById('fecha').value;
 
-            if(!nombre || !fecha) {
-                alert("Por favor, rellena tu nombre y la fecha de inicio.");
-                return;
-            }
+    if(!nombre || !fecha) {
+        alert("Por favor, rellena tu nombre y la fecha de inicio.");
+        return;
+    }
 
-            var cards = document.querySelectorAll('.card-agenda');
-            if(cards.length === 0) {
-                alert("Debes añadir al menos una agenda a tu pedido.");
-                return;
-            }
+    var cards = document.querySelectorAll('.card-agenda');
+    if(cards.length === 0) {
+        alert("Debes añadir al menos una agenda a tu pedido.");
+        return;
+    }
 
-            var fechaFormateada = fecha.split('-').reverse().join('/');
-            var mensaje = "¡Hola! He preparado un pedido en la web:%0A%0A" +
-                          "👤 *Cliente:* " + encodeURIComponent(nombre) + "%0A" +
-                          "📅 *Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
-                          "📦 *Cantidad total de agendas:* " + cards.length + "%0A%0A" +
-                          "--- *DETALLE DEL PEDIDO* ---%0A%0A";
+    var fechaFormateada = fecha.split('-').reverse().join('/');
+    var mensaje = "¡Hola! He preparado un pedido en la web:%0A%0A" +
+                  "👤 *Cliente:* " + encodeURIComponent(nombre) + "%0A" +
+                  "📅 *Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
+                  "📦 *Cantidad total de agendas:* " + cards.length + "%0A%0A" +
+                  "--- *DETALLE DEL PEDIDO* ---%0A%0A";
 
-            cards.forEach((card, index) => {
-                var num = index + 1;
-                var formato = card.querySelector('.agenda-formato').value;
-                var papel = card.querySelector('.agenda-papel').value;
-                var anillas = card.querySelector('.agenda-anillas').value;
-                var marcapaginas = card.querySelector('.agenda-marcapaginas').value;
-                var detalles = card.querySelector('.agenda-detalles').value || "Sin detalles específicos";
+    cards.forEach((card, index) => {
+        var num = index + 1;
+        var formato = card.querySelector('.agenda-formato').value;
+        var papel = card.querySelector('.agenda-papel').value;
+        var anillas = card.querySelector('.agenda-anillas').value;
+        var marcapaginas = card.querySelector('.agenda-marcapaginas').value;
 
-                mensaje += "*AGENDA #" + num + " (" + encodeURIComponent(formato) + ")*%0A" +
-                           "- Papel: " + encodeURIComponent(papel) + "%0A" +
-                           "- Anillas: " + encodeURIComponent(anillas) + "%0A" +
-                           "- Marcapáginas: " + encodeURIComponent(marcapaginas) + "%0A";
+        mensaje += "*AGENDA #" + num + " (" + encodeURIComponent(formato) + ")*%0A" +
+                   "- Papel: " + encodeURIComponent(papel) + "%0A" +
+                   "- Anillas: " + encodeURIComponent(anillas) + "%0A" +
+                   "- Marcapáginas: " + encodeURIComponent(marcapaginas) + "%0A";
 
-                var selectHorario = card.querySelector('.agenda-incluye-horario');
-                if (selectHorario.value === "Sí") {
-                    var hPlast = card.querySelector('.horario-plastificado').value;
-                    var hGrosor = card.querySelector('.horario-grosor').value;
-                    var hTamano = card.querySelector('.horario-tamano').value;
-                    mensaje += "- Horario: Sí (" + encodeURIComponent(hPlast) + ", " + encodeURIComponent(hGrosor) + ", " + encodeURIComponent(hTamano) + ")%0A";
-                } else {
-                    mensaje += "- Horario: No%0A";
-                }
-
-                var selectAsig = card.querySelector('.agenda-incluye-asig');
-                if (selectAsig.value === "Sí") {
-                    var numAsig = card.querySelector('.asig-num').value;
-                    var nomAsig = card.querySelector('.asig-nombres').value || "No especificadas";
-                    var agujeros = card.querySelector('.asig-agujeros').value;
-                    mensaje += "- Portadas Asignaturas: " + numAsig + " ud (" + encodeURIComponent(nomAsig) + " - " + encodeURIComponent(agujeros) + ")%0A";
-                } else {
-                    mensaje += "- Portadas Asignaturas: No%0A";
-                }
-
-                mensaje += "- Detalles: " + encodeURIComponent(detalles) + "%0A%0A";
-            });
-
-            var pago = document.querySelector('input[name="pago"]:checked').value;
-            var entrega = document.querySelector('input[name="entrega"]:checked').value;
-            var precioFinal = document.getElementById('precioTotal').innerText + "€";
-
-            mensaje += "💳 *Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
-                       "🚚 *Entrega:* " + encodeURIComponent(entrega) + "%0A" +
-                       "💰 *PRECIO TOTAL:* " + encodeURIComponent(precioFinal);
-
-            window.open("https://wa.me/" + miTelefono + "?text=" + mensaje, '_blank');
+        var selectHorario = card.querySelector('.agenda-incluye-horario');
+        if (selectHorario.value === "Sí") {
+            var hPlast = card.querySelector('.horario-plastificado').value;
+            var hGrosor = card.querySelector('.horario-grosor').value;
+            var hTamano = card.querySelector('.horario-tamano').value;
+            mensaje += "- Horario: Sí (" + encodeURIComponent(hPlast) + ", " + encodeURIComponent(hGrosor) + ", " + encodeURIComponent(hTamano) + ")%0A";
+        } else {
+            mensaje += "- Horario: No%0A";
         }
+
+        var selectAsig = card.querySelector('.agenda-incluye-asig');
+        if (selectAsig.value === "Sí") {
+            var numAsig = card.querySelector('.asig-num').value;
+            var nomAsig = card.querySelector('.asig-nombres').value || "No especificadas";
+            var agujeros = card.querySelector('.asig-agujeros').value;
+            mensaje += "- Portadas Asignaturas: " + numAsig + " ud (" + encodeURIComponent(nomAsig) + " - " + encodeURIComponent(agujeros) + ")%0A";
+        } else {
+            mensaje += "- Portadas Asignaturas: No%0A";
+        }
+
+        // --- RECOGIDA DE LAS NUEVAS PREGUNTAS DE DISEÑO ---
+        var dueno = (card.querySelector('.agenda-dueno') && card.querySelector('.agenda-dueno').value) || "No indicado";
+        
+        var estiloElem = card.querySelector('.agenda-estilo');
+        var estilo = estiloElem ? estiloElem.value : "";
+        var estiloOtro = (card.querySelector('.agenda-estilo-otro') && card.querySelector('.agenda-estilo-otro').value) || "";
+        if (estilo.includes("Otro") && estiloOtro) {
+            estilo = "Otro: " + estiloOtro;
+        }
+
+        var seccionesExtra = (card.querySelector('.agenda-secciones-extra') && card.querySelector('.agenda-secciones-extra').value) || "Ninguna";
+        var ocupacion = (card.querySelector('.agenda-ocupacion') && card.querySelector('.agenda-ocupacion').value) || "No indicada";
+        var profesion = (card.querySelector('.agenda-profesion') && card.querySelector('.agenda-profesion').value) || "No especificada";
+        var colores = (card.querySelector('.agenda-colores') && card.querySelector('.agenda-colores').value) || "No especificado";
+        var hobbys = (card.querySelector('.agenda-hobbys') && card.querySelector('.agenda-hobbys').value) || "No especificado";
+        var uso = (card.querySelector('.agenda-uso') && card.querySelector('.agenda-uso').value) || "No especificado";
+
+        mensaje += "🎨 *Diseño:*%0A" +
+                   "  • Nombre/Texto: " + encodeURIComponent(dueno) + "%0A" +
+                   "  • Estilo: " + encodeURIComponent(estilo) + "%0A" +
+                   "  • Secciones extra: " + encodeURIComponent(seccionesExtra) + "%0A" +
+                   "  • Situación: " + encodeURIComponent(ocupacion) + " (" + encodeURIComponent(profesion) + ")%0A" +
+                   "  • Colores: " + encodeURIComponent(colores) + "%0A" +
+                   "  • Hobbys: " + encodeURIComponent(hobbys) + "%0A" +
+                   "  • Uso principal: " + encodeURIComponent(uso) + "%0A%0A";
+    });
+
+    var pago = document.querySelector('input[name="pago"]:checked').value;
+    var entrega = document.querySelector('input[name="entrega"]:checked').value;
+    var precioFinal = document.getElementById('precioTotal').innerText + "€";
+
+    mensaje += "💳 *Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
+               "🚚 *Entrega:* " + encodeURIComponent(entrega) + "%0A" +
+               "💰 *PRECIO TOTAL:* " + encodeURIComponent(precioFinal);
+
+    window.open("https://wa.me/" + miTelefono + "?text=" + mensaje, '_blank');
+}
     </script>
 
 </body>
