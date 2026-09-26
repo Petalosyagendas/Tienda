@@ -318,577 +318,578 @@
 
     <div class="container">
 
-        <!-- SECCIÓN SOBRE MÍ -->
-        <section id="sobre-mi">
-            <h2>Conóceme</h2>
-            <div class="sobre-mi-container">
-                <img src="logo.png" alt="Mi Foto" class="sobre-mi-foto">
-                <div class="sobre-mi-texto" style="text-align: justify;">
-                    <p>¡Hola! Soy Alanis, la persona, las manos y la ilusión que está detrás de <strong>Pétalos y Agenda</strong>.</p>
-                    <p>Tener una discapacidad física me ha enseñado a adaptar el mundo a mis necesidades, y así nació Pétalos y Agenda: por la frustración de no encontrar una agenda perfecta, adaptada 100% a la vida real y sin hojas inútiles. Empezó como un diseño propio para clase y, tras el entusiasmo de mis compañeras, se convirtió en este proyecto.</p>                    
-                    <p>Combinamos el mimo del detalle en cada diseño (cada pétalo) con la organización que necesitas en tu rutina (agenda). Maquetamos y personalizamos cada portada y sección para que tengas, por fin, la agenda que de verdad encaja contigo.</p>
-                    <p>¡Gracias por formar parte de nuestra historia!</p>
-                    <p>¡Bienvenid@ a Pétalos y Agenda! 📖✨</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN FORMULARIO DE PEDIDOS -->
-        <section id="personalizar">
-            <h2>Configura tu Pedido</h2>
-            <form id="orderForm" onsubmit="event.preventDefault(); enviarPorWhatsApp();">
-                
-                <div class="form-group">
-                    <label for="nombre">Nombre Completo:</label>
-                    <input type="text" id="nombre" placeholder="Tu nombre" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="fecha">¿A partir de qué día quieres tus agendas?</label>
-                    <input type="date" id="fecha" onchange="validarFechaOcupada()" required>
-                    <small style="color: #8A8A8A; display: block; margin-top: 0.3rem;">* Se requiere un mínimo de 4 días desde hoy para el diseño.</small>
-                </div>
-
-                <!-- CONTENEDOR DONDE SE AÑADEN LAS AGENDAS -->
-                <div id="contenedor_agendas"></div>
-
-                <button type="button" class="btn-anadir" onclick="agregarBloqueAgenda()">➕ Añadir otra agenda al pedido</button>
-
-                <div class="form-group">
-                    <label>Método de pago:</label>
-                    <div class="radio-group" style="flex-direction: row;">
-                        <label class="radio-option"><input type="radio" name="pago" value="Bizum" checked> Bizum</label>
-                        <label class="radio-option"><input type="radio" name="pago" value="Tarjeta"> Tarjeta</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Método de entrega:</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="entrega" value="Envío a domicilio" checked onchange="actualizarPrecio()"> 
-                            Envío a domicilio — 3,89 €
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="entrega" value="Recoger" onchange="actualizarPrecio()"> 
-                            Recoger en mano (Gratis)
-                        </label>
-                    </div>
-                    <small style="color: #6A6A6A; display: block; margin-top: 0.5rem; background: #F3E1E4; padding: 0.6rem; border-radius: 8px;">
-                        ✨ <strong>¡ENVÍO GRATIS!</strong> A partir de 3 agendas o comprando agenda + pack completo (agenda + marcapáginas + horario + portadas).
-                    </small>
-                </div>
-
-                <div class="precio-box">
-                    Precio total estimado: <span id="precioTotal">26,89</span>€
-                    <div class="desglose-precio" id="desgloseTexto">
-                        <!-- Se genera dinámicamente con JS -->
-                    </div>
-                    <div id="mensajeEnvioGratis" style="font-size: 0.85rem; color: #2E7D32; font-weight: normal; margin-top: 0.5rem; display: none;">
-                        🎉 ¡Enhorabuena! Tienes Envío Gratuito aplicado.
-                    </div>
-                </div>
-
-                <button type="submit">Enviar diseño por WhatsApp 💬</button>
-            </form>
-        </section>
-
-        <!-- SECCIÓN GALERÍA -->
-        <section id="portfolio">
-            <h2>Agendas que ya he hecho</h2>
-            <p style="color: #7A7A7A;">Inspírate con algunos de mis trabajos anteriores:</p>
-            <div class="galeria">
-                <img src="agenda_1.jpg" alt="Mi Agenda Personalizada 1" class="galeria-img">
-                <img src="agenda_2.jpg" alt="Mi Agenda Personalizada 2" class="galeria-img">
-                <img src="agenda_3.jpg" alt="Mi Agenda Personalizada 3" class="galeria-img">
-            </div>
-        </section>
-
-        <!-- SECCIÓN DE OPINIONES -->
-        <section id="opiniones">
-            <h2>Opiniones de nuestras clientas</h2>
-            <div class="comentarios-container">
-                <div class="comentario-card">
-                    <div class="comentario-header">
-                        <span class="comentario-nombre">Iris</span>
-                        <span class="comentario-estrellas">★★★★★</span>
-                    </div>
-                    <p class="comentario-texto">"Me encanta de la manera que está organizada y como están reflejados mis gustos a lo largo de la agenda. En definitiva es una agenda preciosa que estoy segura que voy a aprovechar para organizarme. Muchísimas graciass"</p>
-                </div>
-
-                <div class="comentario-card">
-                    <div class="comentario-header">
-                        <span class="comentario-nombre">Toñi</span>
-                        <span class="comentario-estrellas">★★★★★</span>
-                    </div>
-                    <p class="comentario-texto">"Es preciosa y muy especial Me encanta"</p>
-                </div>
-
-                <div class="comentario-card">
-                    <div class="comentario-header">
-                        <span class="comentario-nombre">Klabel</span>
-                        <span class="comentario-estrellas">★★★★★</span>
-                    </div>
-                    <p class="comentario-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
-                </div>
-
-                <div class="comentario-card">
-                    <div class="comentario-header">
-                        <span class="comentario-nombre">Nabila</span>
-                        <span class="comentario-estrellas">★★★★★</span>
-                    </div>
-                    <p class="comentario-texto">"Un trabajo muy bonito"</p>
-                </div>
-
-                <div class="comentario-card">
-                    <div class="comentario-header">
-                        <span class="comentario-nombre">Mise</span>
-                        <span class="comentario-estrellas">★★★★★</span>
-                    </div>
-                    <p class="comentario-texto">"Es muy original, bonita y organizada. Esta genial como regalo, me encanta."</p>
-                </div>
-            </div>
-        </section>
-
+       <!-- SECCIÓN SOBRE MÍ -->
+<section id="sobre-mi">
+    <h2>Conóceme</h2>
+    <div class="sobre-mi-container">
+        <img src="logo.png" alt="Mi Foto" class="sobre-mi-foto">
+        <div class="sobre-mi-texto" style="text-align: justify;">
+            <p>¡Hola! Soy Alanis, la persona, las manos y la ilusión que está detrás de <strong>Pétalos y Agenda</strong>.</p>
+            <p>Tener una discapacidad física me ha enseñado a adaptar el mundo a mis necesidades, y así nació Pétalos y Agenda: por la frustración de no encontrar una agenda perfecta, adaptada 100% a la vida real y sin hojas inútiles. Empezó como un diseño propio para clase y, tras el entusiasmo de mis compañeras, se convirtió en este proyecto.</p>                    
+            <p>Combinamos el mimo del detalle en cada diseño (cada pétalo) con la organización que necesitas en tu rutina (agenda). Maquetamos y personalizamos cada portada y sección para que tengas, por fin, la agenda que de verdad encaja contigo.</p>
+            <p>¡Gracias por formar parte de nuestra historia!</p>
+            <p>¡Bienvenid@ a Pétalos y Agenda! 📖✨</p>
+        </div>
     </div>
+</section>
 
-    <!-- BOTÓN FLOTANTE VERDE DE WHATSAPP -->
-    <a href="https://wa.me/34672707366?text=%C2%A1Hola%21%20Te%20escribo%20desde%20la%20web%20para%20pasarte%20unas%20fotos%20para%20mi%20agenda." class="whatsapp-btn" target="_blank">
-        💬 Enviar Fotos por WhatsApp
-    </a>
-
-    <script>
-        var entregasReservadas = ["2026-06-25"];
-        var contadorAgendas = 0;
-
-        // Tabla de precios según formato y gramaje
-        var preciosPapel = {
-            "Semana Vista": {
-                "80gr": 22.00,
-                "90gr": 27.00,
-                "100gr": 30.00
-            },
-            "2 Días por Vista": {
-                "80gr": 32.00,
-                "90gr": 38.50,
-                "100gr": 42.00
-            },
-            "1 Día por Vista": {
-                "80gr": 42.00,
-                "90gr": 50.00,
-                "100gr": 58.00
-            }
-        };
-
-        window.addEventListener('DOMContentLoaded', () => {
-            var hoy = new Date();
-            hoy.setDate(hoy.getDate() + 5);
-            var dd = String(hoy.getDate()).padStart(2, '0');
-            var mm = String(hoy.getMonth() + 1).padStart(2, '0');
-            var yyyy = hoy.getFullYear();
-
-            document.getElementById('fecha').setAttribute('min', yyyy + '-' + mm + '-' + dd);
-            
-            // Creamos la primera agenda por defecto al cargar
-            agregarBloqueAgenda();
-        });
-
-        function validarFechaOcupada() {
-            var fechaStr = document.getElementById('fecha').value;
-            if(!fechaStr) return;
-
-            var fechaSeleccionada = new Date(fechaStr);
-            fechaSeleccionada.setHours(0,0,0,0);
-
-            for (var i = 0; i < entregasReservadas.length; i++) {
-                var fechaEntrega = new Date(entregasReservadas[i]);
-                fechaEntrega.setHours(0,0,0,0);
-                var inicioBloqueo = new Date(fechaEntrega);
-                inicioBloqueo.setDate(fechaEntrega.getDate() - 4);
-
-                if (fechaSeleccionada >= inicioBloqueo && fechaSeleccionada <= fechaEntrega) {
-                    alert("¡Lo siento! En esas fechas estaré diseñando otra agenda reservada previamente. Por favor, selecciona un día diferente.");
-                    document.getElementById('fecha').value = "";
-                    break;
-                }
-            }
-        }
-
-        function actualizarOpcionesPapel(id) {
-            var card = document.getElementById(`agenda_card_${id}`);
-            var formato = card.querySelector('.agenda-formato').value;
-            var selectPapel = card.querySelector('.agenda-papel');
-            var gramajeActual = selectPapel.value || "80gr";
-
-            var precios = preciosPapel[formato];
-
-            selectPapel.innerHTML = `
-                <option value="80gr" ${gramajeActual === '80gr' ? 'selected' : ''}>80 gr — ${precios['80gr'].toFixed(2).replace('.', ',')}€</option>
-                <option value="90gr" ${gramajeActual === '90gr' ? 'selected' : ''}>90 gr — ${precios['90gr'].toFixed(2).replace('.', ',')}€</option>
-                <option value="100gr" ${gramajeActual === '100gr' ? 'selected' : ''}>100 gr — ${precios['100gr'].toFixed(2).replace('.', ',')}€</option>
-            `;
-
-            actualizarPrecio();
-        }
-
-        function agregarBloqueAgenda() {
-            contadorAgendas++;
-            var id = contadorAgendas;
-
-            var html = `
-            <div class="card-agenda" id="agenda_card_${id}">
-                <h3>
-                    <span>Agenda #${id}</span>
-                    ${id > 1 ? `<button type="button" class="btn-eliminar" onclick="eliminarAgenda(${id})">Eliminar</button>` : ''}
-                </h3>
-
-               <div class="form-group">
-                    <label>Formato de la agenda:</label>
-                    <select class="agenda-formato" onchange="actualizarOpcionesPapel(${id})">
-                        <option value="Semana Vista">Semana Vista</option>
-                        <option value="2 Días por Vista">2 Días por Vista</option>
-                        <option value="1 Día por Vista">1 Día por Vista</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Grosor del papel:</label>
-                    <select class="agenda-papel" onchange="actualizarPrecio()">
-                        <option value="80gr">80 gr — 22,00€</option>
-                        <option value="90gr">90 gr — 27€</option>
-                        <option value="100gr">100 gr — 30,00€</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Tipo de anillas:</label>
-                    <select class="agenda-anillas" onchange="actualizarPrecio()">
-                        <option value="Transparentes" data-extra="0.00">Anillas estándar (Transparentes) — Sin coste extra</option>
-                        <option value="De color" data-extra="0.50">Anillas de color (Rosa, azul, lila...) — +0,50€</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>¿Añadir marcapáginas a juego?:</label>
-                    <select class="agenda-marcapaginas" onchange="actualizarPrecio()">
-                        <option value="No" data-extra="0.00">No, gracias</option>
-                        <option value="Sí" data-extra="6.50">Sí, añadir marcapáginas personalizado — +6,50€</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>¿Añadir Horario personalizado?:</label>
-                    <select class="agenda-incluye-horario" onchange="toggleSubseccion(this, 'horario_${id}')">
-                        <option value="No" data-extra="0.00">No, sin horario</option>
-                        <option value="Sí" data-extra="1.50">Sí, añadir horario personalizado — +1,50€</option>
-                    </select>
-                </div>
-
-                <div class="subseccion-opciones" id="subseccion_horario_${id}">
-                    <h4 style="margin-top:0; color:#6A6A6A;">Opciones de Horario</h4>
-                    <div class="form-group">
-                        <label>Plastificado:</label>
-                        <select class="horario-plastificado">
-                            <option value="Brillo">Plastificado Brillo</option>
-                            <option value="Mate">Plastificado Mate</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Grosor del papel:</label>
-                        <select class="horario-grosor">
-                            <option value="90g">90g</option>
-                            <option value="100g">100g</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Tamaño del papel:</label>
-                        <select class="horario-tamano">
-                            <option value="A4">A4</option>
-                            <option value="A5">A5</option>
-                            <option value="A3">A3</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>¿Añadir Portadas de Asignaturas / Separadores?:</label>
-                    <select class="agenda-incluye-asig" onchange="toggleSubseccion(this, 'asig_${id}')">
-                        <option value="No">No, sin portadas</option>
-                        <option value="Sí">Sí, añadir portadas para asignaturas (1,00€/ud)</option>
-                    </select>
-                </div>
-
-                <div class="subseccion-opciones" id="subseccion_asig_${id}">
-                    <h4 style="margin-top:0; color:#6A6A6A;">Opciones de Portadas de Asignaturas</h4>
-                    <div class="form-group">
-                        <label>Número de portadas (1,00€/ud):</label>
-                        <input type="number" class="asig-num" value="1" min="1" max="20" onchange="actualizarPrecio()" oninput="actualizarPrecio()">
-                    </div>
-                    <div class="form-group">
-                        <label>Nombres de las asignaturas:</label>
-                        <input type="text" class="asig-nombres" placeholder="Ej: Lengua, Mates, Historia...">
-                    </div>
-                    <div class="form-group">
-                        <label>Número de agujeros:</label>
-                        <select class="asig-agujeros">
-                            <option value="2 agujeros">2 agujeros</option>
-                            <option value="4 agujeros">4 agujeros</option>
-                        </select>
-                    </div>
-                </div>
-
-             <!-- FORMULARIO DE DISEÑO -->
-<div class="form-group" style="margin-top:1.5rem; padding:1rem; background:#FAF7F7; border-radius:8px; border:1px solid #EAEAEA;">
-    <h4 style="margin-top:0; color:#333;">Formulario para el diseño de la agenda</h4>
-
-    <div class="form-group">
-        <label>¿Nombre del dueño de la agenda?</label>
-        <input type="text" class="agenda-dueno" placeholder="Escribe el nombre o texto para la portada">
-    </div>
-
-    <div class="form-group">
-        <label>¿Qué estilo o temática te gustaría para el diseño de tu portada?</label>
-        <select class="agenda-estilo">
-            <option value="🌸 Pastel / Floral">🌸 Pastel / Floral</option>
-            <option value="⭐ Anime / Ilustración">⭐ Anime / Ilustración</option>
-            <option value="🏎️ Coches y Motor">🏎️ Coches y Motor</option>
-            <option value="✨ Minimalista / Elegante">✨ Minimalista / Elegante</option>
-            <option value="🖤 Gótico / Oscuro">🖤 Gótico / Oscuro</option>
-            <option value="✍️ Otro (especificar abajo)">✍️ Otro (especificar abajo)</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Si has elegido "Otro", especifícalo aquí:</label>
-        <input type="text" class="agenda-estilo-otro" placeholder="Describe la temática que quieres">
-    </div>
-
-    <div class="form-group">
-        <label>¿Qué secciones extra quieres incluir en tu agenda?</label>
-        <textarea class="agenda-secciones-extra" rows="2" placeholder="Ej: Control de plazos, habit tracker, horario, presupuesto..."></textarea>
-    </div>
-
-    <div class="form-group">
-        <label>¿Estudias o trabajas o ambas?</label>
-        <select class="agenda-ocupacion">
-            <option value="Estudio">Estudio</option>
-            <option value="Trabajo">Trabajo</option>
-            <option value="Ambas">Ambas (Estudio y Trabajo)</option>
-            <option value="Ninguna">Ninguna</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Si estudias o trabajas, ¿de qué campo, carrera o profesión es?</label>
-        <input type="text" class="agenda-profesion" placeholder="Ej: Abogacía, Oposiciones, Magisterio, Administración...">
-    </div>
-
-    <div class="form-group">
-        <label>¿Cuál es tu color o paleta de colores favorita?</label>
-        <input type="text" class="agenda-colores" placeholder="Ej: Tonos pastel, verde agua, morado y dorado...">
-    </div>
-
-    <div class="form-group">
-        <label>¿Cuáles son tus hobbys o aficiones?</label>
-        <small style="color: #6A6A6A; display: block; margin-bottom: 0.3rem;">Cuéntame qué te gusta hacer en tu tiempo libre.</small>
-        <textarea class="agenda-hobbys" rows="2" placeholder="Ej: Leer, la hípica, jardinería, manualidades..."></textarea>
-    </div>
-
-    <div class="form-group">
-        <label>¿Para qué uso principal vas a querer la agenda?</label>
-        <textarea class="agenda-uso" rows="2" placeholder="Ej: Para organizar turnos de trabajo, llevar la oposición al día, tareas del hogar y personales..."></textarea>
-    </div>
-</div>`;
-
-            document.getElementById('contenedor_agendas').insertAdjacentHTML('beforeend', html);
-            actualizarPrecio();
-        }
-
-        function eliminarAgenda(id) {
-            var card = document.getElementById(`agenda_card_${id}`);
-            if (card) {
-                card.remove();
-                actualizarPrecio();
-            }
-        }
-
-        function toggleSubseccion(selectElem, tipo) {
-            var subseccion = document.getElementById(`subseccion_${tipo}`);
-            if (selectElem.value === "Sí") {
-                subseccion.style.display = "block";
-            } else {
-                subseccion.style.display = "none";
-            }
-            actualizarPrecio();
-        }
-
-        function actualizarPrecio() {
-            var cards = document.querySelectorAll('.card-agenda');
-            var totalAgendas = cards.length;
-            var sumaAgendas = 0;
-            var tienePackCompletoAlguna = false;
-            var desgloseHTML = "";
-
-            cards.forEach((card, index) => {
-                var numAgenda = index + 1;
-                
-                var formato = card.querySelector('.agenda-formato').value;
-                var selectPapel = card.querySelector('.agenda-papel');
-                var gramaje = selectPapel.value;
-
-                var pPapel = preciosPapel[formato][gramaje];
-
-                var selectAnillas = card.querySelector('.agenda-anillas');
-                var pAnillas = parseFloat(selectAnillas.options[selectAnillas.selectedIndex].getAttribute('data-extra'));
-
-                var selectMarca = card.querySelector('.agenda-marcapaginas');
-                var pMarca = parseFloat(selectMarca.options[selectMarca.selectedIndex].getAttribute('data-extra'));
-
-                var selectHorario = card.querySelector('.agenda-incluye-horario');
-                var pHorario = parseFloat(selectHorario.options[selectHorario.selectedIndex].getAttribute('data-extra'));
-
-                var selectAsig = card.querySelector('.agenda-incluye-asig');
-                var pAsig = 0;
-                if (selectAsig.value === "Sí") {
-                    var numAsig = parseInt(card.querySelector('.asig-num').value) || 1;
-                    pAsig = numAsig * 1.00;
-                }
-
-                var subtotalCard = pPapel + pAnillas + pMarca + pHorario + pAsig;
-                sumaAgendas += subtotalCard;
-
-                // Si lleva marcapáginas + horario + asignaturas
-                if (selectMarca.value === "Sí" && selectHorario.value === "Sí" && selectAsig.value === "Sí") {
-                    tienePackCompletoAlguna = true;
-                }
-
-                desgloseHTML += `• Agenda #${numAgenda} (${formato}): <strong>${subtotalCard.toFixed(2).replace('.', ',')}€</strong><br>`;
-            });
-
-            // LÓGICA DE GASTOS DE ENVÍO
-            var metodoEntregaElem = document.querySelector('input[name="entrega"]:checked');
-            var metodoEntrega = metodoEntregaElem ? metodoEntregaElem.value : "Envío a domicilio";
-            var costeEnvio = 0;
-
-            if (metodoEntrega === "Envío a domicilio") {
-                if (totalAgendas >= 3 || tienePackCompletoAlguna) {
-                    costeEnvio = 0;
-                    document.getElementById('mensajeEnvioGratis').style.display = 'block';
-                } else {
-                    costeEnvio = 3.89;
-                    document.getElementById('mensajeEnvioGratis').style.display = 'none';
-                }
-            } else {
-                document.getElementById('mensajeEnvioGratis').style.display = 'none';
-            }
-
-            var totalFinal = sumaAgendas + costeEnvio;
-
-            if (costeEnvio > 0) {
-                desgloseHTML += `• Envío a domicilio: <strong>${costeEnvio.toFixed(2).replace('.', ',')}€</strong>`;
-            } else if (metodoEntrega === "Envío a domicilio") {
-                desgloseHTML += `• Envío a domicilio: <strong>GRATIS</strong>`;
-            } else {
-                desgloseHTML += `• Recogida en mano: <strong>0,00€</strong>`;
-            }
-
-            document.getElementById('desgloseTexto').innerHTML = desgloseHTML;
-            document.getElementById('precioTotal').innerText = totalFinal.toFixed(2).replace('.', ',');
-        }
-
-       function enviarPorWhatsApp() {
-    var miTelefono = "34672707366";
-    var nombre = document.getElementById('nombre').value;
-    var fecha = document.getElementById('fecha').value;
-
-    if(!nombre || !fecha) {
-        alert("Por favor, rellena tu nombre y la fecha de inicio.");
-        return;
-    }
-
-    var cards = document.querySelectorAll('.card-agenda');
-    if(cards.length === 0) {
-        alert("Debes añadir al menos una agenda a tu pedido.");
-        return;
-    }
-
-    var fechaFormateada = fecha.split('-').reverse().join('/');
-    var mensaje = "¡Hola! He preparado un pedido en la web:%0A%0A" +
-                  "👤 *Cliente:* " + encodeURIComponent(nombre) + "%0A" +
-                  "📅 *Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
-                  "📦 *Cantidad total de agendas:* " + cards.length + "%0A%0A" +
-                  "--- *DETALLE DEL PEDIDO* ---%0A%0A";
-
-    cards.forEach((card, index) => {
-        var num = index + 1;
-        var formato = card.querySelector('.agenda-formato').value;
-        var papel = card.querySelector('.agenda-papel').value;
-        var anillas = card.querySelector('.agenda-anillas').value;
-        var marcapaginas = card.querySelector('.agenda-marcapaginas').value;
-
-        mensaje += "*AGENDA #" + num + " (" + encodeURIComponent(formato) + ")*%0A" +
-                   "- Papel: " + encodeURIComponent(papel) + "%0A" +
-                   "- Anillas: " + encodeURIComponent(anillas) + "%0A" +
-                   "- Marcapáginas: " + encodeURIComponent(marcapaginas) + "%0A";
-
-        var selectHorario = card.querySelector('.agenda-incluye-horario');
-        if (selectHorario.value === "Sí") {
-            var hPlast = card.querySelector('.horario-plastificado').value;
-            var hGrosor = card.querySelector('.horario-grosor').value;
-            var hTamano = card.querySelector('.horario-tamano').value;
-            mensaje += "- Horario: Sí (" + encodeURIComponent(hPlast) + ", " + encodeURIComponent(hGrosor) + ", " + encodeURIComponent(hTamano) + ")%0A";
-        } else {
-            mensaje += "- Horario: No%0A";
-        }
-
-        var selectAsig = card.querySelector('.agenda-incluye-asig');
-        if (selectAsig.value === "Sí") {
-            var numAsig = card.querySelector('.asig-num').value;
-            var nomAsig = card.querySelector('.asig-nombres').value || "No especificadas";
-            var agujeros = card.querySelector('.asig-agujeros').value;
-            mensaje += "- Portadas Asignaturas: " + numAsig + " ud (" + encodeURIComponent(nomAsig) + " - " + encodeURIComponent(agujeros) + ")%0A";
-        } else {
-            mensaje += "- Portadas Asignaturas: No%0A";
-        }
-
-        // --- RECOGIDA DE LAS NUEVAS PREGUNTAS DE DISEÑO ---
-        var dueno = (card.querySelector('.agenda-dueno') && card.querySelector('.agenda-dueno').value) || "No indicado";
+<!-- SECCIÓN FORMULARIO DE PEDIDOS -->
+<section id="personalizar">
+    <h2>Configura tu Pedido</h2>
+    <form id="orderForm" onsubmit="event.preventDefault(); enviarPorWhatsApp();">
         
-        var estiloElem = card.querySelector('.agenda-estilo');
-        var estilo = estiloElem ? estiloElem.value : "";
-        var estiloOtro = (card.querySelector('.agenda-estilo-otro') && card.querySelector('.agenda-estilo-otro').value) || "";
-        if (estilo.includes("Otro") && estiloOtro) {
-            estilo = "Otro: " + estiloOtro;
+        <div class="form-group">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" placeholder="Tu nombre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fecha">¿A partir de qué día quieres tus agendas?</label>
+            <input type="date" id="fecha" onchange="validarFechaOcupada()" required>
+            <small style="color: #8A8A8A; display: block; margin-top: 0.3rem;">* Se requiere un mínimo de 4 días desde hoy para el diseño.</small>
+        </div>
+
+        <!-- CONTENEDOR DONDE SE AÑADEN LAS AGENDAS -->
+        <div id="contenedor_agendas"></div>
+
+        <button type="button" class="btn-anadir" onclick="agregarBloqueAgenda()">➕ Añadir otra agenda al pedido</button>
+
+        <div class="form-group">
+            <label>Método de pago:</label>
+            <div class="radio-group" style="flex-direction: row;">
+                <label class="radio-option"><input type="radio" name="pago" value="Bizum" checked> Bizum</label>
+                <label class="radio-option"><input type="radio" name="pago" value="Tarjeta"> Tarjeta</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Método de entrega:</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="entrega" value="Envío a domicilio" checked onchange="actualizarPrecio()"> 
+                    Envío a domicilio — 3,89 €
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="entrega" value="Recoger" onchange="actualizarPrecio()"> 
+                    Recoger en mano (Gratis)
+                </label>
+            </div>
+            <small style="color: #6A6A6A; display: block; margin-top: 0.5rem; background: #F3E1E4; padding: 0.6rem; border-radius: 8px;">
+                ✨ <strong>¡ENVÍO GRATIS!</strong> A partir de 3 agendas o comprando agenda + pack completo (agenda + marcapáginas/journal + horario + portadas).
+            </small>
+        </div>
+
+        <div class="precio-box">
+            Precio total estimado: <span id="precioTotal">26,89</span>€
+            <div class="desglose-precio" id="desgloseTexto">
+                <!-- Se genera dinámicamente con JS -->
+            </div>
+            <div id="mensajeEnvioGratis" style="font-size: 0.85rem; color: #2E7D32; font-weight: normal; margin-top: 0.5rem; display: none;">
+                🎉 ¡Enhorabuena! Tienes Envío Gratuito aplicado.
+            </div>
+        </div>
+
+        <button type="submit">Enviar diseño por WhatsApp 💬</button>
+    </form>
+</section>
+
+<!-- SECCIÓN GALERÍA -->
+<section id="portfolio">
+    <h2>Agendas que ya he hecho</h2>
+    <p style="color: #7A7A7A;">Inspírate con algunos de mis trabajos anteriores:</p>
+    <div class="galeria">
+        <img src="agenda_1.jpg" alt="Mi Agenda Personalizada 1" class="galeria-img">
+        <img src="agenda_2.jpg" alt="Mi Agenda Personalizada 2" class="galeria-img">
+        <img src="agenda_3.jpg" alt="Mi Agenda Personalizada 3" class="galeria-img">
+    </div>
+</section>
+
+<!-- SECCIÓN DE OPINIONES -->
+<section id="opiniones">
+    <h2>Opiniones de nuestras clientas</h2>
+    <div class="comentarios-container">
+        <div class="comentario-card">
+            <div class="comentario-header">
+                <span class="comentario-nombre">Iris</span>
+                <span class="comentario-estrellas">★★★★★</span>
+            </div>
+            <p class="comentario-texto">"Me encanta de la manera que está organizada y como están reflejados mis gustos a lo largo de la agenda. En definitiva es una agenda preciosa que estoy segura que voy a aprovechar para organizarme. Muchísimas graciass"</p>
+        </div>
+
+        <div class="comentario-card">
+            <div class="comentario-header">
+                <span class="comentario-nombre">Toñi</span>
+                <span class="comentario-estrellas">★★★★★</span>
+            </div>
+            <p class="comentario-texto">"Es preciosa y muy especial Me encanta"</p>
+        </div>
+
+        <div class="comentario-card">
+            <div class="comentario-header">
+                <span class="comentario-nombre">Klabel</span>
+                <span class="comentario-estrellas">★★★★★</span>
+            </div>
+            <p class="comentario-texto">"Me a gustado mucho super original ideal incluso para regalar"</p>
+        </div>
+
+        <div class="comentario-card">
+            <div class="comentario-header">
+                <span class="comentario-nombre">Nabila</span>
+                <span class="comentario-estrellas">★★★★★</span>
+            </div>
+            <p class="comentario-texto">"Un trabajo muy bonito"</p>
+        </div>
+
+        <div class="comentario-card">
+            <div class="comentario-header">
+                <span class="comentario-nombre">Mise</span>
+                <span class="comentario-estrellas">★★★★★</span>
+            </div>
+            <p class="comentario-texto">"Es muy original, bonita y organizada. Esta genial como regalo, me encanta."</p>
+        </div>
+    </div>
+</section>
+
+</div>
+
+<!-- BOTÓN FLOTANTE VERDE DE WHATSAPP -->
+<a href="https://wa.me/34672707366?text=%C2%A1Hola%21%20Te%20escribo%20desde%20la%20web%20para%20pasarte%20unas%20fotos%20para%20mi%20agenda." class="whatsapp-btn" target="_blank">
+    💬 Enviar Fotos por WhatsApp
+</a>
+
+<script>
+    var entregasReservadas = ["2026-06-25"];
+    var contadorAgendas = 0;
+
+    // Tabla de precios según formato y gramaje
+    var preciosPapel = {
+        "Semana Vista": {
+            "80gr": 22.00,
+            "90gr": 27.00,
+            "100gr": 30.00
+        },
+        "2 Días por Vista": {
+            "80gr": 32.00,
+            "90gr": 38.50,
+            "100gr": 42.00
+        },
+        "1 Día por Vista": {
+            "80gr": 42.00,
+            "90gr": 50.00,
+            "100gr": 58.00
         }
+    };
 
-        var seccionesExtra = (card.querySelector('.agenda-secciones-extra') && card.querySelector('.agenda-secciones-extra').value) || "Ninguna";
-        var ocupacion = (card.querySelector('.agenda-ocupacion') && card.querySelector('.agenda-ocupacion').value) || "No indicada";
-        var profesion = (card.querySelector('.agenda-profesion') && card.querySelector('.agenda-profesion').value) || "No especificada";
-        var colores = (card.querySelector('.agenda-colores') && card.querySelector('.agenda-colores').value) || "No especificado";
-        var hobbys = (card.querySelector('.agenda-hobbys') && card.querySelector('.agenda-hobbys').value) || "No especificado";
-        var uso = (card.querySelector('.agenda-uso') && card.querySelector('.agenda-uso').value) || "No especificado";
+    window.addEventListener('DOMContentLoaded', () => {
+        var hoy = new Date();
+        hoy.setDate(hoy.getDate() + 5);
+        var dd = String(hoy.getDate()).padStart(2, '0');
+        var mm = String(hoy.getMonth() + 1).padStart(2, '0');
+        var yyyy = hoy.getFullYear();
 
-        mensaje += "🎨 *Diseño:*%0A" +
-                   "  • Nombre/Texto: " + encodeURIComponent(dueno) + "%0A" +
-                   "  • Estilo: " + encodeURIComponent(estilo) + "%0A" +
-                   "  • Secciones extra: " + encodeURIComponent(seccionesExtra) + "%0A" +
-                   "  • Situación: " + encodeURIComponent(ocupacion) + " (" + encodeURIComponent(profesion) + ")%0A" +
-                   "  • Colores: " + encodeURIComponent(colores) + "%0A" +
-                   "  • Hobbys: " + encodeURIComponent(hobbys) + "%0A" +
-                   "  • Uso principal: " + encodeURIComponent(uso) + "%0A%0A";
+        document.getElementById('fecha').setAttribute('min', yyyy + '-' + mm + '-' + dd);
+        
+        // Creamos la primera agenda por defecto al cargar
+        agregarBloqueAgenda();
     });
 
-    var pago = document.querySelector('input[name="pago"]:checked').value;
-    var entrega = document.querySelector('input[name="entrega"]:checked').value;
-    var precioFinal = document.getElementById('precioTotal').innerText + "€";
+    function validarFechaOcupada() {
+        var fechaStr = document.getElementById('fecha').value;
+        if(!fechaStr) return;
 
-    mensaje += "💳 *Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
-               "🚚 *Entrega:* " + encodeURIComponent(entrega) + "%0A" +
-               "💰 *PRECIO TOTAL:* " + encodeURIComponent(precioFinal);
+        var fechaSeleccionada = new Date(fechaStr);
+        fechaSeleccionada.setHours(0,0,0,0);
 
-    window.open("https://wa.me/" + miTelefono + "?text=" + mensaje, '_blank');
-}
-    </script>
+        for (var i = 0; i < entregasReservadas.length; i++) {
+            var fechaEntrega = new Date(entregasReservadas[i]);
+            fechaEntrega.setHours(0,0,0,0);
+            var inicioBloqueo = new Date(fechaEntrega);
+            inicioBloqueo.setDate(fechaEntrega.getDate() - 4);
 
+            if (fechaSeleccionada >= inicioBloqueo && fechaSeleccionada <= fechaEntrega) {
+                alert("¡Lo siento! En esas fechas estaré diseñando otra agenda reservada previamente. Por favor, selecciona un día diferente.");
+                document.getElementById('fecha').value = "";
+                break;
+            }
+        }
+    }
+
+    function actualizarOpcionesPapel(id) {
+        var card = document.getElementById(`agenda_card_${id}`);
+        var formato = card.querySelector('.agenda-formato').value;
+        var selectPapel = card.querySelector('.agenda-papel');
+        var gramajeActual = selectPapel.value || "80gr";
+
+        var precios = preciosPapel[formato];
+
+        selectPapel.innerHTML = `
+            <option value="80gr" ${gramajeActual === '80gr' ? 'selected' : ''}>80 gr — ${precios['80gr'].toFixed(2).replace('.', ',')}€</option>
+            <option value="90gr" ${gramajeActual === '90gr' ? 'selected' : ''}>90 gr — ${precios['90gr'].toFixed(2).replace('.', ',')}€</option>
+            <option value="100gr" ${gramajeActual === '100gr' ? 'selected' : ''}>100 gr — ${precios['100gr'].toFixed(2).replace('.', ',')}€</option>
+        `;
+
+        actualizarPrecio();
+    }
+
+    function agregarBloqueAgenda() {
+        contadorAgendas++;
+        var id = contadorAgendas;
+
+        var html = `
+        <div class="card-agenda" id="agenda_card_${id}">
+            <h3>
+                <span>Agenda #${id}</span>
+                ${id > 1 ? `<button type="button" class="btn-eliminar" onclick="eliminarAgenda(${id})">Eliminar</button>` : ''}
+            </h3>
+
+            <div class="form-group">
+                <label>Formato de la agenda:</label>
+                <select class="agenda-formato" onchange="actualizarOpcionesPapel(${id})">
+                    <option value="Semana Vista">Semana Vista</option>
+                    <option value="2 Días por Vista">2 Días por Vista</option>
+                    <option value="1 Día por Vista">1 Día por Vista</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Grosor del papel:</label>
+                <select class="agenda-papel" onchange="actualizarPrecio()">
+                    <option value="80gr">80 gr — 22,00€</option>
+                    <option value="90gr">90 gr — 27€</option>
+                    <option value="100gr">100 gr — 30,00€</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Tipo de anillas:</label>
+                <select class="agenda-anillas" onchange="actualizarPrecio()">
+                    <option value="Transparentes" data-extra="0.00">Anillas estándar (Transparentes) — Sin coste extra</option>
+                    <option value="De color" data-extra="0.50">Anillas de color (Rosa, azul, lila...) — +0,50€</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>¿Añadir complemento extra?:</label>
+                <select class="agenda-marcapaginas" onchange="actualizarPrecio()">
+                    <option value="No" data-extra="0.00">No, gracias</option>
+                    <option value="Marcapáginas" data-extra="6.50">Sí, añadir marcapáginas personalizado — +6,50€</option>
+                    <option value="My Reading Journal" data-extra="6.50">Sí, añadir My Reading Journal 📖 — +6,50€</option>
+                    <option value="Ambos" data-extra="13.00">Sí, añadir Marcapáginas + My Reading Journal 📖 — +13,00€</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>¿Añadir Horario personalizado?:</label>
+                <select class="agenda-incluye-horario" onchange="toggleSubseccion(this, 'horario_${id}')">
+                    <option value="No" data-extra="0.00">No, sin horario</option>
+                    <option value="Sí" data-extra="1.50">Sí, añadir horario personalizado — +1,50€</option>
+                </select>
+            </div>
+
+            <div class="subseccion-opciones" id="subseccion_horario_${id}">
+                <h4 style="margin-top:0; color:#6A6A6A;">Opciones de Horario</h4>
+                <div class="form-group">
+                    <label>Plastificado:</label>
+                    <select class="horario-plastificado">
+                        <option value="Brillo">Plastificado Brillo</option>
+                        <option value="Mate">Plastificado Mate</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Grosor del papel:</label>
+                    <select class="horario-grosor">
+                        <option value="90g">90g</option>
+                        <option value="100g">100g</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tamaño del papel:</label>
+                    <select class="horario-tamano">
+                        <option value="A4">A4</option>
+                        <option value="A5">A5</option>
+                        <option value="A3">A3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>¿Añadir Portadas de Asignaturas / Separadores?:</label>
+                <select class="agenda-incluye-asig" onchange="toggleSubseccion(this, 'asig_${id}')">
+                    <option value="No">No, sin portadas</option>
+                    <option value="Sí">Sí, añadir portadas para asignaturas (1,00€/ud)</option>
+                </select>
+            </div>
+
+            <div class="subseccion-opciones" id="subseccion_asig_${id}">
+                <h4 style="margin-top:0; color:#6A6A6A;">Opciones de Portadas de Asignaturas</h4>
+                <div class="form-group">
+                    <label>Número de portadas (1,00€/ud):</label>
+                    <input type="number" class="asig-num" value="1" min="1" max="20" onchange="actualizarPrecio()" oninput="actualizarPrecio()">
+                </div>
+                <div class="form-group">
+                    <label>Nombres de las asignaturas:</label>
+                    <input type="text" class="asig-nombres" placeholder="Ej: Lengua, Mates, Historia...">
+                </div>
+                <div class="form-group">
+                    <label>Número de agujeros:</label>
+                    <select class="asig-agujeros">
+                        <option value="2 agujeros">2 agujeros</option>
+                        <option value="4 agujeros">4 agujeros</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- FORMULARIO DE DISEÑO -->
+            <div class="form-group" style="margin-top:1.5rem; padding:1rem; background:#FAF7F7; border-radius:8px; border:1px solid #EAEAEA;">
+                <h4 style="margin-top:0; color:#333;">Formulario para el diseño de la agenda</h4>
+
+                <div class="form-group">
+                    <label>¿Nombre del dueño de la agenda?</label>
+                    <input type="text" class="agenda-dueno" placeholder="Escribe el nombre o texto para la portada">
+                </div>
+
+                <div class="form-group">
+                    <label>¿Qué estilo o temática te gustaría para el diseño de tu portada?</label>
+                    <select class="agenda-estilo">
+                        <option value="🌸 Pastel / Floral">🌸 Pastel / Floral</option>
+                        <option value="⭐ Anime / Ilustración">⭐ Anime / Ilustración</option>
+                        <option value="🏎️ Coches y Motor">🏎️ Coches y Motor</option>
+                        <option value="✨ Minimalista / Elegante">✨ Minimalista / Elegante</option>
+                        <option value="🖤 Gótico / Oscuro">🖤 Gótico / Oscuro</option>
+                        <option value="✍️ Otro (especificar abajo)">✍️ Otro (especificar abajo)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Si has elegido "Otro", especifícalo aquí:</label>
+                    <input type="text" class="agenda-estilo-otro" placeholder="Describe la temática que quieres">
+                </div>
+
+                <div class="form-group">
+                    <label>¿Qué secciones extra quieres incluir en tu agenda?</label>
+                    <textarea class="agenda-secciones-extra" rows="2" placeholder="Ej: Control de plazos, habit tracker, horario, presupuesto..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>¿Estudias o trabajas o ambas?</label>
+                    <select class="agenda-ocupacion">
+                        <option value="Estudio">Estudio</option>
+                        <option value="Trabajo">Trabajo</option>
+                        <option value="Ambas">Ambas (Estudio y Trabajo)</option>
+                        <option value="Ninguna">Ninguna</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Si estudias o trabajas, ¿de qué campo, carrera o profesión es?</label>
+                    <input type="text" class="agenda-profesion" placeholder="Ej: Abogacía, Oposiciones, Magisterio, Administración...">
+                </div>
+
+                <div class="form-group">
+                    <label>¿Cuál es tu color o paleta de colores favorita?</label>
+                    <input type="text" class="agenda-colores" placeholder="Ej: Tonos pastel, verde agua, morado y dorado...">
+                </div>
+
+                <div class="form-group">
+                    <label>¿Cuáles son tus hobbys o aficiones?</label>
+                    <small style="color: #6A6A6A; display: block; margin-bottom: 0.3rem;">Cuéntame qué te gusta hacer en tu tiempo libre.</small>
+                    <textarea class="agenda-hobbys" rows="2" placeholder="Ej: Leer, la hípica, jardinería, manualidades..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>¿Para qué uso principal vas a querer la agenda?</label>
+                    <textarea class="agenda-uso" rows="2" placeholder="Ej: Para organizar turnos de trabajo, llevar la oposición al día, tareas del hogar y personales..."></textarea>
+                </div>
+            </div>
+        </div>`;
+
+        document.getElementById('contenedor_agendas').insertAdjacentHTML('beforeend', html);
+        actualizarPrecio();
+    }
+
+    function eliminarAgenda(id) {
+        var card = document.getElementById(`agenda_card_${id}`);
+        if (card) {
+            card.remove();
+            actualizarPrecio();
+        }
+    }
+
+    function toggleSubseccion(selectElem, tipo) {
+        var subseccion = document.getElementById(`subseccion_${tipo}`);
+        if (selectElem.value === "Sí") {
+            subseccion.style.display = "block";
+        } else {
+            subseccion.style.display = "none";
+        }
+        actualizarPrecio();
+    }
+
+    function actualizarPrecio() {
+        var cards = document.querySelectorAll('.card-agenda');
+        var totalAgendas = cards.length;
+        var sumaAgendas = 0;
+        var tienePackCompletoAlguna = false;
+        var desgloseHTML = "";
+
+        cards.forEach((card, index) => {
+            var numAgenda = index + 1;
+            
+            var formato = card.querySelector('.agenda-formato').value;
+            var selectPapel = card.querySelector('.agenda-papel');
+            var gramaje = selectPapel.value;
+
+            var pPapel = preciosPapel[formato][gramaje];
+
+            var selectAnillas = card.querySelector('.agenda-anillas');
+            var pAnillas = parseFloat(selectAnillas.options[selectAnillas.selectedIndex].getAttribute('data-extra'));
+
+            var selectMarca = card.querySelector('.agenda-marcapaginas');
+            var pMarca = parseFloat(selectMarca.options[selectMarca.selectedIndex].getAttribute('data-extra'));
+
+            var selectHorario = card.querySelector('.agenda-incluye-horario');
+            var pHorario = parseFloat(selectHorario.options[selectHorario.selectedIndex].getAttribute('data-extra'));
+
+            var selectAsig = card.querySelector('.agenda-incluye-asig');
+            var pAsig = 0;
+            if (selectAsig.value === "Sí") {
+                var numAsig = parseInt(card.querySelector('.asig-num').value) || 1;
+                pAsig = numAsig * 1.00;
+            }
+
+            var subtotalCard = pPapel + pAnillas + pMarca + pHorario + pAsig;
+            sumaAgendas += subtotalCard;
+
+            // Si lleva complemento + horario + asignaturas
+            if (selectMarca.value !== "No" && selectHorario.value === "Sí" && selectAsig.value === "Sí") {
+                tienePackCompletoAlguna = true;
+            }
+
+            desgloseHTML += `• Agenda #${numAgenda} (${formato}): <strong>${subtotalCard.toFixed(2).replace('.', ',')}€</strong><br>`;
+        });
+
+        // LÓGICA DE GASTOS DE ENVÍO
+        var metodoEntregaElem = document.querySelector('input[name="entrega"]:checked');
+        var metodoEntrega = metodoEntregaElem ? metodoEntregaElem.value : "Envío a domicilio";
+        var costeEnvio = 0;
+
+        if (metodoEntrega === "Envío a domicilio") {
+            if (totalAgendas >= 3 || tienePackCompletoAlguna) {
+                costeEnvio = 0;
+                document.getElementById('mensajeEnvioGratis').style.display = 'block';
+            } else {
+                costeEnvio = 3.89;
+                document.getElementById('mensajeEnvioGratis').style.display = 'none';
+            }
+        } else {
+            document.getElementById('mensajeEnvioGratis').style.display = 'none';
+        }
+
+        var totalFinal = sumaAgendas + costeEnvio;
+
+        if (costeEnvio > 0) {
+            desgloseHTML += `• Envío a domicilio: <strong>${costeEnvio.toFixed(2).replace('.', ',')}€</strong>`;
+        } else if (metodoEntrega === "Envío a domicilio") {
+            desgloseHTML += `• Envío a domicilio: <strong>GRATIS</strong>`;
+        } else {
+            desgloseHTML += `• Recogida en mano: <strong>0,00€</strong>`;
+        }
+
+        document.getElementById('desgloseTexto').innerHTML = desgloseHTML;
+        document.getElementById('precioTotal').innerText = totalFinal.toFixed(2).replace('.', ',');
+    }
+
+    function enviarPorWhatsApp() {
+        var miTelefono = "34672707366";
+        var nombre = document.getElementById('nombre').value;
+        var fecha = document.getElementById('fecha').value;
+
+        if(!nombre || !fecha) {
+            alert("Por favor, rellena tu nombre y la fecha de inicio.");
+            return;
+        }
+
+        var cards = document.querySelectorAll('.card-agenda');
+        if(cards.length === 0) {
+            alert("Debes añadir al menos una agenda a tu pedido.");
+            return;
+        }
+
+        var fechaFormateada = fecha.split('-').reverse().join('/');
+        var mensaje = "¡Hola! He preparado un pedido en la web:%0A%0A" +
+                      "👤 *Cliente:* " + encodeURIComponent(nombre) + "%0A" +
+                      "📅 *Fecha de inicio:* " + encodeURIComponent(fechaFormateada) + "%0A" +
+                      "📦 *Cantidad total de agendas:* " + cards.length + "%0A%0A" +
+                      "--- *DETALLE DEL PEDIDO* ---%0A%0A";
+
+        cards.forEach((card, index) => {
+            var num = index + 1;
+            var formato = card.querySelector('.agenda-formato').value;
+            var papel = card.querySelector('.agenda-papel').value;
+            var anillas = card.querySelector('.agenda-anillas').value;
+            var complementos = card.querySelector('.agenda-marcapaginas').value;
+
+            mensaje += "*AGENDA #" + num + " (" + encodeURIComponent(formato) + ")*%0A" +
+                       "- Papel: " + encodeURIComponent(papel) + "%0A" +
+                       "- Anillas: " + encodeURIComponent(anillas) + "%0A" +
+                       "- Complementos: " + encodeURIComponent(complementos) + "%0A";
+
+            var selectHorario = card.querySelector('.agenda-incluye-horario');
+            if (selectHorario.value === "Sí") {
+                var hPlast = card.querySelector('.horario-plastificado').value;
+                var hGrosor = card.querySelector('.horario-grosor').value;
+                var hTamano = card.querySelector('.horario-tamano').value;
+                mensaje += "- Horario: Sí (" + encodeURIComponent(hPlast) + ", " + encodeURIComponent(hGrosor) + ", " + encodeURIComponent(hTamano) + ")%0A";
+            } else {
+                mensaje += "- Horario: No%0A";
+            }
+
+            var selectAsig = card.querySelector('.agenda-incluye-asig');
+            if (selectAsig.value === "Sí") {
+                var numAsig = card.querySelector('.asig-num').value;
+                var nomAsig = card.querySelector('.asig-nombres').value || "No especificadas";
+                var agujeros = card.querySelector('.asig-agujeros').value;
+                mensaje += "- Portadas Asignaturas: " + numAsig + " ud (" + encodeURIComponent(nomAsig) + " - " + encodeURIComponent(agujeros) + ")%0A";
+            } else {
+                mensaje += "- Portadas Asignaturas: No%0A";
+            }
+
+            var dueno = (card.querySelector('.agenda-dueno') && card.querySelector('.agenda-dueno').value) || "No indicado";
+            
+            var estiloElem = card.querySelector('.agenda-estilo');
+            var estilo = estiloElem ? estiloElem.value : "";
+            var estiloOtro = (card.querySelector('.agenda-estilo-otro') && card.querySelector('.agenda-estilo-otro').value) || "";
+            if (estilo.includes("Otro") && estiloOtro) {
+                estilo = "Otro: " + estiloOtro;
+            }
+
+            var seccionesExtra = (card.querySelector('.agenda-secciones-extra') && card.querySelector('.agenda-secciones-extra').value) || "Ninguna";
+            var ocupacion = (card.querySelector('.agenda-ocupacion') && card.querySelector('.agenda-ocupacion').value) || "No indicada";
+            var profesion = (card.querySelector('.agenda-profesion') && card.querySelector('.agenda-profesion').value) || "No especificada";
+            var colores = (card.querySelector('.agenda-colores') && card.querySelector('.agenda-colores').value) || "No especificado";
+            var hobbys = (card.querySelector('.agenda-hobbys') && card.querySelector('.agenda-hobbys').value) || "No especificado";
+            var uso = (card.querySelector('.agenda-uso') && card.querySelector('.agenda-uso').value) || "No especificado";
+
+            mensaje += "🎨 *Diseño:*%0A" +
+                       "  • Nombre/Texto: " + encodeURIComponent(dueno) + "%0A" +
+                       "  • Estilo: " + encodeURIComponent(estilo) + "%0A" +
+                       "  • Secciones extra: " + encodeURIComponent(seccionesExtra) + "%0A" +
+                       "  • Situación: " + encodeURIComponent(ocupacion) + " (" + encodeURIComponent(profesion) + ")%0A" +
+                       "  • Colores: " + encodeURIComponent(colores) + "%0A" +
+                       "  • Hobbys: " + encodeURIComponent(hobbys) + "%0A" +
+                       "  • Uso principal: " + encodeURIComponent(uso) + "%0A%0A";
+        });
+
+        var pago = document.querySelector('input[name="pago"]:checked').value;
+        var entrega = document.querySelector('input[name="entrega"]:checked').value;
+        var precioFinal = document.getElementById('precioTotal').innerText + "€";
+
+        mensaje += "💳 *Método de Pago:* " + encodeURIComponent(pago) + "%0A" +
+                   "🚚 *Entrega:* " + encodeURIComponent(entrega) + "%0A" +
+                   "💰 *PRECIO TOTAL:* " + encodeURIComponent(precioFinal);
+
+        window.open("https://wa.me/" + miTelefono + "?text=" + mensaje, '_blank');
+    }
+</script>
 </body>
 </html>
